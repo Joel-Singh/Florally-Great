@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const regionSchema = new Schema({
   name: { type: String, required: true},
@@ -9,4 +9,4 @@ regionSchema.virtual('url').get(function() {
   return `/region/${this.name}`
 })
 
-module.exports = mongoose.model("Region", regionSchema);
+module.exports = model("Region", regionSchema);

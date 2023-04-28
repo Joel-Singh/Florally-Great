@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const flowerSchema = new Schema({
   name:          { type: String, required: true},
@@ -12,4 +12,4 @@ flowerSchema.virtual('url').get(function() {
   return `/flowers/${this.name}`
 })
 
-module.exports = mongoose.model("Flower", flowerSchema);
+module.exports = model("Flower", flowerSchema);
