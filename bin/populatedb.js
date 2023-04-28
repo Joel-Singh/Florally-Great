@@ -34,6 +34,18 @@ async function populateDatabase() {
       {
         name: 'Mediterranean',
         description: 'Mediterranean region with a mild and temperate climate'
+      },
+      {
+        name: 'Arctic',
+        description: 'Arctic region with a very cold and harsh climate'
+      },
+      {
+        name: 'Desert',
+        description: 'Desert region with an extremely dry climate and drastic temperature changes'
+      },
+      {
+        name: 'Temperate',
+        description: 'Temperate region with a moderate climate, characterized by distinct seasons'
       }
     ];
 
@@ -57,11 +69,66 @@ async function populateDatabase() {
         price: 15,
         numberInStock: 20,
         regionName: 'Mediterranean'
+      },
+      {
+        name: 'Hibiscus',
+        description: 'A vibrant tropical flower with large, showy petals',
+        price: 20,
+        numberInStock: 15,
+        regionName: 'Tropical'
+      },
+      {
+        name: 'Oleander',
+        description: 'An evergreen shrub with colorful, fragrant flowers',
+        price: 18,
+        numberInStock: 12,
+        regionName: 'Mediterranean'
+      },
+      {
+        name: 'Arctic Poppy',
+        description: 'A small, resilient flower adapted to Arctic conditions',
+        price: 30,
+        numberInStock: 8,
+        regionName: 'Arctic'
+      },
+      {
+        name: 'Arctic Willow',
+        description: 'A low-growing plant with small, delicate flowers',
+        price: 22,
+        numberInStock: 14,
+        regionName: 'Arctic'
+      },
+      {
+        name: 'Cactus Flower',
+        description: 'A short-lived, yet stunning bloom from desert cacti',
+        price: 28,
+        numberInStock: 9,
+        regionName: 'Desert'
+      },
+      {
+        name: 'Yucca',
+        description: 'A desert plant with tall, white flower clusters',
+        price: 35,
+        numberInStock: 6,
+        regionName: 'Desert'
+      },
+      {
+        name: 'Rose',
+        description: 'A classic flower with a wide variety of colors and fragrances',
+        price: 40,
+        numberInStock: 25,
+        regionName: 'Temperate'
+      },
+      {
+        name: 'Tulip',
+        description: 'A popular spring flower with a simple, elegant shape',
+        price: 10,
+        numberInStock: 30,
+        regionName: 'Temperate'
       }
     ];
 
     const flowerDocuments = flowerData.map(flower => {
-      debugger;
       const regionId = regions.find(region => region.name === flower.regionName);
       flower.region = regionId;
       delete flower.regionName
