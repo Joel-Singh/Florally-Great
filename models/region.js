@@ -6,7 +6,7 @@ const regionSchema = new Schema({
 });
 
 regionSchema.virtual('url').get(function() {
-  return `/region/${this.name}`
+  return `/regions/${this.name}`
 })
 
 module.exports = model("Region", regionSchema);
