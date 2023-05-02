@@ -6,4 +6,16 @@ html
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
   body
+    block sidebar
+      nav
+        ul.sidebar__flowers
+          li
+            a(href='/flowers') All flowers
+          li
+            a(href='/flowers/create') Create flower
+        ul.sidebar__regions
+          li
+            a(href='/regions') All regions
+          li
+            a(href='/flowers/create') Create region
     block content
