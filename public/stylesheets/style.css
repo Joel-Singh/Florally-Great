@@ -32,6 +32,10 @@ nav > * {
   width: fit-content;
 }
 
+nav > h1 {
+  font-size: 2rem;
+}
+
 a {
   color: #00B7FF;
 }
