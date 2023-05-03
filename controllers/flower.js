@@ -2,7 +2,12 @@ const Flower = require('../models/flower')
 const asyncHandler = require('express-async-handler')
 
 exports.flower_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower list")
+  const allFlowers = await Flower.find({}, 'name description url')
+    .sort({ name: 1 })
+    .populate('region', 'name')
+    .exec()
+
+  res.render('all_flowers', { flower_list: allFlowers, title: 'All Flowers'})
 })
 
 exports.flower_detail = asyncHandler(async (req, res, next) => {
