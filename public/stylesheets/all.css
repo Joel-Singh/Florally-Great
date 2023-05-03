@@ -41,6 +41,7 @@ nav > h1 {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
 
 a:hover {
