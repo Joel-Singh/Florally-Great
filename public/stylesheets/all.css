@@ -19,6 +19,10 @@ body {
   display: flex;
 }
 
+main {
+  width: 100%;
+}
+
 nav {
   display: flex;
   flex-direction: column;
