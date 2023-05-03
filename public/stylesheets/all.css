@@ -16,11 +16,8 @@ html, body {
 }
 
 body {
-  display: flex;
-}
-
-main {
-  width: 100%;
+  display: grid;
+  grid-template-columns: 200px 1fr;
 }
 
 nav {
@@ -30,7 +27,6 @@ nav {
   padding-top: 20px;
 
   gap: 30px;
-  width: 23%;
   background-color: var(--gray);
 }
 
