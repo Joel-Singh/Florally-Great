@@ -8,7 +8,8 @@ block content
   ul.flower-list
     each flower in flower_list
       li
-        - const { name, description, region } = flower
-        h2= name
+        - const { name, description, region, url } = flower
+        h2
+          a(href= url)= name
         p= region.name
         p= description
