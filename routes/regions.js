@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const regionController = require('../controllers/region')
-const flower_and_region_controller = require('../controllers/flower_and_region')
+const flowerAndRegionController = require('../controllers/flowerAndRegion')
 
 router.get('/', regionController.region_list)
 
