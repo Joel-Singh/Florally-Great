@@ -9,3 +9,7 @@ main {
   padding-top: 20px;
   gap: 10px;
 }
+
+.pale-text {
+  color: var(--pale)
+}
