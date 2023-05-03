@@ -7,8 +7,16 @@ exports.all_flowers_in_region = asyncHandler(async (req, res, next) => {
 })
 
 exports.index = asyncHandler(async (req, res, next) => {
+  const [
+    flowerCount,
+    regionCount
+  ] = await Promise.all([
+      Flower.countDocuments({}).exec(),
+      Region.countDocuments({}).exec()
+  ])
   res.render('index', {
     title: 'Florally Great',
-    flower_count: 3
+    flower_count: flowerCount,
+    region_count: regionCount
   })
 })
