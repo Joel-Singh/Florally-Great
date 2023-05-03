@@ -1,3 +1,13 @@
+:root {
+  --black: #212C38;
+  --gray: #465363;
+  --white: #D7EFE9;
+  --pale: #E9DCA5;
+  --salmon: #D98E69;
+  color: var(--white);
+  background-color: var(--black);
+}
+
 html, body {
   height: 100%;
   width: 100%;
