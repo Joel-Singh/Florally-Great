@@ -1,4 +1,5 @@
 /* Add a proper font */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 
 :root {
   --black: #212C38;
@@ -8,6 +9,8 @@
   --salmon: #D98E69;
   color: var(--white);
   background-color: var(--black);
+
+  font-family: 'EB Garamond', serif;
 }
 
 html, body {
