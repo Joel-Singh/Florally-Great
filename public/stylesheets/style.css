@@ -25,6 +25,7 @@ nav {
 
   gap: 30px;
   width: 23%;
+  background-color: var(--gray);
 }
 
 nav > * {
