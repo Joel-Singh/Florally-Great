@@ -5,3 +5,10 @@ const asyncHandler = require('express-async-handler')
 exports.all_flowers_in_region = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: All flowers in region")
 })
+
+exports.index = asyncHandler(async (req, res, next) => {
+  res.render('index', {
+    title: 'Florally Great',
+    flower_count: 3
+  })
+})
