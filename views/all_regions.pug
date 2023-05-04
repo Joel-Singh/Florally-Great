@@ -1,0 +1,14 @@
+extends layout
+
+block more style sheets
+  link(rel='stylesheet', href='/stylesheets/list.css')
+
+block content
+  h1= title
+  ul.list
+    each region in region_list
+      li
+        - const { name, description, url } = region
+        h2
+          a(href= url)= name
+        p= description
