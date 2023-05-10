@@ -11,7 +11,21 @@ exports.flower_list = asyncHandler(async (req, res, next) => {
 })
 
 exports.flower_detail = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower detail")
+  const flowerName = req.params.name
+  let flower = (
+    await Flower.find({name: flowerName})
+      .populate('region', 'name')
+      .exec()
+  )[0]
+
+  const { name, description, price, numberInStock } = flower
+  res.render('flower_detail', {
+    name,
+    description: flower.description,
+    price: flower.price,
+    numberInStock: flower.numberInStock,
+    region: flower.region.name,
+  })
 })
 
 exports.flower_create_get = asyncHandler(async (req, res, next) => {
