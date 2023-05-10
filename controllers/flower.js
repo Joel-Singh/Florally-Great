@@ -20,6 +20,7 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
 
   const { name, description, price, numberInStock } = flower
   res.render('flower_detail', {
+    title: name,
     name,
     description: flower.description,
     price: flower.price,
