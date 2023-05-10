@@ -22,9 +22,9 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
   res.render('flower_detail', {
     title: name,
     name,
-    description: flower.description,
-    price: flower.price,
-    numberInStock: flower.numberInStock,
+    description,
+    price,
+    numberInStock,
     region: flower.region.name,
   })
 })
