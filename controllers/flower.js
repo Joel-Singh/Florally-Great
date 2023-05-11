@@ -12,11 +12,10 @@ exports.flower_list = asyncHandler(async (req, res, next) => {
 
 exports.flower_detail = asyncHandler(async (req, res, next) => {
   const flowerName = req.params.name
-  let flower = (
+  let flower =
     await Flower.findOne({name: flowerName})
       .populate('region', 'name')
       .exec()
-  )
 
   const { name, description, price, numberInStock } = flower
   res.render('flowers/flower_detail', {
