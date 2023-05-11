@@ -1,0 +1,14 @@
+extends ../layout
+
+block more style sheets
+  link(rel='stylesheet', href='/stylesheets/list.css')
+
+block content
+  h1= region.name
+  ul.list
+    each flower in flower_list
+      li
+        - const { name, description, url } = flower
+        h2
+          a(href= url)= name
+        p= description

@@ -12,7 +12,7 @@ router.post('/create', regionController.region_create_post)
 router.get('/create', regionController.region_create_get)
 router.post('/create', regionController.region_create_post)
 
-router.get('/:name', regionController.region_detail)
+router.get('/:name', flowerAndRegionController.all_flowers_in_region)
 router.get('/:name/update', regionController.region_update_get)
 router.post('/:name/update', regionController.region_update_post)
 
