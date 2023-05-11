@@ -7,7 +7,7 @@ exports.flower_list = asyncHandler(async (req, res, next) => {
     .populate('region', 'name')
     .exec()
 
-  res.render('all_flowers', { flower_list: allFlowers, title: 'All Flowers'})
+  res.render('flowers/all_flowers', { flower_list: allFlowers, title: 'All Flowers'})
 })
 
 exports.flower_detail = asyncHandler(async (req, res, next) => {
@@ -19,7 +19,7 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
   )[0]
 
   const { name, description, price, numberInStock } = flower
-  res.render('flower_detail', {
+  res.render('flowers/flower_detail', {
     title: name,
     name,
     description,
