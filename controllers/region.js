@@ -6,7 +6,7 @@ exports.region_list = asyncHandler(async (req, res, next) => {
     .sort({ name: 1 })
     .exec()
 
-  res.render('all_regions', { region_list: allRegions, title: 'All Regions'})
+  res.render('regions/all_regions', { region_list: allRegions, title: 'All Regions'})
 })
 
 exports.region_detail = asyncHandler(async (req, res, next) => {
