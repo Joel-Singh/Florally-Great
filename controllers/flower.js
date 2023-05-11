@@ -24,7 +24,7 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
     description,
     price,
     numberInStock,
-    region: flower.region.name,
+    region: flower.region,
   })
 })
 

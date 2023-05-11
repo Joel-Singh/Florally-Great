@@ -5,4 +5,5 @@ block content
   p= description
   p Price: #[span.pale-text #{price}]
   p Number In Stock: #[span.pale-text #{numberInStock}]
-  p Region: #[span.pale-text #{region}]
+  p Region:
+    a(href=region.url)= " " + region.name
