@@ -14,7 +14,7 @@ exports.region_detail = asyncHandler(async (req, res, next) => {
 })
 
 exports.region_create_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Region create GET")
+  res.render('regions/region_form', {title: 'Add New Region'})
 })
 
 exports.region_create_post = asyncHandler(async (req, res, next) => {
