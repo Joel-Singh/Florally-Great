@@ -15,7 +15,7 @@ exports.region_detail = asyncHandler(async (req, res, next) => {
 })
 
 exports.region_create_get = asyncHandler(async (req, res, next) => {
-  res.render('regions/region_form', {title: 'Add New Region'})
+  res.render('regions/region_form')
 })
 
 exports.region_create_post = [
@@ -29,7 +29,6 @@ exports.region_create_post = [
 
     if (!errors.isEmpty()) {
       res.render("regions/region_form", {
-        title: "Add New Region",
         errors: errors.array()
       })
       return
@@ -39,7 +38,6 @@ exports.region_create_post = [
 
       if (regionExists) {
         res.render('regions/region_form', {
-          title: "Add New Region",
           errors: [{ msg: 'Region already exists'}]
         })
       } else {

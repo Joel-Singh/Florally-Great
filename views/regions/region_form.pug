@@ -1,10 +1,14 @@
 extends ../layout
 
+
+block title
+  title=title || "Add New Region"
+
 block more style sheets
   link(rel='stylesheet', href='/stylesheets/form.css')
 
 block content
-  h1= title
+  h1= title || "Add New Region"
 
   form(method='POST' action='')
     label(for='name') Name:
