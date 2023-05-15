@@ -3,6 +3,11 @@ form {
   flex-direction: column;
 }
 
+input, button[type='submit'] {
+  border: 0;
+  font: inherit;
+}
+
 input {
   margin-bottom: 30px;
   border-radius: 999px;
@@ -19,14 +24,8 @@ input:hover::placeholder {
   color: var(--white)
 }
 
-
 input:hover{
   outline: 3px solid var(--white);
-}
-
-input, button[type='submit'] {
-  border: 0;
-  font: inherit;
 }
 
 button[type='submit'] {
