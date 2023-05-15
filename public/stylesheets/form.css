@@ -38,3 +38,7 @@ button[type='submit'] {
   padding-bottom: 10px;
 }
 
+button[type='submit']:hover {
+  border-color: var(--white);
+  color: var(--white);
+}
