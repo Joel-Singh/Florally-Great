@@ -14,6 +14,7 @@ input {
   background-color: var(--gray);
   margin-top: 5px;
   color: var(--white);
+  padding-left: 10px;
 }
 
 input::placeholder {
