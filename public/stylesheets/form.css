@@ -13,6 +13,7 @@ input {
   border-radius: 999px;
   background-color: var(--gray);
   margin-top: 5px;
+  color: var(--white);
 }
 
 input::placeholder {
