@@ -15,6 +15,15 @@ input::placeholder {
   color: var(--darker-gray);
 }
 
+input:hover::placeholder {
+  color: var(--white)
+}
+
+
+input:hover{
+  outline: 3px solid var(--white);
+}
+
 input, button[type='submit'] {
   border: 0;
   font: inherit;
