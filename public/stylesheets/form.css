@@ -1,0 +1,30 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 30px;
+  border-radius: 999px;
+  background-color: var(--gray);
+  margin-top: 5px;
+}
+
+input::placeholder {
+  text-align: center;
+  color: var(--darker-gray);
+}
+
+input, button[type='submit'] {
+  border: 0;
+  font: inherit;
+}
+
+button[type='submit'] {
+  background-color: var(--gray);
+  border: 7px solid var(--darker-black);
+  color: var(--pale);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
