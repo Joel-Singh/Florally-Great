@@ -24,6 +24,11 @@ exports.region_create_post = [
     .isLength({ min: 1})
     .escape(),
 
+  body('description', `Description can't be empty`)
+    .trim()
+    .isLength({ min: 1})
+    .escape(),
+
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
 
