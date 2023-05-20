@@ -1,41 +1,32 @@
-extends ../layout
+extends ../form
 
 block title
   title=title || "Add New Flower"
 
-block more style sheets
-  link(rel='stylesheet', href='/stylesheets/form.css')
-
-block content
+block header
   h1= title || "Add New Flower"
 
-  form(method='POST' action='')
-    label(for='name') Name:
-    input#name(type='text', placeholder='Enter name here' name='name')
+block form elements
+  label(for='name') Name:
+  input#name(type='text', placeholder='Enter name here' name='name')
 
-    label(for='description') Description:
-    input#description(type='text', placeholder='Enter description here' name='description')
+  label(for='description') Description:
+  input#description(type='text', placeholder='Enter description here' name='description')
 
-    label(for='price') Description:
-    input#price(type='text', placeholder='Enter price here' name='description')
+  label(for='price') Description:
+  input#price(type='text', placeholder='Enter price here' name='description')
 
-    button(type='submit') Submit
+  -
+    regionList.sort(
+      function(a, b) {
+          let textA = a.family_name.toUpperCase();
+          let textB = b.family_name.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        }
+    );
 
-    -
-      regionList.sort(
-        function(a, b) {
-            let textA = a.family_name.toUpperCase();
-            let textB = b.family_name.toUpperCase();
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-          }
-      );
+  select(placeholder='select region', name='region', required='true')
+    for region in regionList
+      option(value=region._id) #{region.name}
 
-    select(placeholder='select region', name='region', required='true')
-      for region in regionList
-        option(value=region._id) #{region.name}
-
-
-  if errors
-   ul
-    for error in errors
-     li!= error.msg
+  button(type='submit') Submit
