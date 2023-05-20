@@ -2,6 +2,8 @@ const Flower = require('../models/flower')
 const Region = require('../models/region')
 const asyncHandler = require('express-async-handler')
 
+const { body, validationResult } = require("express-validator");
+
 exports.flower_list = asyncHandler(async (req, res, next) => {
   const allFlowers = await Flower.find({}, 'name description url')
     .sort({ name: 1 })
@@ -34,9 +36,52 @@ exports.flower_create_get = asyncHandler(async (req, res, next) => {
   res.render('flowers/flower_form', { regionList: allRegions})
 })
 
-exports.flower_create_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower create POST")
-})
+exports.flower_create_post = [
+  body('name', `Name can't be empty`)
+    .trim()
+    .isLength({ min: 1})
+    .escape(),
+
+  body('description', `Description can't be empty`)
+    .trim()
+    .isLength({ min: 1})
+    .escape(),
+
+  body('numberInStock')
+    .trim()
+    .isLength({ min: 1}).withMessage(`Number in stock can't be empty`)
+    .isNumeric().withMessage('Number in stock needs to be a number'),
+
+  body('price')
+    .trim()
+    .isLength({ min: 1}).withMessage(`Price can't be empty`)
+    .matches(/\$[0-9]+\.[0-9][0-9]/).withMessage('Price needs to be in $x.xx format, e.g $3.86 or $287.00'),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      res.render("regions/region_form", {
+        errors: errors.array()
+      })
+      return
+    } else {
+      const { name, description, price, numberInStock, region } = req.body
+      const flowerExists = await Flower.findOne({ name }).exec()
+
+      if (flowerExists) {
+        res.render('regions/flower_form', {
+          errors: [{ msg: 'Flower already exists'}]
+        })
+      } else {
+        const priceToNumber = parseFloat(price.slice(1))
+        const flower = new Flower({name, description, price: priceToNumber, numberInStock, region})
+        await flower.save()
+        res.redirect(flower.url)
+      }
+    }
+  })
+]
 
 exports.flower_update_get = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Flower update GET")
