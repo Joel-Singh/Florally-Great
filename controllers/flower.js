@@ -1,4 +1,5 @@
 const Flower = require('../models/flower')
+const Region = require('../models/region')
 const asyncHandler = require('express-async-handler')
 
 exports.flower_list = asyncHandler(async (req, res, next) => {
@@ -26,6 +27,11 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
     numberInStock,
     region: flower.region,
   })
+})
+
+exports.flower_create_get = asyncHandler(async (req, res, next) => {
+  const allRegions = await Region.find({}, 'name').exec()
+  res.render('flowers/flower_form', { regionList: allRegions})
 })
 
 exports.flower_create_post = asyncHandler(async (req, res, next) => {

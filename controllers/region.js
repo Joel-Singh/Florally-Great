@@ -63,7 +63,3 @@ exports.region_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Region update POST")
 })
 
-exports.flower_create_get = asyncHandler(async (req, res, next) => {
-  const allRegions = await Region.find({}, 'name').exec()
-  res.render('flowers/flower_form', { regionList: allRegions})
-})
