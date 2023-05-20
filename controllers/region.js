@@ -62,3 +62,7 @@ exports.region_update_get = asyncHandler(async (req, res, next) => {
 exports.region_update_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Region update POST")
 })
+
+exports.flower_create_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: Flower create GET")
+})

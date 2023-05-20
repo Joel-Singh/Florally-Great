@@ -28,10 +28,6 @@ exports.flower_detail = asyncHandler(async (req, res, next) => {
   })
 })
 
-exports.flower_create_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower create GET")
-})
-
 exports.flower_create_post = asyncHandler(async (req, res, next) => {
   res.send("NOT IMPLEMENTED: Flower create POST")
 })
