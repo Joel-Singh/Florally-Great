@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const flowerAndRegionController = require('../controllers/flowerAndRegion')
+const index_controller = require('../controllers/index')
 
 /* GET home page. */
-router.get('/', flowerAndRegionController.index);
+router.get('/', index_controller.index);
 
 module.exports = router;
