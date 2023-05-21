@@ -1,6 +1,7 @@
 const Flower = require('../models/flower')
 const Region = require('../models/region')
 const asyncHandler = require('express-async-handler')
+const he = require('he')
 
 const { body, validationResult } = require("express-validator");
 
@@ -75,10 +76,14 @@ exports.flower_create_post = [
         })
       } else {
         const priceToNumber = parseFloat(price.slice(1))
+
+        const convertedName = he.decode(name)
+        const convertedDescription = he.decode(description)
+
         const flower = new Flower(
           {
-            name,
-            description,
+            name: convertedName,
+            description: convertedDescription,
             price: priceToNumber,
             numberInStock,
             region
