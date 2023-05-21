@@ -38,14 +38,14 @@ exports.flower_create_get = asyncHandler(async (req, res, next) => {
 })
 
 exports.flower_create_post = [
-  body('name', `Name can't be empty`)
+  body('name')
     .trim()
-    .isLength({ min: 1})
+    .isLength({ min: 1}).withMessage(`Name can't be empty`)
     .escape(),
 
-  body('description', `Description can't be empty`)
+  body('description')
     .trim()
-    .isLength({ min: 1})
+    .isLength({ min: 1}).withMessage(`Description can't be empty`)
     .escape(),
 
   body('numberInStock')
