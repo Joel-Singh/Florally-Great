@@ -1,9 +1,14 @@
 const express = require("express");
 const router = express.Router();
+const path = require('path')
 
 const flower_controller = require('../controllers/flower')
 
-router.get('/', flower_controller.flower_list)
+const requireFlowerController = (controllerName) => {
+  return require(path.join(appRoot, 'controllers', 'flower', controllerName))
+}
+
+router.get('/', requireFlowerController('list.js'))
 
 router.get('/create', flower_controller.flower_create_get)
 router.post('/create', flower_controller.flower_create_post)

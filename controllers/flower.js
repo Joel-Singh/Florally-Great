@@ -5,15 +5,6 @@ const he = require('he')
 
 const { body, validationResult } = require("express-validator");
 
-exports.flower_list = asyncHandler(async (req, res, next) => {
-  const allFlowers = await Flower.find({}, 'name description url')
-    .sort({ name: 1 })
-    .populate('region', 'name')
-    .exec()
-
-  res.render('flowers/all_flowers', { flower_list: allFlowers, title: 'All Flowers'})
-})
-
 exports.flower_detail = asyncHandler(async (req, res, next) => {
   const flowerName = req.params.name
   let flower =
