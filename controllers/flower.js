@@ -62,7 +62,7 @@ exports.flower_create_post = [
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
-      res.render("regions/region_form", {
+      res.render("flowers/flower_form", {
         errors: errors.array()
       })
       return
@@ -71,7 +71,7 @@ exports.flower_create_post = [
       const flowerExists = await Flower.findOne({ name }).exec()
 
       if (flowerExists) {
-        res.render('regions/flower_form', {
+        res.render('flowers/flower_form', {
           errors: [{ msg: 'Flower already exists'}]
         })
       } else {
