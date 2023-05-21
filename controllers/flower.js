@@ -75,7 +75,15 @@ exports.flower_create_post = [
         })
       } else {
         const priceToNumber = parseFloat(price.slice(1))
-        const flower = new Flower({name, description, price: priceToNumber, numberInStock, region})
+        const flower = new Flower(
+          {
+            name,
+            description,
+            price: priceToNumber,
+            numberInStock,
+            region
+          }
+        )
         await flower.save()
         res.redirect(flower.url)
       }
