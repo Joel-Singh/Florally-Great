@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const path = require('path')
+const he = require('he')
 const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 
 const { body, validationResult } = require("express-validator");
