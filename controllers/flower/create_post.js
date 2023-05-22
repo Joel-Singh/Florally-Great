@@ -49,29 +49,30 @@ const checkDuplicateFlower = asyncHandler(async (req, res, next) => {
   next();
 })
 
+const saveFlower = asyncHandler(async (req, res, next) => {
+    const { name, description, price, numberInStock, region } = req.body
+    const priceToNumber = parseFloat(price.slice(1))
+
+    const convertedName = he.decode(name)
+    const convertedDescription = he.decode(description)
+
+    const flower = new Flower(
+      {
+        name: convertedName,
+        description: convertedDescription,
+        price: priceToNumber,
+        numberInStock,
+        region
+      }
+    )
+    await flower.save()
+    res.redirect(flower.url)
+  }
+)
+
 module.exports = [
   ...validationFunctions,
   validateInput,
   checkDuplicateFlower,
-
-  asyncHandler(async (req, res, next) => {
-    const { name, description, price, numberInStock, region } = req.body
-      const priceToNumber = parseFloat(price.slice(1))
-
-      const convertedName = he.decode(name)
-      const convertedDescription = he.decode(description)
-
-      const flower = new Flower(
-        {
-          name: convertedName,
-          description: convertedDescription,
-          price: priceToNumber,
-          numberInStock,
-          region
-        }
-      )
-      await flower.save()
-      res.redirect(flower.url)
-    }
-  )
+  saveFlower
 ]
