@@ -4,7 +4,7 @@ const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 
 const { body, validationResult } = require("express-validator");
 
-module.exports = [
+const validationFunctions = [
   body('name')
     .trim()
     .isLength({ min: 1}).withMessage(`Name can't be empty`)
@@ -24,6 +24,10 @@ module.exports = [
     .trim()
     .isLength({ min: 1}).withMessage(`Price can't be empty`)
     .matches(/\$[0-9]+\.[0-9][0-9]/).withMessage('Price needs to be in $x.xx format, e.g $3.86 or $287.00'),
+]
+
+module.exports = [
+  ...validationFunctions,
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req)
@@ -62,3 +66,27 @@ module.exports = [
     }
   })
 ]
+
+function getValidationFunctions() {
+  return [
+    body('name')
+      .trim()
+      .isLength({ min: 1}).withMessage(`Name can't be empty`)
+      .escape(),
+
+    body('description')
+      .trim()
+      .isLength({ min: 1}).withMessage(`Description can't be empty`)
+      .escape(),
+
+    body('numberInStock')
+      .trim()
+      .isLength({ min: 1}).withMessage(`Number in stock can't be empty`)
+      .isNumeric().withMessage('Number in stock needs to be a number'),
+
+    body('price')
+      .trim()
+      .isLength({ min: 1}).withMessage(`Price can't be empty`)
+      .matches(/\$[0-9]+\.[0-9][0-9]/).withMessage('Price needs to be in $x.xx format, e.g $3.86 or $287.00'),
+  ]
+}
