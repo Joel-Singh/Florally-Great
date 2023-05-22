@@ -1,16 +1,10 @@
-const Flower = require('../models/flower')
-const Region = require('../models/region')
 const asyncHandler = require('express-async-handler')
-const he = require('he')
+const path = require('path')
+const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 
 const { body, validationResult } = require("express-validator");
 
-exports.flower_create_get = asyncHandler(async (req, res, next) => {
-  const allRegions = await Region.find({}, 'name').exec()
-  res.render('flowers/flower_form', { regionList: allRegions})
-})
-
-exports.flower_create_post = [
+module.exports = [
   body('name')
     .trim()
     .isLength({ min: 1}).withMessage(`Name can't be empty`)
@@ -68,11 +62,3 @@ exports.flower_create_post = [
     }
   })
 ]
-
-exports.flower_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower update GET")
-})
-
-exports.flower_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Flower update POST")
-})
