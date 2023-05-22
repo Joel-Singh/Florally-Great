@@ -72,7 +72,7 @@ const saveFlower = asyncHandler(async (req, res, next) => {
 )
 
 module.exports = [
-  ...validationFunctions,
+  validationFunctions,
   validateInput,
   checkDuplicateFlower,
   saveFlower
