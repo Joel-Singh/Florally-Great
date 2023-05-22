@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const path = require('path')
 
-const regionController = require('../controllers/region')
+const requireRegionController = (controllerName) => {
+  return require(path.join(appRoot, 'controllers', 'region', controllerName))
+}
 
-router.get('/', regionController.region_list)
+router.get('/', requireRegionController('list'))
 
-router.get('/create', regionController.region_create_get)
-router.post('/create', regionController.region_create_post)
+router.get('/create', requireRegionController('create_get'))
+router.post('/create', requireRegionController('create_post'))
 
-router.get('/create', regionController.region_create_get)
-router.post('/create', regionController.region_create_post)
+router.get('/create', requireRegionController('create_get'))
+router.post('/create', requireRegionController('create_post'))
 
-router.get('/:name', regionController.all_flowers_in_region)
-router.get('/:name/update', regionController.region_update_get)
-router.post('/:name/update', regionController.region_update_post)
+router.get('/:name', requireRegionController('all_flowers_in_region'))
+router.get('/:name/update', requireRegionController('update_get'))
+router.post('/:name/update', requireRegionController('update_post'))
 
 module.exports = router
