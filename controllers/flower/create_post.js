@@ -3,6 +3,7 @@ const path = require('path')
 const he = require('he')
 const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 const Region = require(path.join(appRoot, 'models', 'region.js'))
+const renderFlowerForm = require('./util/renderFlowerForm')
 
 const { body, validationResult } = require("express-validator");
 
@@ -31,11 +32,11 @@ const validationFunctions = [
 const validateInput = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    const allRegions = await Region.find({}, 'name').exec()
-    res.render("flowers/flower_form", {
-      errors: errors.array(),
-      regionList: allRegions
-    })
+    await renderFlowerForm(
+      res,
+      next,
+      { errors: errors.array()}
+    )
     return
   }
   next();
@@ -45,11 +46,11 @@ const checkDuplicateFlower = asyncHandler(async (req, res, next) => {
   const { name } = req.body
   const flowerExists = await Flower.findOne({ name }).exec()
   if (flowerExists) {
-    const allRegions = await Region.find({}, 'name').exec()
-    res.render('flowers/flower_form', {
-      errors: [{ msg: 'Flower already exists'}],
-      regionList: allRegions
-    })
+    await renderFlowerForm(
+      res,
+      next,
+      { errors: [{ msg: 'Flower already exists'}] }
+    )
     return
   }
   next();
