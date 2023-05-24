@@ -15,9 +15,17 @@ async function main() {
   await mongoose.connect(mongoDB)
     .then(() => console.log('Connected to MongoDB'))
 
+  await clearDatabase()
   await populateDatabase()
 
   mongoose.connection.close();
+}
+
+async function clearDatabase() {
+  console.log("Clearing database...")
+  await Flower.deleteMany({})
+  await Region.deleteMany({})
+  console.log("Database clear")
 }
 
 async function populateDatabase() {
