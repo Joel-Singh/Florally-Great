@@ -16,7 +16,7 @@ mixin generateRegionSelect(regionList)
         }
     );
 
-  select(placeholder='select region', name='region', required='true')
+  select(placeholder='select region', name='region', required='true', multiple)
     for region in regionList
       option(value=region._id) #{region.name}
 
