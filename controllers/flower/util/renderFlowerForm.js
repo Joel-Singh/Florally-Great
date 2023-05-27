@@ -3,15 +3,15 @@ const asyncHandler = require('express-async-handler')
 const Region = require(path.join(appRoot, 'models', 'region.js'))
 
 module.exports = asyncHandler(async function(res, next, viewContext) {
-  const allRegions = await getAllRegions(next)
+  const allRegionNames = await getAllRegionNames(next)
 
   res.render('flowers/flower_form', {
     ...viewContext,
-    regionList: allRegions,
+    regionList: allRegionNames,
   })
 })
 
-const getAllRegions = async function() {
+const getAllRegionNames = async function() {
   const allRegions = await Region.find({}, 'name').exec()
   return allRegions
 }
