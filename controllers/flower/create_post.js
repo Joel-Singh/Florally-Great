@@ -8,11 +8,11 @@ const renderFlowerForm = require('./util/renderFlowerForm')
 const { body, validationResult } = require("express-validator");
 
 const regionExistsValidation = asyncHandler(
-  body('regionID').custom(async regionId => {
-    const regionDocsWithIds = await Region.find({}, '_id').exec()
-    const regionIdArray = regionDocsWithIds.map(doc => doc._id.toString())
+  body('regionID').custom(async regionID => {
+    const regionDocsWithIDs = await Region.find({}, '_id').exec()
+    const regionIDArray = regionDocsWithIDs.map(doc => doc._id.toString())
 
-    if (!regionIdArray.includes(regionId))
+    if (!regionIDArray.includes(regionID))
       throw new Error('Region does not exist')
   })
 )
