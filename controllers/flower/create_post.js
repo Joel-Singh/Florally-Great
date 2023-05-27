@@ -7,6 +7,16 @@ const renderFlowerForm = require('./util/renderFlowerForm')
 
 const { body, validationResult } = require("express-validator");
 
+const regionExistsValidation = asyncHandler(
+  body('region').custom(async regionId => {
+    const regionDocsWithIds = await Region.find({}, '_id').exec()
+    const regionIdArray = regionDocsWithIds.map(doc => doc._id.toString())
+
+    if (!regionIdArray.includes(regionId))
+      throw new Error('Region does not exist')
+  })
+)
+
 const validationFunctions = [
   body('name')
     .trim()
@@ -27,6 +37,8 @@ const validationFunctions = [
     .trim()
     .isLength({ min: 1}).withMessage(`Price can't be empty`)
     .matches(/\$[0-9]+\.[0-9][0-9]/).withMessage('Price needs to be in $x.xx format, e.g $3.86 or $287.00'),
+
+  regionExistsValidation
 ]
 
 const validateInput = async (req, res, next) => {
