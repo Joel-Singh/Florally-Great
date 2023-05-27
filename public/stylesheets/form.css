@@ -5,7 +5,6 @@ form {
 
 input, button[type='submit'] {
   border: 0;
-  font: inherit;
 }
 
 input {
