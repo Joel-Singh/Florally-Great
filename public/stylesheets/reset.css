@@ -49,4 +49,5 @@ table {
 select, button {
   background-color: inherit;
   font: inherit;
+  color: inherit;
 }
