@@ -8,7 +8,7 @@ const renderFlowerForm = require('./util/renderFlowerForm')
 const { body, validationResult } = require("express-validator");
 
 const regionExistsValidation = asyncHandler(
-  body('region').custom(async regionId => {
+  body('regionID').custom(async regionId => {
     const regionDocsWithIds = await Region.find({}, '_id').exec()
     const regionIdArray = regionDocsWithIds.map(doc => doc._id.toString())
 
@@ -69,7 +69,7 @@ const checkDuplicateFlower = asyncHandler(async (req, res, next) => {
 })
 
 const saveFlower = asyncHandler(async (req, res, next) => {
-    const { name, description, price, numberInStock, region } = req.body
+    const { name, description, price, numberInStock, regionID } = req.body
     const priceToNumber = parseFloat(price.slice(1))
 
     const convertedName = he.decode(name)
@@ -81,7 +81,7 @@ const saveFlower = asyncHandler(async (req, res, next) => {
         description: convertedDescription,
         price: priceToNumber,
         numberInStock,
-        region
+        region: regionID
       }
     )
     await flower.save()
