@@ -1,0 +1,14 @@
+extends ../form.pug
+
+block title
+  title=title || "Delete Region"
+
+block header
+  h1= title || `Choose Region to delete`
+
+block form elements
+  each region in all_regions
+    label(for=region.name)= region.name
+    input(type='radio' name='region' id=region_name value=region._id)
+
+  button(type='submit') Delete

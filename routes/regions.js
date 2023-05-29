@@ -11,8 +11,11 @@ router.get('/', requireRegionController('list'))
 router.get('/create', requireRegionController('create_get'))
 router.post('/create', requireRegionController('create_post'))
 
+router.get('/delete', requireRegionController('delete_get'))
+
 router.get('/:name', requireRegionController('all_flowers_in_region'))
 router.get('/:name/update', requireRegionController('update_get'))
 router.post('/:name/update', requireRegionController('update_post'))
+
 
 module.exports = router
