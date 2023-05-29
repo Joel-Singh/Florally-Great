@@ -12,6 +12,7 @@ router.get('/create', requireRegionController('create_get'))
 router.post('/create', requireRegionController('create_post'))
 
 router.get('/delete', requireRegionController('delete_get'))
+router.post('/delete', requireRegionController('delete_post'))
 
 router.get('/:name', requireRegionController('all_flowers_in_region'))
 router.get('/:name/update', requireRegionController('update_get'))
