@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render multiple labels and inputs 1`] = `
+<form
+  action=""
+  method="POST"
+>
+  <label
+    for="A"
+  >
+    A
+  </label>
+  <input
+    name="region"
+    type="radio"
+    value="1"
+  />
+  <label
+    for="B"
+  >
+    B
+  </label>
+  <input
+    name="region"
+    type="radio"
+    value="2"
+  />
+  <label
+    for="C"
+  >
+    C
+  </label>
+  <input
+    name="region"
+    type="radio"
+    value="3"
+  />
+  <button
+    type="submit"
+  >
+    Delete
+  </button>
+</form>
+`;
+
+exports[`renders single label and input with one region 1`] = `
+<form
+  action=""
+  method="POST"
+>
+  <label
+    for="RegionName"
+  >
+    RegionName
+  </label>
+  <input
+    name="region"
+    type="radio"
+    value="1234"
+  />
+  <button
+    type="submit"
+  >
+    Delete
+  </button>
+</form>
+`;
