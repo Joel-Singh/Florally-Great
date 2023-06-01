@@ -6,7 +6,9 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
-    "test": "jest"
+    "test": "jest",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --run-in-band",
+    "test:inspect": "node inspect localhost:9229"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
