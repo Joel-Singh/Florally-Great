@@ -5,6 +5,7 @@ const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require("mongoose");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -12,7 +13,7 @@ const usersRouter = require('./routes/users');
 const flowersRouter = require('./routes/flowers')
 const regionsRouter = require('./routes/regions')
 
-require('./connectToMongoDB.js')
+connectToMongoDB()
 
 const app = express();
 
@@ -48,3 +49,15 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+async function connectToMongoDB() {
+  mongoose.set("strictQuery", false);
+  const mongoDB =
+    "mongodb+srv://Joel:Joel@flower-store.byzszdj.mongodb.net/?retryWrites=true&w=majority";
+
+  try {
+    await mongoose.connect(mongoDB);
+  } catch(error) {
+    console.error(error)
+  }
+}
