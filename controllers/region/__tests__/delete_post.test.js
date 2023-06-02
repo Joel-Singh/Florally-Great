@@ -7,6 +7,9 @@ const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 
 const sendFormData = require(path.join(appRoot, 'controllers', 'simulateRequestsForTests', 'sendFormData.js'))
 
+const addGeneralMiddleware = require(path.join(appRoot, 'appMiddlewares', 'addGeneralMiddleware.js'))
+const viewEngineSetup = require(path.join(appRoot, 'appMiddlewares', 'viewEngineSetup.js'))
+
 const delete_post = require('../delete_post')
 
 let app;
@@ -59,7 +62,9 @@ describe('On region with a flower', () => {
 function configureExpressApp() {
   const app = express();
 
-  app.use(express.urlencoded({ extended: false }));
+  viewEngineSetup(app)
+  addGeneralMiddleware(app)
+
   app.use("/", delete_post);
 
   return app
