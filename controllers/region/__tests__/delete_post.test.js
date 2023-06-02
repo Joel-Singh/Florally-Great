@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require('mongoose')
 const Region = require(path.join(appRoot, 'models', 'region.js'))
 const Flower = require(path.join(appRoot, 'models', 'flower.js'))
-const sendFormData = require(path.join(appRoot, 'testingUtils', 'sendFormData.js'))
+const sendFormData = require(path.join(appRoot, 'controllers', 'simulateRequestsForTests', 'sendFormData.js'))
 
 const delete_post = require('../delete_post')
 
