@@ -18,14 +18,17 @@ beforeAll(async () => {
   await initializeInMemoryMongoDB()
 })
 
-test("Region is deleted", async () => {
-  const id = await saveRegionToBeDeleted()
+describe('On region without a flower', () => {
+  test("Region is deleted", async () => {
+    const id = await saveRegionToBeDeleted()
 
-  await sendFormData(app, '/', { region: id})
+    await sendFormData(app, '/', { region: id})
 
-  const foundRegion = await Region.findById(id).exec()
-  expect(foundRegion).toBeNull()
-});
+    const foundRegion = await Region.findById(id).exec()
+    expect(foundRegion).toBeNull()
+  });
+
+})
 
 test("Region isn't deleted when it has flower", async () => {
   const id = await saveRegionToBeDeleted()
