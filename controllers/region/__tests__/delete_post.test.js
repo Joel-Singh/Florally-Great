@@ -3,6 +3,7 @@ const path = require('path')
 const express = require("express");
 const mongoose = require('mongoose')
 const Region = require(path.join(appRoot, 'models', 'region.js'))
+const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 const sendFormData = require(path.join(appRoot, 'testingUtils', 'sendFormData.js'))
 
 const delete_post = require('../delete_post')
@@ -25,6 +26,26 @@ test("Region is deleted", async () => {
   const foundRegion = await Region.findById(id).exec()
   expect(foundRegion).toBeNull()
 });
+
+test("Region isn't deleted when it has flower", async () => {
+  const id = await saveRegionToBeDeleted()
+
+  const flowerInRegion = new Flower({
+    name: 'Flower',
+    description: 'desc',
+    price: '32',
+    numberInStock: '1',
+    region: id
+  })
+
+  await flowerInRegion.save()
+
+  await sendFormData(app, '/', { region: id})
+
+  const foundRegion = await Region.findById(id).exec()
+  expect(foundRegion).not.toBeNull()
+
+})
 
 afterAll(async () => {
   await mongoose.connection.close()
