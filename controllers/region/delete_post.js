@@ -8,7 +8,7 @@ module.exports = asyncHandler(async (req, res, next) => {
 
   if (! await regionHasFlower(regionId)) {
     await Region.findByIdAndDelete(req.body.region)
-    res.status(200).send("Region successfully deleted!")
+    res.redirect('regions/delete')
   } else {
     res.status(400).send("Region has a flower")
   }

@@ -23,6 +23,14 @@ describe('On region without a flower', () => {
     expect(foundRegion).toBeNull()
   });
 
+  test("Renders form again", async () => {
+    const id = await saveRegionToBeDeleted()
+
+    const response = await sendFormData(app, '/', { region: id})
+
+    expect(response.text).toMatchInlineSnapshot(`"Found. Redirecting to regions/delete"`)
+  });
+
 })
 
 test("Region isn't deleted when it has flower", async () => {
