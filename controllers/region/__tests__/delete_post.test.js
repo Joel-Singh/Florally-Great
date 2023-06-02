@@ -1,7 +1,6 @@
 const path = require('path')
 
 const express = require("express");
-const mongoose = require('mongoose')
 const Region = require(path.join(appRoot, 'models', 'region.js'))
 const Flower = require(path.join(appRoot, 'models', 'flower.js'))
 const sendFormData = require(path.join(appRoot, 'controllers', 'simulateRequestsForTests', 'sendFormData.js'))
@@ -9,13 +8,9 @@ const sendFormData = require(path.join(appRoot, 'controllers', 'simulateRequests
 const delete_post = require('../delete_post')
 
 let app;
-const initializeInMemoryMongoDB = require(path.join(
-  appRoot, 'testingUtils', 'initializeInMemoryMongoDB.js')
-)
 
 beforeAll(async () => {
   app = configureExpressApp()
-  await initializeInMemoryMongoDB()
 })
 
 describe('On region without a flower', () => {
@@ -48,10 +43,6 @@ test("Region isn't deleted when it has flower", async () => {
   const foundRegion = await Region.findById(id).exec()
   expect(foundRegion).not.toBeNull()
 
-})
-
-afterAll(async () => {
-  await mongoose.connection.close()
 })
 
 function configureExpressApp() {
