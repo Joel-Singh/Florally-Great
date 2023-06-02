@@ -33,24 +33,25 @@ describe('On region without a flower', () => {
 
 })
 
-test("Region isn't deleted when it has flower", async () => {
-  const id = await saveRegionToBeDeleted()
+describe('On region with a flower', () => {
+  test("Region isn't deleted when it has flower", async () => {
+    const id = await saveRegionToBeDeleted()
 
-  const flowerInRegion = new Flower({
-    name: 'Flower',
-    description: 'desc',
-    price: '32',
-    numberInStock: '1',
-    region: id
+    const flowerInRegion = new Flower({
+      name: 'Flower',
+      description: 'desc',
+      price: '32',
+      numberInStock: '1',
+      region: id
+    })
+
+    await flowerInRegion.save()
+
+    await sendFormData(app, '/', { region: id})
+
+    const foundRegion = await Region.findById(id).exec()
+    expect(foundRegion).not.toBeNull()
   })
-
-  await flowerInRegion.save()
-
-  await sendFormData(app, '/', { region: id})
-
-  const foundRegion = await Region.findById(id).exec()
-  expect(foundRegion).not.toBeNull()
-
 })
 
 function configureExpressApp() {
