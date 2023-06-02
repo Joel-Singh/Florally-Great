@@ -1,7 +1,7 @@
 const request = require('supertest')
 
 module.exports = async function(app, endpoint, data) {
-  await request(app)
+  return await request(app)
     .post(endpoint)
     .send(createFormDataString(data))
     .set('Content-Type', 'application/x-www-form-urlencoded')
