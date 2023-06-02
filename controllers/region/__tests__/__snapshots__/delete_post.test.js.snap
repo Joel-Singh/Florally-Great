@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`On region with a flower Renders form with error 1`] = `
+<form
+  action=""
+  method="POST"
+>
+  <button
+    type="submit"
+  >
+    Delete
+  </button>
+  <ul>
+    <li>
+      Region already has a flower
+    </li>
+  </ul>
+</form>
+`;

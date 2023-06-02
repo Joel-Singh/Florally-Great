@@ -10,7 +10,10 @@ module.exports = asyncHandler(async (req, res, next) => {
     await Region.findByIdAndDelete(req.body.region)
     res.redirect('regions/delete')
   } else {
-    res.status(400).send("Region has a flower")
+    res.render('regions/delete_region',  {
+      errors: [{ msg: "Region already has a flower"}],
+      all_regions: []
+    })
   }
 })
 

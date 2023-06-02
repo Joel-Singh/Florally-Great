@@ -10,6 +10,8 @@ const sendFormData = require(path.join(appRoot, 'controllers', 'simulateRequests
 const addGeneralMiddleware = require(path.join(appRoot, 'appMiddlewares', 'addGeneralMiddleware.js'))
 const viewEngineSetup = require(path.join(appRoot, 'appMiddlewares', 'viewEngineSetup.js'))
 
+const { JSDOM } = require('jsdom')
+
 const delete_post = require('../delete_post')
 
 let app;
@@ -57,6 +59,25 @@ describe('On region with a flower', () => {
     const foundRegion = await Region.findById(id).exec()
     expect(foundRegion).not.toBeNull()
   })
+
+  test("Renders form with error", async () => {
+    const id = await saveRegionToBeDeleted()
+
+    const flowerInRegion = new Flower({
+      name: 'Flower',
+      description: 'desc',
+      price: '32',
+      numberInStock: '1',
+      region: id
+    })
+
+    await flowerInRegion.save()
+
+    const response = await sendFormData(app, '/', { region: id})
+    const html = convertStringToDOM(response.text)
+
+    expect(html.querySelector('form')).toMatchSnapshot()
+  })
 })
 
 function configureExpressApp() {
@@ -80,4 +101,11 @@ async function saveRegionToBeDeleted() {
   const id = regionToBeDeletedDoc._id
 
   return id
+}
+
+function convertStringToDOM(string) {
+  const dom = new JSDOM(string);
+  const document = dom.window.document;
+
+  return document
 }
