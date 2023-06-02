@@ -18,13 +18,7 @@ beforeAll(async () => {
 })
 
 test("Region is deleted", async () => {
-  const regionToBeDeleted = new Region({
-    name: 'Region Name',
-    description: "I'm gonna be deleted!"
-  })
-
-  const regionToBeDeletedDoc = await regionToBeDeleted.save()
-  const id = regionToBeDeletedDoc._id
+  const id = await saveRegionToBeDeleted()
 
   await sendFormData(app, '/', { region: id})
 
@@ -43,4 +37,16 @@ function configureExpressApp() {
   app.use("/", delete_post);
 
   return app
+}
+
+async function saveRegionToBeDeleted() {
+  const regionToBeDeleted = new Region({
+    name: 'Region Name',
+    description: "I'm gonna be deleted!"
+  })
+
+  const regionToBeDeletedDoc = await regionToBeDeleted.save()
+  const id = regionToBeDeletedDoc._id
+
+  return id
 }
