@@ -9,6 +9,6 @@ block header
 block form elements
   each region in all_regions
     label(for=region.name)= region.name
-    input(type='radio' name='region' id=region_name value=region._id)
+    input(type='radio' name='region' id=region.name value=region._id)
 
   button(type='submit') Delete

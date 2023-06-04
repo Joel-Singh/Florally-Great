@@ -11,6 +11,7 @@ exports[`render multiple labels and inputs 1`] = `
     A
   </label>
   <input
+    id="A"
     name="region"
     type="radio"
     value="1"
@@ -21,6 +22,7 @@ exports[`render multiple labels and inputs 1`] = `
     B
   </label>
   <input
+    id="B"
     name="region"
     type="radio"
     value="2"
@@ -31,6 +33,7 @@ exports[`render multiple labels and inputs 1`] = `
     C
   </label>
   <input
+    id="C"
     name="region"
     type="radio"
     value="3"
@@ -54,6 +57,7 @@ exports[`renders single label and input with one region 1`] = `
     RegionName
   </label>
   <input
+    id="RegionName"
     name="region"
     type="radio"
     value="1234"
