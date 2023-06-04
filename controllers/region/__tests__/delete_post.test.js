@@ -15,7 +15,6 @@ const { JSDOM } = require('jsdom')
 const delete_post = require('../delete_post')
 
 let app;
-
 beforeAll(async () => {
   app = configureExpressApp()
 })
