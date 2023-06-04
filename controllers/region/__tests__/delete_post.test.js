@@ -78,6 +78,32 @@ describe('On region with a flower', () => {
 
     expect(html.querySelector('form')).toMatchSnapshot()
   })
+
+  test("Form after error rerender still renders with regions", async () => {
+    const id = await saveRegionToBeDeleted()
+
+    const flowerInRegion = new Flower({
+      name: 'Flower',
+      description: 'desc',
+      price: '32',
+      numberInStock: '1',
+      region: id
+    })
+
+    await flowerInRegion.save()
+
+    const regionShouldShowUp = new Region({
+      name: 'I should be in the snapshot!',
+      description: "Hello! you should see this!"
+    })
+
+    await regionShouldShowUp.save()
+
+    const response = await sendFormData(app, '/', { region: id})
+    const html = convertStringToDOM(response.text)
+
+    expect(html.querySelector('form')).toMatchSnapshot()
+  })
 })
 
 function configureExpressApp() {

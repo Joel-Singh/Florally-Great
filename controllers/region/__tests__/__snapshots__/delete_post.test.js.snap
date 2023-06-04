@@ -1,10 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`On region with a flower Form after error rerender still renders with regions 1`] = `
+<form
+  action=""
+  method="POST"
+>
+  <label
+    for="Region Name"
+  >
+    Region Name
+  </label>
+  <input
+    id="Region Name"
+    name="region"
+    type="radio"
+    value="647cbc4419419a71cd1950ee"
+  />
+  <label
+    for="I should be in the snapshot!"
+  >
+    I should be in the snapshot!
+  </label>
+  <input
+    id="I should be in the snapshot!"
+    name="region"
+    type="radio"
+    value="647cbc4419419a71cd1950f2"
+  />
+  <button
+    type="submit"
+  >
+    Delete
+  </button>
+  <ul>
+    <li>
+      Region already has a flower
+    </li>
+  </ul>
+</form>
+`;
+
 exports[`On region with a flower Renders form with error 1`] = `
 <form
   action=""
   method="POST"
 >
+  <label
+    for="Region Name"
+  >
+    Region Name
+  </label>
+  <input
+    id="Region Name"
+    name="region"
+    type="radio"
+    value="647cbc4419419a71cd1950e6"
+  />
   <button
     type="submit"
   >
