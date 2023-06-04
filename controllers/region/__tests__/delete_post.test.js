@@ -93,7 +93,8 @@ describe('On region with a flower', () => {
 
     const regionShouldShowUp = new Region({
       name: 'I should be in the snapshot!',
-      description: "Hello! you should see this!"
+      description: "Hello! you should see this!",
+      _id: "647cbdb6ec4dd230927acfdf"
     })
 
     await regionShouldShowUp.save()
@@ -119,7 +120,8 @@ function configureExpressApp() {
 async function saveRegionToBeDeleted() {
   const regionToBeDeleted = new Region({
     name: 'Region Name',
-    description: "I'm gonna be deleted!"
+    description: "I'm gonna be deleted!",
+    _id: '647cbde08678de7aaf63d2ec'
   })
 
   const regionToBeDeletedDoc = await regionToBeDeleted.save()
