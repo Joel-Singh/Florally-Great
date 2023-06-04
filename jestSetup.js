@@ -3,9 +3,6 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 const path = require('path')
 
 global.appRoot = path.resolve(__dirname);
-module.exports = async () => {
-  await initializeMongoServer()
-}
 
 async function initializeMongoServer() {
   const mongoServer = await MongoMemoryServer.create();
