@@ -2,5 +2,5 @@
   "testPathIgnorePatterns": [
     "/util/"
   ],
-  "setupFiles": ["./jestSetup.js"]
+  "setupFilesAfterEnv": ["./jestSetup.js"]
 }
