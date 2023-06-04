@@ -18,7 +18,17 @@ async function initializeMongoServer() {
   });
 }
 
-module.exports = async () => {
-  global.appRoot = path.resolve(__dirname);
-  await initializeMongoServer()
-};
+global.appRoot = path.resolve(__dirname);
+
+initializeMongoServer()
+
+afterEach(clearDatabase)
+
+async function clearDatabase() {
+  const collections = mongoose.connection.collections;
+
+  for (var key in collections) {
+    const collection = collections[key];
+    await collection.deleteMany();
+  }
+}
