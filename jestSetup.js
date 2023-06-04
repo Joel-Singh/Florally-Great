@@ -19,4 +19,6 @@ async function initializeMongoServer() {
   });
 }
 
-module.exports = initializeMongoServer;
+module.exports = async () => {
+  await initializeMongoServer()
+};
