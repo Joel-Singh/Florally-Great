@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 const path = require('path')
 const Region = require(path.join(appRoot, 'models', 'region.js'))
 const Flower = require(path.join(appRoot, 'models', 'flower.js'))
+const renderDeleteRegion = require('./rendersWithDefaultLocals/renderDeleteRegion.js')
 
 module.exports = asyncHandler(async (req, res, next) => {
   const regionId = req.body.region
@@ -10,13 +11,7 @@ module.exports = asyncHandler(async (req, res, next) => {
     await Region.findByIdAndDelete(req.body.region)
     res.redirect('regions/delete')
   } else {
-    const allRegions =
-      await Region.find({}, 'name').exec()
-
-    res.render('regions/delete_region',  {
-      errors: [{ msg: "Region already has a flower"}],
-      all_regions: allRegions
-    })
+    renderDeleteRegion(res, {errors: [{ msg: "Region already has a flower"}]})
   }
 })
 
