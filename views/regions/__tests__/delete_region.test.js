@@ -1,4 +1,5 @@
-const renderPugToDOM = require('./util/renderPugToDOM.js')
+const path = require('path')
+const renderPugToDOM = require(path.join(appRoot, 'views', 'renderPugToDOM.js'))
 
 test('renders single label and input with one region', () => {
   const renderedHtml = renderPugToDOM(
