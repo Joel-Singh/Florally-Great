@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`delete_get controller renders with regions 1`] = `
+"<!DOCTYPE html>
+<html>
+  <head>
+    <title>Delete Region</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="/stylesheets/all.css" />
+    <link rel="stylesheet" href="/stylesheets/form.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <nav>
+      <h1>Navigation</h1>
+      <a href="/">Home</a>
+      <ul class="sidebar__flowers">
+        <li><a href="/flowers">All flowers</a></li>
+        <li><a href="/flowers/create">Create flower</a></li>
+      </ul>
+      <ul class="sidebar__regions">
+        <li><a href="/regions">All regions</a></li>
+        <li><a href="/regions/create">Create region</a></li>
+        <li><a href="/regions/delete">Delete region</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Choose Region to delete</h1>
+      <form method="POST" action="">
+        <label for="name 1">name 1</label
+        ><input
+          type="radio"
+          name="region"
+          id="name 1"
+          value="647cd591a7047c50e71bc287"
+        /><label for="name 2">name 2</label
+        ><input
+          type="radio"
+          name="region"
+          id="name 2"
+          value="647cd591a7047c50e71bc288"
+        /><label for="name 3">name 3</label
+        ><input
+          type="radio"
+          name="region"
+          id="name 3"
+          value="647cd591a7047c50e71bc289"
+        /><button type="submit">Delete</button>
+      </form>
+    </main>
+  </body>
+</html>
+"
+`;
