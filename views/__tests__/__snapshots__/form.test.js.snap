@@ -12,7 +12,9 @@ exports[`Form renders a single error 1`] = `
   action=""
   method="POST"
 >
-  <ul>
+  <ul
+    data-testid="errors"
+  >
     <li>
       This Error Msg Should be seen
     </li>
@@ -25,7 +27,9 @@ exports[`Form renders multiple errors 1`] = `
   action=""
   method="POST"
 >
-  <ul>
+  <ul
+    data-testid="errors"
+  >
     <li>
       This Error Msg Should be seen 1
     </li>

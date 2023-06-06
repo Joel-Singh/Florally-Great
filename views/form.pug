@@ -10,6 +10,6 @@ block content
     block form elements
 
     if errors
-     ul
+     ul(data-testid="errors")
       for error in errors
        li!= error.msg

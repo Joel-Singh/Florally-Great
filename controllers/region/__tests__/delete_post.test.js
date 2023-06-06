@@ -75,7 +75,7 @@ describe('On region with a flower', () => {
     const response = await sendFormData(app, '/', { region: id})
     const html = convertStringToDOM(response.text)
 
-    expect(html.querySelector('form')).toMatchSnapshot()
+    expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot()
   })
 
   test("Form after error rerender still renders with regions", async () => {

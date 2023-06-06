@@ -32,7 +32,9 @@ exports[`On region with a flower Form after error rerender still renders with re
   >
     Delete
   </button>
-  <ul>
+  <ul
+    data-testid="errors"
+  >
     <li>
       Region has flowers, delete them first: 
       <a
@@ -46,35 +48,16 @@ exports[`On region with a flower Form after error rerender still renders with re
 `;
 
 exports[`On region with a flower Renders Error, hyperlinking to flower 1`] = `
-<form
-  action=""
-  method="POST"
+<ul
+  data-testid="errors"
 >
-  <label
-    for="Region Name"
-  >
-    Region Name
-  </label>
-  <input
-    id="Region Name"
-    name="region"
-    type="radio"
-    value="647cbde08678de7aaf63d2ec"
-  />
-  <button
-    type="submit"
-  >
-    Delete
-  </button>
-  <ul>
-    <li>
-      Region has flowers, delete them first: 
-      <a
-        href="/flowers/Flower"
-      >
-        Flower
-      </a>
-    </li>
-  </ul>
-</form>
+  <li>
+    Region has flowers, delete them first: 
+    <a
+      href="/flowers/Flower"
+    >
+      Flower
+    </a>
+  </li>
+</ul>
 `;
