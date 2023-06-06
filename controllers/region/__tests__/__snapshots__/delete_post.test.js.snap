@@ -40,12 +40,18 @@ exports[`On region with a flower Renders Error, hyperlinking to flower 1`] = `
   data-testid="errors"
 >
   <li>
-    Region has flowers, delete them first: 
-    <a
-      href="/flowers/Flower"
-    >
-      Flower
-    </a>
+    <h2>
+      Region has flowers, delete them first: 
+    </h2>
+    <ul>
+      <li>
+        <a
+          href="/flowers/Flower"
+        >
+          Flower
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>
 `;
@@ -55,28 +61,32 @@ exports[`On region with multiple flowers Renders error, hyperlinking to multiple
   data-testid="errors"
 >
   <li>
-    Region has flowers, delete them first: 
-    <a
-      href="/flowers/Flower 1"
-    >
-      Flower 1
-    </a>
-  </li>
-  <li>
-    Region has flowers, delete them first: 
-    <a
-      href="/flowers/Flower 2"
-    >
-      Flower 2
-    </a>
-  </li>
-  <li>
-    Region has flowers, delete them first: 
-    <a
-      href="/flowers/Flower 3"
-    >
-      Flower 3
-    </a>
+    <h2>
+      Region has flowers, delete them first: 
+    </h2>
+    <ul>
+      <li>
+        <a
+          href="/flowers/Flower 1"
+        >
+          Flower 1
+        </a>
+      </li>
+      <li>
+        <a
+          href="/flowers/Flower 2"
+        >
+          Flower 2
+        </a>
+      </li>
+      <li>
+        <a
+          href="/flowers/Flower 3"
+        >
+          Flower 3
+        </a>
+      </li>
+    </ul>
   </li>
 </ul>
 `;

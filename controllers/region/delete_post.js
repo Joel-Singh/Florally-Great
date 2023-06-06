@@ -12,17 +12,32 @@ module.exports = asyncHandler(async (req, res, next) => {
     res.redirect('regions/delete')
   } else {
     const flowersOfRegion = await Flower.find({ region: regionId}).exec()
-    const errors = flowersOfRegion.map((flower) => {
-      return ({
-        msg: `Region has flowers, delete them first: <a href="${flower.url}">${flower.name}</a>`
-      })
-    })
+    const errors = [{
+      msg: createFlowerRegionError(flowersOfRegion)
+    }]
 
     renderDeleteRegion(res, {
       errors
     })
   }
 })
+
+function createFlowerRegionError(flowersOfRegion) {
+  const flowersAsAnchorsInListItem = flowersOfRegion.map(flower => {
+    const { url, name } = flower
+    return `<li><a href="${url}">${name}</a></li>`
+  })
+
+  const allListItemsInSingleString = flowersAsAnchorsInListItem.reduce((previous, current) => {
+    return previous + current
+  })
+
+  const unorderedListOfFlowers = '<ul>' + allListItemsInSingleString + '</ul>'
+
+  const header = `<h2>Region has flowers, delete them first: </h2>`
+
+  return header + unorderedListOfFlowers
+}
 
 async function regionHasFlower(regionId) {
   const flower = await Flower.findOne({ region: regionId}).exec()
