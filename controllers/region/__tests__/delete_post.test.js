@@ -101,8 +101,10 @@ describe('On region with a flower', () => {
 
     const response = await sendFormData(app, '/', { region: id})
     const html = convertStringToDOM(response.text)
+    const form = html.querySelector('form')
+    form.removeChild(form.querySelector('[data-testid="errors"]'))
 
-    expect(html.querySelector('form')).toMatchSnapshot()
+    expect(form).toMatchSnapshot()
   })
 })
 

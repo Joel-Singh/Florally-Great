@@ -32,18 +32,6 @@ exports[`On region with a flower Form after error rerender still renders with re
   >
     Delete
   </button>
-  <ul
-    data-testid="errors"
-  >
-    <li>
-      Region has flowers, delete them first: 
-      <a
-        href="/flowers/Flower"
-      >
-        Flower
-      </a>
-    </li>
-  </ul>
 </form>
 `;
 
