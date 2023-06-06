@@ -62,5 +62,21 @@ exports[`On region with multiple flowers Renders error, hyperlinking to multiple
       Flower 1
     </a>
   </li>
+  <li>
+    Region has flowers, delete them first: 
+    <a
+      href="/flowers/Flower 2"
+    >
+      Flower 2
+    </a>
+  </li>
+  <li>
+    Region has flowers, delete them first: 
+    <a
+      href="/flowers/Flower 3"
+    >
+      Flower 3
+    </a>
+  </li>
 </ul>
 `;

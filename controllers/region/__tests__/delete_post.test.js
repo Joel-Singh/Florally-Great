@@ -112,38 +112,25 @@ describe('On region with multiple flowers', () => {
   test('Renders error, hyperlinking to multiple flowers', async () => {
     const id = await saveRegionToBeDeleted()
 
-    const flowerInRegion1 = new Flower({
-      name: 'Flower 1',
-      description: 'desc',
-      price: '32',
-      numberInStock: '1',
-      region: id
-    })
-
-    const flowerInRegion2 = new Flower({
-      name: 'Flower 2',
-      description: 'desc',
-      price: '32',
-      numberInStock: '1',
-      region: id
-    })
-
-    const flowerInRegion3 = new Flower({
-      name: 'Flower 3',
-      description: 'desc',
-      price: '32',
-      numberInStock: '1',
-      region: id
-    })
-
-    await flowerInRegion1.save()
-    await flowerInRegion2.save()
-    await flowerInRegion3.save()
+    await addFlowerToRegion("Flower 1", id)
+    await addFlowerToRegion("Flower 2", id)
+    await addFlowerToRegion("Flower 3", id)
 
     const response = await sendFormData(app, '/', { region: id})
     const html = convertStringToDOM(response.text)
 
     expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot()
+
+    async function addFlowerToRegion(name, id) {
+      const flowerInRegion = new Flower({
+        name,
+        description: 'desc',
+        price: '32',
+        numberInStock: '1',
+        region: id
+      })
+      await flowerInRegion.save()
+    }
   })
 })
 
