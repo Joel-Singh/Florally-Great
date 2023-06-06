@@ -49,3 +49,18 @@ exports[`On region with a flower Renders Error, hyperlinking to flower 1`] = `
   </li>
 </ul>
 `;
+
+exports[`On region with multiple flowers Renders error, hyperlinking to multiple flowers 1`] = `
+<ul
+  data-testid="errors"
+>
+  <li>
+    Region has flowers, delete them first: 
+    <a
+      href="/flowers/Flower 1"
+    >
+      Flower 1
+    </a>
+  </li>
+</ul>
+`;
