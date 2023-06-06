@@ -1,5 +1,5 @@
-const pug = require('pug')
-const { JSDOM } = require('jsdom')
+const pug = require("pug");
+const { JSDOM } = require("jsdom");
 
 module.exports = (filePath, locals) => {
   const compiledTemplate = pug.compileFile(filePath);
@@ -10,4 +10,4 @@ module.exports = (filePath, locals) => {
   const document = dom.window.document;
 
   return document;
-}
+};

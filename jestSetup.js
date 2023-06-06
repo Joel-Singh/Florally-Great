@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
-const path = require('path')
-
+const path = require("path");
 
 async function initializeMongoServer() {
   const mongoServer = await MongoMemoryServer.create();
@@ -9,7 +8,7 @@ async function initializeMongoServer() {
 
   mongoose.connect(mongoUri);
 
-  mongoose.connection.on("error", e => {
+  mongoose.connection.on("error", (e) => {
     if (e.message.code === "ETIMEDOUT") {
       console.log(e);
       mongoose.connect(mongoUri);
@@ -20,9 +19,9 @@ async function initializeMongoServer() {
 
 global.appRoot = path.resolve(__dirname);
 
-initializeMongoServer()
+initializeMongoServer();
 
-afterEach(clearDatabase)
+afterEach(clearDatabase);
 
 async function clearDatabase() {
   const collections = mongoose.connection.collections;

@@ -1,22 +1,22 @@
-const path = require('path');
+const path = require("path");
 global.appRoot = path.resolve(__dirname);
 
-const express = require('express');
+const express = require("express");
 const mongoose = require("mongoose");
 
-const viewEngineSetup = require('./appMiddlewares/viewEngineSetup.js')
-const addGeneralMiddleware = require('./appMiddlewares/addGeneralMiddleware.js')
-const addRoutes = require('./appMiddlewares/addRoutes.js')
-const addErrorHandlingMiddleware = require('./appMiddlewares/addErrorHandlingMiddleware.js')
+const viewEngineSetup = require("./appMiddlewares/viewEngineSetup.js");
+const addGeneralMiddleware = require("./appMiddlewares/addGeneralMiddleware.js");
+const addRoutes = require("./appMiddlewares/addRoutes.js");
+const addErrorHandlingMiddleware = require("./appMiddlewares/addErrorHandlingMiddleware.js");
 
-connectToMongoDB()
+connectToMongoDB();
 
 const app = express();
 
-viewEngineSetup(app)
-addGeneralMiddleware(app)
-addRoutes(app)
-addErrorHandlingMiddleware(app)
+viewEngineSetup(app);
+addGeneralMiddleware(app);
+addRoutes(app);
+addErrorHandlingMiddleware(app);
 
 module.exports = app;
 
@@ -27,7 +27,7 @@ async function connectToMongoDB() {
 
   try {
     await mongoose.connect(mongoDB);
-  } catch(error) {
-    console.error(error)
+  } catch (error) {
+    console.error(error);
   }
 }

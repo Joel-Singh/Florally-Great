@@ -1,41 +1,38 @@
-const asyncHandler = require('express-async-handler')
-const path = require('path')
-const Region = require(path.join(appRoot, 'models', 'region.js'))
+const asyncHandler = require("express-async-handler");
+const path = require("path");
+const Region = require(path.join(appRoot, "models", "region.js"));
 
 const { body, validationResult } = require("express-validator");
 
 module.exports = [
-  body('name', `Name can't be empty`)
-    .trim()
-    .isLength({ min: 1})
-    .escape(),
+  body("name", `Name can't be empty`).trim().isLength({ min: 1 }).escape(),
 
-  body('description', `Description can't be empty`)
+  body("description", `Description can't be empty`)
     .trim()
-    .isLength({ min: 1})
+    .isLength({ min: 1 })
     .escape(),
 
   asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req)
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       res.render("regions/region_form", {
-        errors: errors.array()
-      })
-      return
+        errors: errors.array(),
+      });
+      return;
     } else {
-      const { name, description } = req.body
-      const regionExists = await Region.findOne({ name }).exec()
+      const { name, description } = req.body;
+      const regionExists = await Region.findOne({ name }).exec();
 
       if (regionExists) {
-        res.render('regions/region_form', {
-          errors: [{ msg: 'Region already exists'}]
-        })
+        res.render("regions/region_form", {
+          errors: [{ msg: "Region already exists" }],
+        });
       } else {
-        const region = new Region({name, description})
-        await region.save()
-        res.redirect(region.url)
+        const region = new Region({ name, description });
+        await region.save();
+        res.redirect(region.url);
       }
     }
-  })
-]
+  }),
+];

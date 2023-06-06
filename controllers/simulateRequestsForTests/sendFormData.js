@@ -1,23 +1,23 @@
-const request = require('supertest')
+const request = require("supertest");
 
-module.exports = async function(app, endpoint, data) {
+module.exports = async function (app, endpoint, data) {
   return await request(app)
     .post(endpoint)
     .send(createFormDataString(data))
-    .set('Content-Type', 'application/x-www-form-urlencoded')
-}
+    .set("Content-Type", "application/x-www-form-urlencoded");
+};
 
 function createFormDataString(data) {
-  let formString = '';
+  let formString = "";
 
   Object.entries(data).forEach(([prop, value]) => {
-    formString += `${prop}=${value}&`
+    formString += `${prop}=${value}&`;
   });
 
-  formString = removeTrailingAmpersand(formString)
-  return formString
+  formString = removeTrailingAmpersand(formString);
+  return formString;
 
   function removeTrailingAmpersand(string) {
-    return string.slice(0, -1)
+    return string.slice(0, -1);
   }
 }

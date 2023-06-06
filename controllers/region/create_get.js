@@ -1,6 +1,5 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require("express-async-handler");
 
 module.exports = asyncHandler(async (req, res, next) => {
-  res.render('regions/region_form')
-})
-
+  res.render("regions/region_form");
+});

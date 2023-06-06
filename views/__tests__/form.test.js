@@ -22,8 +22,6 @@ test.each([
     },
   ],
 ])("%s", (name, locals) => {
-  const form = renderPugToDOM("./views/form.pug", locals).querySelector(
-    "form"
-  );
+  const form = renderPugToDOM("./views/form.pug", locals).querySelector("form");
   expect(form).toMatchSnapshot();
 });
