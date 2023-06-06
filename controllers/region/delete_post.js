@@ -11,7 +11,12 @@ module.exports = asyncHandler(async (req, res, next) => {
     await Region.findByIdAndDelete(regionId)
     res.redirect('regions/delete')
   } else {
-    renderDeleteRegion(res, {errors: [{ msg: "Region already has a flower"}]})
+    const flowerOfRegion = await Flower.findOne({ region: regionId}).exec()
+    renderDeleteRegion(res, {
+      errors: [{
+        msg: `Region has flowers, delete them first: <a href="${flowerOfRegion.url}">${flowerOfRegion.name}</a>`
+      }]
+    })
   }
 })
 

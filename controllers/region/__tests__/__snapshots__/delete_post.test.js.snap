@@ -34,13 +34,18 @@ exports[`On region with a flower Form after error rerender still renders with re
   </button>
   <ul>
     <li>
-      Region already has a flower
+      Region has flowers, delete them first: 
+      <a
+        href="/flowers/Flower"
+      >
+        Flower
+      </a>
     </li>
   </ul>
 </form>
 `;
 
-exports[`On region with a flower Renders form with error 1`] = `
+exports[`On region with a flower Renders Error, hyperlinking to flower 1`] = `
 <form
   action=""
   method="POST"
@@ -63,7 +68,12 @@ exports[`On region with a flower Renders form with error 1`] = `
   </button>
   <ul>
     <li>
-      Region already has a flower
+      Region has flowers, delete them first: 
+      <a
+        href="/flowers/Flower"
+      >
+        Flower
+      </a>
     </li>
   </ul>
 </form>

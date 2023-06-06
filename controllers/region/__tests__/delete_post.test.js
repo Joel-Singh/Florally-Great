@@ -59,7 +59,7 @@ describe('On region with a flower', () => {
     expect(foundRegion).not.toBeNull()
   })
 
-  test("Renders form with error", async () => {
+  test("Renders Error, hyperlinking to flower", async () => {
     const id = await saveRegionToBeDeleted()
 
     const flowerInRegion = new Flower({
