@@ -32,6 +32,13 @@ beforeAll(async () => {
   app = configureExpressApp();
 });
 
+test("If no region is selected, error message is returned", async () => {
+  const response = await sendFormData(app, "/", {});
+  const html = convertStringToDOM(response.text);
+
+  expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot();
+})
+
 describe("On region without a flower", () => {
   test("Region is deleted", async () => {
     const id = await saveRegionToBeDeleted();
