@@ -16,46 +16,54 @@ module.exports = asyncHandler(async (req, res, next) => {
 
   const regionId = req.body.region;
 
-  if (!(await regionHasFlower(regionId))) {
+  if (await regionHasNoFlower(regionId)) {
     await Region.findByIdAndDelete(regionId);
     res.redirect("regions/delete");
     return;
   } else {
-    const flowersOfRegion = await Flower.find({ region: regionId }).exec();
-    const errors = [
-      {
-        msg: createFlowerRegionError(flowersOfRegion),
-      },
-    ];
-
-    renderDeleteRegion(res, {
-      errors,
-    });
+    renderRegionHasFlowerError(regionId, res)
     return;
   }
 });
-
-function createFlowerRegionError(flowersOfRegion) {
-  const flowersAsAnchorsInListItem = flowersOfRegion.map((flower) => {
-    const { url, name } = flower;
-    return `<li><a href="${url}">${name}</a></li>`;
-  });
-
-  const allListItemsInSingleString = flowersAsAnchorsInListItem.reduce(
-    (previous, current) => {
-      return previous + current;
-    }
-  );
-
-  const unorderedListOfFlowers = "<ul>" + allListItemsInSingleString + "</ul>";
-
-  const header = `<h2>Region has flowers, delete them first: </h2>`;
-
-  return header + unorderedListOfFlowers;
-}
 
 async function regionHasFlower(regionId) {
   const flower = await Flower.findOne({ region: regionId }).exec();
   if (flower === null) return false;
   else return true;
+}
+
+async function regionHasNoFlower(regionId) {
+  return !(await regionHasFlower(regionId))
+}
+
+async function renderRegionHasFlowerError(regionId, res) {
+  const flowersOfRegion = await Flower.find({ region: regionId }).exec();
+  const errors = [
+    {
+      msg: createFlowerRegionError(flowersOfRegion),
+    },
+  ];
+
+  renderDeleteRegion(res, {
+    errors,
+  });
+
+  function createFlowerRegionError(flowersOfRegion) {
+    const flowersAsAnchorsInListItem = flowersOfRegion.map((flower) => {
+      const { url, name } = flower;
+      return `<li><a href="${url}">${name}</a></li>`;
+    });
+
+    const allListItemsInSingleString = flowersAsAnchorsInListItem.reduce(
+      (previous, current) => {
+        return previous + current;
+      }
+    );
+
+    const unorderedListOfFlowers = "<ul>" + allListItemsInSingleString + "</ul>";
+
+    const header = `<h2>Region has flowers, delete them first: </h2>`;
+
+    return header + unorderedListOfFlowers;
+  }
 }
