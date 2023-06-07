@@ -1,5 +1,8 @@
 extends ../form.pug
 
+append more style sheets
+  link(rel='stylesheet', href='/stylesheets/center-text.css')
+
 block title
   title=title || "Delete Region"
 
@@ -8,7 +11,7 @@ block header
 
 block form elements
   each region in all_regions
-    label(for=region.name)= region.name
+    label.center-text(for=region.name)= region.name
     input(type='radio' name='region' id=region.name value=region._id)
 
   button(type='submit') Delete

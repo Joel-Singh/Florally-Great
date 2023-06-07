@@ -6,6 +6,7 @@ exports[`render multiple labels and inputs 1`] = `
   method="POST"
 >
   <label
+    class="center-text"
     for="A"
   >
     A
@@ -17,6 +18,7 @@ exports[`render multiple labels and inputs 1`] = `
     value="1"
   />
   <label
+    class="center-text"
     for="B"
   >
     B
@@ -28,6 +30,7 @@ exports[`render multiple labels and inputs 1`] = `
     value="2"
   />
   <label
+    class="center-text"
     for="C"
   >
     C
@@ -52,6 +55,7 @@ exports[`renders single label and input with one region 1`] = `
   method="POST"
 >
   <label
+    class="center-text"
     for="RegionName"
   >
     RegionName

@@ -16,6 +16,7 @@ exports[`On region with a flower Form after error rerender still renders with re
   method="POST"
 >
   <label
+    class="center-text"
     for="Region Name"
   >
     Region Name
@@ -27,6 +28,7 @@ exports[`On region with a flower Form after error rerender still renders with re
     value="647cbde08678de7aaf63d2ec"
   />
   <label
+    class="center-text"
     for="I should be in the snapshot!"
   >
     I should be in the snapshot!

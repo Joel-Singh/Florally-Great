@@ -8,6 +8,7 @@ exports[`delete_get controller renders with regions 1`] = `
     <link rel="stylesheet" href="/stylesheets/reset.css" />
     <link rel="stylesheet" href="/stylesheets/all.css" />
     <link rel="stylesheet" href="/stylesheets/form.css" />
+    <link rel="stylesheet" href="/stylesheets/center-text.css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -28,19 +29,19 @@ exports[`delete_get controller renders with regions 1`] = `
     <main>
       <h1>Choose Region to delete</h1>
       <form method="POST" action="">
-        <label for="name 1">name 1</label
+        <label class="center-text" for="name 1">name 1</label
         ><input
           type="radio"
           name="region"
           id="name 1"
           value="647cd591a7047c50e71bc287"
-        /><label for="name 2">name 2</label
+        /><label class="center-text" for="name 2">name 2</label
         ><input
           type="radio"
           name="region"
           id="name 2"
           value="647cd591a7047c50e71bc288"
-        /><label for="name 3">name 3</label
+        /><label class="center-text" for="name 3">name 3</label
         ><input
           type="radio"
           name="region"
