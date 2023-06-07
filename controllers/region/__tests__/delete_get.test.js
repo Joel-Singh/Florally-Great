@@ -17,7 +17,6 @@ const Region = require(path.join(appRoot, "models", "region.js"));
 
 const delete_get = require("../delete_get.js");
 
-// Use super test for get request and then snapshot the html
 test("delete_get controller renders with regions", async () => {
   const app = configureExpressApp();
   app.use("/", delete_get);
