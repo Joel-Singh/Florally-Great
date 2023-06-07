@@ -19,6 +19,7 @@ module.exports = asyncHandler(async (req, res, next) => {
   if (!(await regionHasFlower(regionId))) {
     await Region.findByIdAndDelete(regionId);
     res.redirect("regions/delete");
+    return;
   } else {
     const flowersOfRegion = await Flower.find({ region: regionId }).exec();
     const errors = [
@@ -30,6 +31,7 @@ module.exports = asyncHandler(async (req, res, next) => {
     renderDeleteRegion(res, {
       errors,
     });
+    return;
   }
 });
 
