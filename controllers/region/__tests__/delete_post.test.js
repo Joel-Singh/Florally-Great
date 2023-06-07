@@ -55,17 +55,7 @@ describe("On region without a flower", () => {
 
 describe("On region with a flower", () => {
   test("Region isn't deleted when it has flower", async () => {
-    const id = await saveRegionToBeDeleted();
-
-    const flowerInRegion = new Flower({
-      name: "Flower",
-      description: "desc",
-      price: "32",
-      numberInStock: "1",
-      region: id,
-    });
-
-    await flowerInRegion.save();
+    const id = await saveRegionWithFlower();
 
     await sendFormData(app, "/", { region: id });
 
@@ -74,17 +64,7 @@ describe("On region with a flower", () => {
   });
 
   test("Renders Error, hyperlinking to flower", async () => {
-    const id = await saveRegionToBeDeleted();
-
-    const flowerInRegion = new Flower({
-      name: "Flower",
-      description: "desc",
-      price: "32",
-      numberInStock: "1",
-      region: id,
-    });
-
-    await flowerInRegion.save();
+    const id = await saveRegionWithFlower();
 
     const response = await sendFormData(app, "/", { region: id });
     const html = convertStringToDOM(response.text);
@@ -93,17 +73,7 @@ describe("On region with a flower", () => {
   });
 
   test("Form after error rerender still renders with regions", async () => {
-    const id = await saveRegionToBeDeleted();
-
-    const flowerInRegion = new Flower({
-      name: "Flower",
-      description: "desc",
-      price: "32",
-      numberInStock: "1",
-      region: id,
-    });
-
-    await flowerInRegion.save();
+    const id = await saveRegionWithFlower();
 
     const regionShouldShowUp = new Region({
       name: "I should be in the snapshot!",
@@ -120,6 +90,22 @@ describe("On region with a flower", () => {
 
     expect(form).toMatchSnapshot();
   });
+
+  async function saveRegionWithFlower() {
+    const id = await saveRegionToBeDeleted();
+
+    const flowerInRegion = new Flower({
+      name: "Flower",
+      description: "desc",
+      price: "32",
+      numberInStock: "1",
+      region: id,
+    });
+
+    await flowerInRegion.save();
+
+    return id;
+  }
 });
 
 describe("On region with multiple flowers", () => {
