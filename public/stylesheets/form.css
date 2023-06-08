@@ -64,6 +64,10 @@ input[type="radio"]:checked::before {
   transform: translate(-50%, -50%) scale(1);
 }
 
+input[type="radio"]:hover {
+  border-color: var(--white);
+}
+
 button[type='submit'] {
   background-color: var(--gray);
   border: 7px solid var(--darker-black);
