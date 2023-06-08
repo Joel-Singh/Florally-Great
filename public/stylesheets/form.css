@@ -29,8 +29,39 @@ input:hover:not([type='radio']) {
   outline: 3px solid var(--white);
 }
 
-input[type='radio'] {
-  height: 15px;
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid var(--darker-gray);
+  vertical-align: -2px;
+  outline: none;
+  appearance: none;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: var(--white);
+  font-size: 1.2em;
+  transform-origin: center;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+
+  transition: all 0.6s cubic-bezier(0.25, 0.25, 0.56, 1);
+}
+
+input[type="radio"]:checked::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 button[type='submit'] {
