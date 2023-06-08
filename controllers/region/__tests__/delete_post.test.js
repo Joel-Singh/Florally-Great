@@ -8,7 +8,7 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const sendFormData = require(path.join(
   appRoot,
   "controllers",
-  "simulateRequestsForTests",
+  "testingUtils",
   "sendFormData.js"
 ));
 
