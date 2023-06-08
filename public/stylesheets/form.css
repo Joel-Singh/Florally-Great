@@ -29,6 +29,10 @@ input:hover {
   outline: 3px solid var(--white);
 }
 
+input[type='radio'] {
+  height: 15px;
+}
+
 button[type='submit'] {
   background-color: var(--gray);
   border: 7px solid var(--darker-black);
