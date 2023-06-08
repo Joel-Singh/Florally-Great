@@ -23,7 +23,12 @@ const viewEngineSetup = require(path.join(
   "viewEngineSetup.js"
 ));
 
-const { JSDOM } = require("jsdom");
+const convertStringToDOM = require(path.join(
+  appRoot,
+  "controllers",
+  "testingUtils",
+  "convertStringToDOM.js"
+));
 
 const delete_post = require("../delete_post");
 
@@ -163,11 +168,4 @@ async function saveRegionToBeDeleted() {
   const id = regionToBeDeletedDoc._id;
 
   return id;
-}
-
-function convertStringToDOM(string) {
-  const dom = new JSDOM(string);
-  const document = dom.window.document;
-
-  return document;
 }
