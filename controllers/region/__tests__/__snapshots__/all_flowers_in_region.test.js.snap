@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Passes in just region 1`] = `
+[
+  [
+    "regions/all_flowers_in_region",
+    {
+      "flower_list": [],
+      "region": {
+        "__v": 0,
+        "_id": "6483d106cdcd7f4f8d6ed46a",
+        "description": "description",
+        "name": "regionName",
+      },
+    },
+  ],
+]
+`;
+
 exports[`Passes in region and flowers 1`] = `
 [
   [
