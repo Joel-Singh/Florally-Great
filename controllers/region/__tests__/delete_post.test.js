@@ -12,16 +12,11 @@ const sendFormData = require(path.join(
   "sendFormData.js"
 ));
 
-const addGeneralMiddleware = require(path.join(
+const configureExpressApp = require(path.join(
   appRoot,
-  "appMiddlewares",
-  "addGeneralMiddleware.js"
-));
-const viewEngineSetup = require(path.join(
-  appRoot,
-  "appMiddlewares",
-  "viewEngineSetup.js"
-));
+  'appMiddlewares',
+  'configureExpressApp'
+))
 
 const convertStringToDOM = require(path.join(
   appRoot,
@@ -34,7 +29,12 @@ const delete_post = require("../delete_post");
 
 let app;
 beforeAll(async () => {
-  app = configureExpressApp();
+  app = configureExpressApp({
+    viewEngine: true,
+    generalMiddleware: true,
+  });
+
+  app.use("/", delete_post);
 });
 
 test("If no region is selected, error message is returned", async () => {
@@ -145,17 +145,6 @@ describe("On region with multiple flowers", () => {
     }
   });
 });
-
-function configureExpressApp() {
-  const app = express();
-
-  viewEngineSetup(app);
-  addGeneralMiddleware(app);
-
-  app.use("/", delete_post);
-
-  return app;
-}
 
 async function saveRegionToBeDeleted() {
   const regionToBeDeleted = new Region({
