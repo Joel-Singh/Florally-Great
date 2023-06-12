@@ -1,22 +1,18 @@
 const path = require("path");
 global.appRoot = path.resolve(__dirname);
 
-const express = require("express");
 const mongoose = require("mongoose");
 
-const viewEngineSetup = require("./appMiddlewares/viewEngineSetup.js");
-const addGeneralMiddleware = require("./appMiddlewares/addGeneralMiddleware.js");
-const addRoutes = require("./appMiddlewares/addRoutes.js");
-const addErrorHandlingMiddleware = require("./appMiddlewares/addErrorHandlingMiddleware.js");
+const configureExpressApp = require("./appMiddlewares/configureExpressApp");
 
 connectToMongoDB();
 
-const app = express();
-
-viewEngineSetup(app);
-addGeneralMiddleware(app);
-addRoutes(app);
-addErrorHandlingMiddleware(app);
+const app = configureExpressApp({
+  viewEngine: true,
+  generalMiddleware: true,
+  routes: true,
+  errorHandling: true
+})
 
 module.exports = app;
 
