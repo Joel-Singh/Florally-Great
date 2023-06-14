@@ -5,6 +5,20 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 
 const all_flowers_in_region = require("../all_flowers_in_region.js");
 
+test("Tries rendering correct view", async () => {
+  const regionName = "regionName";
+
+  await addRegionToDb(regionName);
+
+  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName);
+
+  await all_flowers_in_region(fakeReq, fakeRes);
+
+  expect(getRenderView(fakeRes)).toMatchInlineSnapshot(
+    `"regions/all_flowers_in_region"`
+  );
+});
+
 test("Passes in just region", async () => {
   const regionName = "regionName";
 
