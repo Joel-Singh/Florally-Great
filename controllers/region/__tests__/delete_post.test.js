@@ -14,9 +14,9 @@ const sendFormData = require(path.join(
 
 const configureExpressApp = require(path.join(
   appRoot,
-  'appMiddlewares',
-  'configureExpressApp'
-))
+  "appMiddlewares",
+  "configureExpressApp"
+));
 
 const convertStringToDOM = require(path.join(
   appRoot,
@@ -42,7 +42,7 @@ test("If no region is selected, error message is returned", async () => {
   const html = convertStringToDOM(response.text);
 
   expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot();
-})
+});
 
 describe("On region without a flower", () => {
   test("Region is deleted", async () => {
