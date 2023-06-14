@@ -19,7 +19,7 @@ test("Tries rendering correct view", async () => {
   );
 });
 
-test("Passes in just region", async () => {
+test("Passes in region with empty flower list", async () => {
   const regionName = "regionName";
 
   await addRegionToDb(regionName);
@@ -28,7 +28,17 @@ test("Passes in just region", async () => {
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  expect(getRenderCall(fakeRes)).toMatchSnapshot();
+  expect(getRenderLocals(fakeRes)).toMatchInlineSnapshot(`
+    {
+      "flower_list": [],
+      "region": {
+        "__v": 0,
+        "_id": "6483d106cdcd7f4f8d6ed46a",
+        "description": "description",
+        "name": "regionName",
+      },
+    }
+  `);
 });
 
 test("Passes in region and flowers", async () => {
@@ -41,7 +51,27 @@ test("Passes in region and flowers", async () => {
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  expect(getRenderCall(fakeRes)).toMatchSnapshot();
+  expect(getRenderLocals(fakeRes)).toMatchInlineSnapshot(`
+    {
+      "flower_list": [
+        {
+          "__v": 0,
+          "_id": "6487734ae98dc419fc0f170d",
+          "description": "description",
+          "name": "Flower in region",
+          "numberInStock": 92,
+          "price": 32,
+          "region": "6483d106cdcd7f4f8d6ed46a",
+        },
+      ],
+      "region": {
+        "__v": 0,
+        "_id": "6483d106cdcd7f4f8d6ed46a",
+        "description": "description",
+        "name": "regionName",
+      },
+    }
+  `);
 });
 
 function getFakeMiddlewareParameters(regionName) {
