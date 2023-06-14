@@ -14,7 +14,7 @@ test("Passes in just region", async () => {
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  snapshotRenderCall(fakeRes)
+  expect(getRenderCall(fakeRes)).toMatchSnapshot()
 });
 
 test("Passes in region and flowers", async () => {
@@ -27,7 +27,7 @@ test("Passes in region and flowers", async () => {
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  snapshotRenderCall(fakeRes);
+  expect(getRenderCall(fakeRes)).toMatchSnapshot()
 });
 
 function getFakeMiddlewareParameters(regionName) {
@@ -66,6 +66,7 @@ async function addFlowerToDb(flowersRegionAsId) {
   }).save();
 }
 
-function snapshotRenderCall(fakeRes) {
-  expect(fakeRes.render.mock.calls[0]).toMatchSnapshot();
+function getRenderCall(fakeRes) {
+  return fakeRes.render.mock.calls[0]
 }
+
