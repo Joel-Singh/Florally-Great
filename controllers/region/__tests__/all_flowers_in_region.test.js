@@ -8,9 +8,9 @@ const all_flowers_in_region = require("../all_flowers_in_region.js");
 test("Passes in just region", async () => {
   const regionName = "regionName";
 
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName)
-
   await addRegionToDb(regionName)
+
+  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName)
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
@@ -20,10 +20,10 @@ test("Passes in just region", async () => {
 test("Passes in region and flowers", async () => {
   const regionName = "regionName";
 
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName);
-
   const regionId = await addRegionToDb(regionName);
   await addFlowerToDb(regionId);
+
+  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName);
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
