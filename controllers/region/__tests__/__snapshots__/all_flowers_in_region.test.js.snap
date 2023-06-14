@@ -2,44 +2,40 @@
 
 exports[`Passes in just region 1`] = `
 [
-  [
-    "regions/all_flowers_in_region",
-    {
-      "flower_list": [],
-      "region": {
-        "__v": 0,
-        "_id": "6483d106cdcd7f4f8d6ed46a",
-        "description": "description",
-        "name": "regionName",
-      },
+  "regions/all_flowers_in_region",
+  {
+    "flower_list": [],
+    "region": {
+      "__v": 0,
+      "_id": "6483d106cdcd7f4f8d6ed46a",
+      "description": "description",
+      "name": "regionName",
     },
-  ],
+  },
 ]
 `;
 
 exports[`Passes in region and flowers 1`] = `
 [
-  [
-    "regions/all_flowers_in_region",
-    {
-      "flower_list": [
-        {
-          "__v": 0,
-          "_id": "6487734ae98dc419fc0f170d",
-          "description": "description",
-          "name": "Flower in region",
-          "numberInStock": 92,
-          "price": 32,
-          "region": "6483d106cdcd7f4f8d6ed46a",
-        },
-      ],
-      "region": {
+  "regions/all_flowers_in_region",
+  {
+    "flower_list": [
+      {
         "__v": 0,
-        "_id": "6483d106cdcd7f4f8d6ed46a",
+        "_id": "6487734ae98dc419fc0f170d",
         "description": "description",
-        "name": "regionName",
+        "name": "Flower in region",
+        "numberInStock": 92,
+        "price": 32,
+        "region": "6483d106cdcd7f4f8d6ed46a",
       },
+    ],
+    "region": {
+      "__v": 0,
+      "_id": "6483d106cdcd7f4f8d6ed46a",
+      "description": "description",
+      "name": "regionName",
     },
-  ],
+  },
 ]
 `;

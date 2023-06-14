@@ -67,5 +67,5 @@ async function addFlowerToDb(flowersRegionAsId) {
 }
 
 function snapshotRenderCall(fakeRes) {
-  expect(fakeRes.render.mock.calls).toMatchSnapshot();
+  expect(fakeRes.render.mock.calls[0]).toMatchSnapshot();
 }
