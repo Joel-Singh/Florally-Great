@@ -12,3 +12,9 @@ block content
         h2
           a(href= url)= name
         p= description
+  form(method='POST' action='/regions/delete')
+    - const hasFlowers = flower_list.length !== 0
+    button(
+      type='submit'
+      disabled=(hasFlowers ? true : undefined)
+    ) Delete Region
