@@ -59,6 +59,22 @@ test("Renders functional delete button when there aren't flowers", () => {
   expectElementToExist(renderedDOM, "button[type='submit']:not([disabled])")
 })
 
+test("Properly passes in region id to hidden input", async () => {
+  const id = "64891f696204fa1dd04542bc"
+  const locals = {
+    region: {
+      name: "regionName",
+      _id: id
+    },
+    flower_list: []
+  };
+
+  const renderedDOM = renderPugToDOM('./views/regions/all_flowers_in_region.pug', locals);
+  const hiddenInput = renderedDOM.querySelector('input[type="hidden"]')
+
+  expect(hiddenInput.getAttribute('value')).toMatchInlineSnapshot(`"${id}"`)
+})
+
 function snapshotList(DOM) {
   const list = DOM.querySelector('.list')
   expect(list).toMatchSnapshot()
