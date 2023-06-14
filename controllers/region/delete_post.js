@@ -18,7 +18,7 @@ module.exports = asyncHandler(async (req, res, next) => {
 
   if (await regionHasNoFlower(regionId)) {
     await Region.findByIdAndDelete(regionId);
-    res.redirect("regions/delete");
+    res.redirect("/regions/delete");
     return;
   } else {
     renderRegionHasFlowerError(regionId, res)

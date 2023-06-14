@@ -60,7 +60,7 @@ describe("On region without a flower", () => {
     const response = await sendFormData(app, "/", { region: id });
 
     expect(response.text).toMatchInlineSnapshot(
-      `"Found. Redirecting to regions/delete"`
+      `"Found. Redirecting to /regions/delete"`
     );
   });
 });
