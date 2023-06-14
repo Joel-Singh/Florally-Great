@@ -70,3 +70,10 @@ function getRenderCall(fakeRes) {
   return fakeRes.render.mock.calls[0];
 }
 
+function getRenderLocals(fakeRes) {
+  return getRenderCall(fakeRes)[1];
+}
+
+function getRenderView(fakeRes) {
+  return getRenderCall(fakeRes)[0];
+}
