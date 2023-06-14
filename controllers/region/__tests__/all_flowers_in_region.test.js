@@ -8,13 +8,13 @@ const all_flowers_in_region = require("../all_flowers_in_region.js");
 test("Passes in just region", async () => {
   const regionName = "regionName";
 
-  await addRegionToDb(regionName)
+  await addRegionToDb(regionName);
 
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName)
+  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName);
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  expect(getRenderCall(fakeRes)).toMatchSnapshot()
+  expect(getRenderCall(fakeRes)).toMatchSnapshot();
 });
 
 test("Passes in region and flowers", async () => {
@@ -27,7 +27,7 @@ test("Passes in region and flowers", async () => {
 
   await all_flowers_in_region(fakeReq, fakeRes);
 
-  expect(getRenderCall(fakeRes)).toMatchSnapshot()
+  expect(getRenderCall(fakeRes)).toMatchSnapshot();
 });
 
 function getFakeMiddlewareParameters(regionName) {
@@ -45,14 +45,14 @@ function getFakeMiddlewareParameters(regionName) {
 }
 
 async function addRegionToDb(regionName) {
-  const id = "6483d106cdcd7f4f8d6ed46a"
+  const id = "6483d106cdcd7f4f8d6ed46a";
   await new Region({
     name: regionName,
     description: "description",
     _id: "6483d106cdcd7f4f8d6ed46a",
   }).save();
 
-  return id
+  return id;
 }
 
 async function addFlowerToDb(flowersRegionAsId) {
@@ -62,11 +62,11 @@ async function addFlowerToDb(flowersRegionAsId) {
     price: 32,
     numberInStock: 92,
     region: flowersRegionAsId,
-    _id: "6487734ae98dc419fc0f170d"
+    _id: "6487734ae98dc419fc0f170d",
   }).save();
 }
 
 function getRenderCall(fakeRes) {
-  return fakeRes.render.mock.calls[0]
+  return fakeRes.render.mock.calls[0];
 }
 
