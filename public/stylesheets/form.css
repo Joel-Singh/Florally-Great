@@ -80,6 +80,21 @@ button[type='submit'] {
   margin-right: auto;
 }
 
+button[type='submit'][disabled] {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+button[type='submit'][disabled]:hover::after {
+  content: 'Delete all flowers to delete region';
+  position: absolute;
+  background-color: var(--darker-gray);
+  color: var(--white);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
 button[type='submit']:hover:not([disabled]) {
   border-color: var(--white);
   color: var(--white);
