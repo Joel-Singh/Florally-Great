@@ -6,7 +6,7 @@ const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegio
 
 module.exports = asyncHandler(async (req, res, next) => {
   if (typeof req.body.region === 'undefined') {
-    renderDeleteRegion(res, {
+    await renderDeleteRegion(res, {
       errors: [{
         msg: "Please select a region"
       }]
