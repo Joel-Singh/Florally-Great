@@ -3,6 +3,7 @@ const path = require("path");
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 
+const emulateCallingController = require('../../testingUtils/emulateCallingController.js')
 const all_flowers_in_region = require("../all_flowers_in_region.js");
 
 test("Tries rendering correct view", async () => {
@@ -98,38 +99,4 @@ async function simulateInvokingAllFlowersInRegion(regionName) {
       { name: regionName }
     )
   )
-}
-
-async function emulateCallingController(controller, reqParams) {
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(reqParams);
-
-  await controller(fakeReq, fakeRes);
-
-  return {
-    renderCall: getRenderCall(fakeRes),
-    renderLocals: getRenderLocals(fakeRes),
-    renderView: getRenderView(fakeRes)
-  }
-
-  function getFakeMiddlewareParameters(reqParams) {
-    const fakeReq = {
-      params: reqParams
-    };
-
-    const fakeRes = {
-      render: jest.fn(),
-    };
-
-    return { fakeReq, fakeRes };
-  }
-
-  function getRenderCall(fakeRes) {
-    return fakeRes.render.mock.calls[0];
-  }
-  function getRenderLocals(fakeRes) {
-    return getRenderCall(fakeRes)[1];
-  }
-  function getRenderView(fakeRes) {
-    return getRenderCall(fakeRes)[0];
-  }
 }
