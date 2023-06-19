@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`If no region is selected, error message is returned 1`] = `
-<ul
-  data-testid="errors"
->
-  <li>
-    Please select a region
-  </li>
-</ul>
-`;
-
 exports[`On region with a flower Form after error rerender still renders with regions 1`] = `
 <form
   action=""

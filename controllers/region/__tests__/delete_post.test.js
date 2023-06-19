@@ -5,6 +5,8 @@ const express = require("express");
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 
+const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
+
 const sendFormData = require(path.join(
   appRoot,
   "controllers",
@@ -38,10 +40,21 @@ beforeAll(async () => {
 });
 
 test("If no region is selected, error message is returned", async () => {
-  const response = await sendFormData(app, "/", {});
-  const html = convertStringToDOM(response.text);
+  const { renderLocals, renderView } = await emulateCallingController(
+    delete_post,
+    {
+      reqBody: { region: undefined },
+    }
+  );
 
-  expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot();
+  expect(renderView).toMatchInlineSnapshot(`"regions/delete_region"`);
+  expect(renderLocals.errors).toMatchInlineSnapshot(`
+    [
+      {
+        "msg": "Please select a region",
+      },
+    ]
+  `);
 });
 
 describe("On region without a flower", () => {
