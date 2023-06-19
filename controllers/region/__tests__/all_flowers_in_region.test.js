@@ -92,9 +92,18 @@ async function addFlowerToDb(flowersRegionAsId) {
 }
 
 async function simulateInvokingAllFlowersInRegion(regionName) {
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(regionName);
+  return (
+    await emulateCallingController(
+      all_flowers_in_region,
+      { name: regionName }
+    )
+  )
+}
 
-  await all_flowers_in_region(fakeReq, fakeRes);
+async function emulateCallingController(controller, reqParams) {
+  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(reqParams);
+
+  await controller(fakeReq, fakeRes);
 
   return {
     renderCall: getRenderCall(fakeRes),
@@ -102,11 +111,9 @@ async function simulateInvokingAllFlowersInRegion(regionName) {
     renderView: getRenderView(fakeRes)
   }
 
-  function getFakeMiddlewareParameters(regionName) {
+  function getFakeMiddlewareParameters(reqParams) {
     const fakeReq = {
-      params: {
-        name: regionName,
-      },
+      params: reqParams
     };
 
     const fakeRes = {
