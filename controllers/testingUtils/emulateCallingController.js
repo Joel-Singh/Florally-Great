@@ -1,5 +1,5 @@
-module.exports = async function(controller, reqParams) {
-  const { fakeReq, fakeRes } = getFakeMiddlewareParameters(reqParams);
+module.exports = async function(controller, options) {
+  const { fakeReq, fakeRes } = getFakeMiddleware(options);
 
   await controller(fakeReq, fakeRes);
 
@@ -9,7 +9,9 @@ module.exports = async function(controller, reqParams) {
     renderView: getRenderView(fakeRes)
   }
 
-  function getFakeMiddlewareParameters(reqParams) {
+  function getFakeMiddleware(options) {
+    const { reqParams } = options
+
     const fakeReq = {
       params: reqParams
     };
