@@ -1,44 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Form renders 1`] = `
-<form
-  action=""
-  method="POST"
-/>
-`;
-
 exports[`Form renders a single error 1`] = `
-<form
-  action=""
-  method="POST"
+<ul
+  data-testid="errors"
 >
-  <ul
-    data-testid="errors"
-  >
-    <li>
-      This Error Msg Should be seen
-    </li>
-  </ul>
-</form>
+  <li>
+    This Error Msg Should be seen
+  </li>
+</ul>
 `;
 
 exports[`Form renders multiple errors 1`] = `
-<form
-  action=""
-  method="POST"
+<ul
+  data-testid="errors"
 >
-  <ul
-    data-testid="errors"
-  >
-    <li>
-      This Error Msg Should be seen 1
-    </li>
-    <li>
-      This Error Msg Should be seen 2
-    </li>
-    <li>
-      This Error Msg Should be seen 3
-    </li>
-  </ul>
-</form>
+  <li>
+    This Error Msg Should be seen 1
+  </li>
+  <li>
+    This Error Msg Should be seen 2
+  </li>
+  <li>
+    This Error Msg Should be seen 3
+  </li>
+</ul>
 `;
