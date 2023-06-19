@@ -10,10 +10,11 @@ module.exports = async function(controller, options) {
   }
 
   function getFakeMiddleware(options) {
-    const { reqParams } = options
+    const { reqParams, reqBody } = options
 
     const fakeReq = {
-      params: reqParams
+      params: reqParams,
+      body: reqBody
     };
 
     const fakeRes = {
