@@ -1,7 +1,8 @@
 const path = require("path");
 const express = require("express");
 const request = require("supertest");
-const prettier = require("prettier");
+
+const formatHtml = require('../../testingUtils/formatHtml.js')
 
 const addGeneralMiddleware = require(path.join(
   appRoot,
@@ -46,10 +47,4 @@ async function addSomeRegionsToDatabase() {
     const region = new Region({ name, description, _id });
     await region.save();
   }
-}
-
-function formatHtml(html) {
-  return prettier.format(html, {
-    parser: "html",
-  });
 }
