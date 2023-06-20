@@ -14,9 +14,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-prettier --write "**/*.js"
+git diff --name-only --cached | grep ".js$" | xargs prettier --check
 if [ $? -ne 0 ]; then
-    echo "Formatting failed!"
+    echo "Files not formatted!"
     git stash pop -q
     exit 1
 fi
