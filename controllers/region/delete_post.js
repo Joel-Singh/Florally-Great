@@ -21,7 +21,7 @@ module.exports = asyncHandler(async (req, res, next) => {
     res.redirect("/regions/delete");
     return;
   } else {
-    renderRegionHasFlowerError(regionId, res)
+    await renderRegionHasFlowerError(regionId, res)
     return;
   }
 });
@@ -44,7 +44,7 @@ async function renderRegionHasFlowerError(regionId, res) {
     },
   ];
 
-  renderDeleteRegion(res, {
+  await renderDeleteRegion(res, {
     errors,
   });
 
