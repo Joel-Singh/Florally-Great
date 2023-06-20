@@ -40,15 +40,17 @@ beforeAll(async () => {
 });
 
 test("If no region is selected, error message is returned", async () => {
-  const { renderLocals, renderView } = await emulateCallingController(
+  const { fakeRes, getRenderInformation } = await emulateCallingController(
     delete_post,
     {
       body: { region: undefined }
     }
   );
 
-  expect(renderView).toMatchInlineSnapshot(`"regions/delete_region"`);
-  expect(renderLocals.errors).toMatchInlineSnapshot(`
+  const { view, locals } = getRenderInformation(fakeRes)
+
+  expect(view).toMatchInlineSnapshot(`"regions/delete_region"`);
+  expect(locals.errors).toMatchInlineSnapshot(`
     [
       {
         "msg": "Please select a region",

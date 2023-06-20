@@ -4,9 +4,9 @@ module.exports = async function(controller, reqProperties, resProperties) {
   await controller(fakeReq, fakeRes);
 
   return {
-    renderCall: getRenderCall(fakeRes),
-    renderLocals: getRenderLocals(fakeRes),
-    renderView: getRenderView(fakeRes)
+    fakeReq,
+    fakeRes,
+    getRenderInformation
   }
 
   function getFakeMiddleware(options) {
@@ -21,16 +21,16 @@ module.exports = async function(controller, reqProperties, resProperties) {
 
     return { fakeReq, fakeRes };
   }
+}
 
-  function getRenderCall(fakeRes) {
-    return fakeRes.render.mock.calls[0];
-  }
+function getRenderInformation(fakeRes) {
+  const renderCalls = fakeRes.render.mock.calls
+  if (renderCalls.length === 0)
+    throw new Error("Render hasn't been called!")
 
-  function getRenderLocals(fakeRes) {
-    return getRenderCall(fakeRes)[1];
-  }
-
-  function getRenderView(fakeRes) {
-    return getRenderCall(fakeRes)[0];
+  const renderCall = renderCalls[0]
+  return {
+    view: renderCall[0],
+    locals: renderCall[1],
   }
 }
