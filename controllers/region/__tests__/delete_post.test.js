@@ -43,7 +43,7 @@ test("If no region is selected, error message is returned", async () => {
   const { renderLocals, renderView } = await emulateCallingController(
     delete_post,
     {
-      reqBody: { region: undefined },
+      body: { region: undefined }
     }
   );
 

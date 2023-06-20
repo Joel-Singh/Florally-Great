@@ -96,7 +96,9 @@ async function simulateInvokingAllFlowersInRegion(regionName) {
   return (
     await emulateCallingController(
       all_flowers_in_region,
-      { reqParams: { name: regionName } }
+      {
+        params: { name: regionName }
+      }
     )
   )
 }

@@ -1,5 +1,5 @@
-module.exports = async function(controller, options) {
-  const { fakeReq, fakeRes } = getFakeMiddleware(options);
+module.exports = async function(controller, reqProperties, resProperties) {
+  const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
 
   await controller(fakeReq, fakeRes);
 
@@ -10,15 +10,13 @@ module.exports = async function(controller, options) {
   }
 
   function getFakeMiddleware(options) {
-    const { reqParams, reqBody } = options
-
     const fakeReq = {
-      params: reqParams,
-      body: reqBody
+      ...reqProperties
     };
 
     const fakeRes = {
       render: jest.fn(),
+      ...resProperties
     };
 
     return { fakeReq, fakeRes };
