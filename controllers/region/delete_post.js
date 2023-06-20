@@ -5,11 +5,13 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegion.js");
 
 module.exports = asyncHandler(async (req, res, next) => {
-  if (typeof req.body.region === 'undefined') {
+  if (typeof req.body.region === "undefined") {
     await renderDeleteRegion(res, {
-      errors: [{
-        msg: "Please select a region"
-      }]
+      errors: [
+        {
+          msg: "Please select a region",
+        },
+      ],
     });
     return;
   }
@@ -21,7 +23,7 @@ module.exports = asyncHandler(async (req, res, next) => {
     res.redirect("/regions/delete");
     return;
   } else {
-    await renderRegionHasFlowerError(regionId, res)
+    await renderRegionHasFlowerError(regionId, res);
     return;
   }
 });
@@ -33,7 +35,7 @@ async function regionHasFlower(regionId) {
 }
 
 async function regionHasNoFlower(regionId) {
-  return !(await regionHasFlower(regionId))
+  return !(await regionHasFlower(regionId));
 }
 
 async function renderRegionHasFlowerError(regionId, res) {
@@ -60,7 +62,8 @@ async function renderRegionHasFlowerError(regionId, res) {
       }
     );
 
-    const unorderedListOfFlowers = "<ul>" + allListItemsInSingleString + "</ul>";
+    const unorderedListOfFlowers =
+      "<ul>" + allListItemsInSingleString + "</ul>";
 
     const header = `<h2>Region has flowers, delete them first: </h2>`;
 

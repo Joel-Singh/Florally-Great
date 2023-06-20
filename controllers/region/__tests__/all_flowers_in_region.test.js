@@ -3,7 +3,7 @@ const path = require("path");
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 
-const emulateCallingController = require('../../testingUtils/emulateCallingController.js')
+const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 const all_flowers_in_region = require("../all_flowers_in_region.js");
 
 test("Tries rendering correct view", async () => {
@@ -11,12 +11,11 @@ test("Tries rendering correct view", async () => {
 
   await addRegionToDb(regionName);
 
-  const { fakeRes, getRenderInformation } = await simulateInvokingAllFlowersInRegion(regionName)
-  const { view } = getRenderInformation(fakeRes)
+  const { fakeRes, getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
+  const { view } = getRenderInformation(fakeRes);
 
-  expect(view).toMatchInlineSnapshot(
-    `"regions/all_flowers_in_region"`
-  );
+  expect(view).toMatchInlineSnapshot(`"regions/all_flowers_in_region"`);
 });
 
 test("Passes in region with empty flower list", async () => {
@@ -24,8 +23,9 @@ test("Passes in region with empty flower list", async () => {
 
   await addRegionToDb(regionName);
 
-  const { fakeRes, getRenderInformation } = await simulateInvokingAllFlowersInRegion(regionName)
-  const { locals } = getRenderInformation(fakeRes)
+  const { fakeRes, getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
+  const { locals } = getRenderInformation(fakeRes);
 
   expect(locals).toMatchInlineSnapshot(`
     {
@@ -46,8 +46,9 @@ test("Passes in region and flowers", async () => {
   const regionId = await addRegionToDb(regionName);
   await addFlowerToDb(regionId);
 
-  const { fakeRes, getRenderInformation } = await simulateInvokingAllFlowersInRegion(regionName);
-  const { locals } = getRenderInformation(fakeRes)
+  const { fakeRes, getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
+  const { locals } = getRenderInformation(fakeRes);
 
   expect(locals).toMatchInlineSnapshot(`
     {
@@ -72,7 +73,6 @@ test("Passes in region and flowers", async () => {
   `);
 });
 
-
 async function addRegionToDb(regionName) {
   const id = "6483d106cdcd7f4f8d6ed46a";
   await new Region({
@@ -96,12 +96,7 @@ async function addFlowerToDb(flowersRegionAsId) {
 }
 
 async function simulateInvokingAllFlowersInRegion(regionName) {
-  return (
-    await emulateCallingController(
-      all_flowers_in_region,
-      {
-        params: { name: regionName }
-      }
-    )
-  )
+  return await emulateCallingController(all_flowers_in_region, {
+    params: { name: regionName },
+  });
 }

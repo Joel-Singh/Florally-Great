@@ -4,7 +4,7 @@ const express = require("express");
 
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
-const formatHtml = require('../../testingUtils/formatHtml.js')
+const formatHtml = require("../../testingUtils/formatHtml.js");
 
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 
@@ -44,11 +44,11 @@ test("If no region is selected, error message is returned", async () => {
   const { fakeRes, getRenderInformation } = await emulateCallingController(
     delete_post,
     {
-      body: { region: undefined }
+      body: { region: undefined },
     }
   );
 
-  const { view, locals } = getRenderInformation(fakeRes)
+  const { view, locals } = getRenderInformation(fakeRes);
 
   expect(view).toMatchInlineSnapshot(`"regions/delete_region"`);
   expect(locals.errors).toMatchInlineSnapshot(`
@@ -99,13 +99,16 @@ describe("On region with a flower", () => {
   test("Renders Error, hyperlinking to flower", async () => {
     const id = await saveRegionWithFlower();
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
-      body: { region: id },
-    });
+    const { fakeRes, getRenderInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: { region: id },
+      }
+    );
 
-    const { locals } = getRenderInformation(fakeRes)
+    const { locals } = getRenderInformation(fakeRes);
 
-    const errorMsg = locals.errors[0].msg
+    const errorMsg = locals.errors[0].msg;
     expect(formatHtml(errorMsg)).toMatchSnapshot();
   });
 
@@ -120,11 +123,14 @@ describe("On region with a flower", () => {
 
     await regionShouldShowUp.save();
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
-      body: { region: id },
-    });
+    const { fakeRes, getRenderInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: { region: id },
+      }
+    );
 
-    const { locals } = getRenderInformation(fakeRes)
+    const { locals } = getRenderInformation(fakeRes);
 
     expect(locals.all_regions).toMatchSnapshot();
   });
@@ -154,13 +160,16 @@ describe("On region with multiple flowers", () => {
     await addFlowerToRegion("Flower 2", id);
     await addFlowerToRegion("Flower 3", id);
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
-      body: { region: id },
-    });
+    const { fakeRes, getRenderInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: { region: id },
+      }
+    );
 
-    const { locals } = getRenderInformation(fakeRes)
+    const { locals } = getRenderInformation(fakeRes);
 
-    const errorMsg = locals.errors[0].msg
+    const errorMsg = locals.errors[0].msg;
     expect(formatHtml(errorMsg)).toMatchSnapshot();
 
     async function addFlowerToRegion(name, id) {

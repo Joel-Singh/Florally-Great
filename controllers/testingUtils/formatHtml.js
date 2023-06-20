@@ -1,7 +1,7 @@
-const prettier = require('prettier')
+const prettier = require("prettier");
 
-module.exports = function(html) {
+module.exports = function (html) {
   return prettier.format(html, {
     parser: "html",
   });
-}
+};

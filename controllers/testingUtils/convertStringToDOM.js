@@ -5,4 +5,4 @@ module.exports = function (string) {
   const document = dom.window.document;
 
   return document;
-}
+};

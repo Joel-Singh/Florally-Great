@@ -1,4 +1,4 @@
-module.exports = async function(controller, reqProperties, resProperties) {
+module.exports = async function (controller, reqProperties, resProperties) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
 
   await controller(fakeReq, fakeRes);
@@ -6,32 +6,31 @@ module.exports = async function(controller, reqProperties, resProperties) {
   return {
     fakeReq,
     fakeRes,
-    getRenderInformation
-  }
+    getRenderInformation,
+  };
 
   function getFakeMiddleware(options) {
     const fakeReq = {
-      ...reqProperties
+      ...reqProperties,
     };
 
     const fakeRes = {
       render: jest.fn(),
       redirect: jest.fn(),
-      ...resProperties
+      ...resProperties,
     };
 
     return { fakeReq, fakeRes };
   }
-}
+};
 
 function getRenderInformation(fakeRes) {
-  const renderCalls = fakeRes.render.mock.calls
-  if (renderCalls.length === 0)
-    throw new Error("Render hasn't been called!")
+  const renderCalls = fakeRes.render.mock.calls;
+  if (renderCalls.length === 0) throw new Error("Render hasn't been called!");
 
-  const renderCall = renderCalls[0]
+  const renderCall = renderCalls[0];
   return {
     view: renderCall[0],
     locals: renderCall[1],
-  }
+  };
 }

@@ -21,6 +21,8 @@ test.each([
     },
   ],
 ])("%s", (name, locals) => {
-  const form = renderPugToDOM("./views/form.pug", locals).querySelector("[data-testid='errors']");
+  const form = renderPugToDOM("./views/form.pug", locals).querySelector(
+    "[data-testid='errors']"
+  );
   expect(form).toMatchSnapshot();
 });

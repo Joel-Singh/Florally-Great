@@ -11,8 +11,8 @@ const app = configureExpressApp({
   viewEngine: true,
   generalMiddleware: true,
   routes: true,
-  errorHandling: true
-})
+  errorHandling: true,
+});
 
 module.exports = app;
 
