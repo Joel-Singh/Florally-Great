@@ -1,94 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`On region with a flower Form after error rerender still renders with regions 1`] = `
-<form
-  action=""
-  method="POST"
->
-  <label
-    class="center-text"
-    for="Region Name"
-  >
-    Region Name
-  </label>
-  <input
-    id="Region Name"
-    name="region"
-    type="radio"
-    value="647cbde08678de7aaf63d2ec"
-  />
-  <label
-    class="center-text"
-    for="I should be in the snapshot!"
-  >
-    I should be in the snapshot!
-  </label>
-  <input
-    id="I should be in the snapshot!"
-    name="region"
-    type="radio"
-    value="647cbdb6ec4dd230927acfdf"
-  />
-  <button
-    type="submit"
-  >
-    Delete
-  </button>
-</form>
+[
+  {
+    "_id": "647cbde08678de7aaf63d2ec",
+    "name": "Region Name",
+  },
+  {
+    "_id": "647cbdb6ec4dd230927acfdf",
+    "name": "I should be in the snapshot!",
+  },
+]
 `;
 
 exports[`On region with a flower Renders Error, hyperlinking to flower 1`] = `
-<ul
-  data-testid="errors"
->
-  <li>
-    <h2>
-      Region has flowers, delete them first: 
-    </h2>
-    <ul>
-      <li>
-        <a
-          href="/flowers/Flower"
-        >
-          Flower
-        </a>
-      </li>
-    </ul>
-  </li>
+"<h2>Region has flowers, delete them first:</h2>
+<ul>
+  <li><a href="/flowers/Flower">Flower</a></li>
 </ul>
+"
 `;
 
 exports[`On region with multiple flowers Renders error, hyperlinking to multiple flowers 1`] = `
-<ul
-  data-testid="errors"
->
-  <li>
-    <h2>
-      Region has flowers, delete them first: 
-    </h2>
-    <ul>
-      <li>
-        <a
-          href="/flowers/Flower 1"
-        >
-          Flower 1
-        </a>
-      </li>
-      <li>
-        <a
-          href="/flowers/Flower 2"
-        >
-          Flower 2
-        </a>
-      </li>
-      <li>
-        <a
-          href="/flowers/Flower 3"
-        >
-          Flower 3
-        </a>
-      </li>
-    </ul>
-  </li>
+"<h2>Region has flowers, delete them first:</h2>
+<ul>
+  <li><a href="/flowers/Flower 1">Flower 1</a></li>
+  <li><a href="/flowers/Flower 2">Flower 2</a></li>
+  <li><a href="/flowers/Flower 3">Flower 3</a></li>
 </ul>
+"
 `;

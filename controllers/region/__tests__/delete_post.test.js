@@ -4,6 +4,7 @@ const express = require("express");
 
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
+const formatHtml = require('../../testingUtils/formatHtml.js')
 
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 
@@ -63,12 +64,9 @@ describe("On region without a flower", () => {
   test("Region is deleted", async () => {
     const id = await saveRegionToBeDeleted();
 
-    await emulateCallingController(
-      delete_post,
-      {
-        body: { region: id }
-      }
-    );
+    await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
     const foundRegion = await Region.findById(id).exec();
     expect(foundRegion).toBeNull();
@@ -77,11 +75,12 @@ describe("On region without a flower", () => {
   test("Renders form again", async () => {
     const id = await saveRegionToBeDeleted();
 
-    const response = await sendFormData(app, "/", { region: id });
+    const { fakeRes } = await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
-    expect(response.text).toMatchInlineSnapshot(
-      `"Found. Redirecting to /regions/delete"`
-    );
+    const redirectedPage = fakeRes.redirect.mock.calls[0][0];
+    expect(redirectedPage).toMatchInlineSnapshot(`"/regions/delete"`);
   });
 });
 
@@ -89,7 +88,9 @@ describe("On region with a flower", () => {
   test("Region isn't deleted when it has flower", async () => {
     const id = await saveRegionWithFlower();
 
-    await sendFormData(app, "/", { region: id });
+    await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
     const foundRegion = await Region.findById(id).exec();
     expect(foundRegion).not.toBeNull();
@@ -98,10 +99,14 @@ describe("On region with a flower", () => {
   test("Renders Error, hyperlinking to flower", async () => {
     const id = await saveRegionWithFlower();
 
-    const response = await sendFormData(app, "/", { region: id });
-    const html = convertStringToDOM(response.text);
+    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
-    expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot();
+    const { locals } = getRenderInformation(fakeRes)
+
+    const errorMsg = locals.errors[0].msg
+    expect(formatHtml(errorMsg)).toMatchSnapshot();
   });
 
   test("Form after error rerender still renders with regions", async () => {
@@ -115,12 +120,13 @@ describe("On region with a flower", () => {
 
     await regionShouldShowUp.save();
 
-    const response = await sendFormData(app, "/", { region: id });
-    const html = convertStringToDOM(response.text);
-    const form = html.querySelector("form");
-    form.removeChild(form.querySelector('[data-testid="errors"]'));
+    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
-    expect(form).toMatchSnapshot();
+    const { locals } = getRenderInformation(fakeRes)
+
+    expect(locals.all_regions).toMatchSnapshot();
   });
 
   async function saveRegionWithFlower() {
@@ -148,10 +154,14 @@ describe("On region with multiple flowers", () => {
     await addFlowerToRegion("Flower 2", id);
     await addFlowerToRegion("Flower 3", id);
 
-    const response = await sendFormData(app, "/", { region: id });
-    const html = convertStringToDOM(response.text);
+    const { fakeRes, getRenderInformation } = await emulateCallingController(delete_post, {
+      body: { region: id },
+    });
 
-    expect(html.querySelector('[data-testid="errors"]')).toMatchSnapshot();
+    const { locals } = getRenderInformation(fakeRes)
+
+    const errorMsg = locals.errors[0].msg
+    expect(formatHtml(errorMsg)).toMatchSnapshot();
 
     async function addFlowerToRegion(name, id) {
       const flowerInRegion = new Flower({
