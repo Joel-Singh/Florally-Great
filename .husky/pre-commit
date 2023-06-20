@@ -1,4 +1,30 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+git stash -q --keep-index
+if [ $? -ne 0 ]; then
+    echo "Stashing unstaged changes failed!"
+    exit 1
+fi
+
 npm test
+if [ $? -ne 0 ]; then
+    echo "Tests failed!"
+    git stash pop -q
+    exit 1
+fi
+
+prettier --write "**/*.js"
+if [ $? -ne 0 ]; then
+    echo "Formatting failed!"
+    git stash pop -q
+    exit 1
+fi
+
+git stash pop -q
+if [ $? -ne 0 ]; then
+    echo "Popping unstaged changes failed!"
+    exit 1
+fi
+
+exit 0
