@@ -16,6 +16,7 @@ module.exports = async function(controller, reqProperties, resProperties) {
 
     const fakeRes = {
       render: jest.fn(),
+      redirect: jest.fn(),
       ...resProperties
     };
 
