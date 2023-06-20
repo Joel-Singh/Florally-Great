@@ -63,7 +63,12 @@ describe("On region without a flower", () => {
   test("Region is deleted", async () => {
     const id = await saveRegionToBeDeleted();
 
-    await sendFormData(app, "/", { region: id });
+    await emulateCallingController(
+      delete_post,
+      {
+        body: { region: id }
+      }
+    );
 
     const foundRegion = await Region.findById(id).exec();
     expect(foundRegion).toBeNull();
