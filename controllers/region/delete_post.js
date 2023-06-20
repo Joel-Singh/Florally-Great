@@ -5,7 +5,8 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegion.js");
 
 module.exports = asyncHandler(async (req, res, next) => {
-  if (typeof req.body.region === "undefined") {
+  const regionId = req.body.regionId;
+  if (typeof regionId === "undefined") {
     await renderDeleteRegion(res, {
       errors: [
         {
@@ -15,8 +16,6 @@ module.exports = asyncHandler(async (req, res, next) => {
     });
     return;
   }
-
-  const regionId = req.body.region;
 
   if (await regionHasNoFlower(regionId)) {
     await Region.findByIdAndDelete(regionId);

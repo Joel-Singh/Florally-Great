@@ -44,7 +44,7 @@ test("If no region is selected, error message is returned", async () => {
   const { fakeRes, getRenderInformation } = await emulateCallingController(
     delete_post,
     {
-      body: { region: undefined },
+      body: { regionId: undefined },
     }
   );
 
@@ -65,7 +65,7 @@ describe("On region without a flower", () => {
     const id = await saveRegionToBeDeleted();
 
     await emulateCallingController(delete_post, {
-      body: { region: id },
+      body: { regionId: id },
     });
 
     const foundRegion = await Region.findById(id).exec();
@@ -76,7 +76,7 @@ describe("On region without a flower", () => {
     const id = await saveRegionToBeDeleted();
 
     const { fakeRes } = await emulateCallingController(delete_post, {
-      body: { region: id },
+      body: { regionId: id },
     });
 
     const redirectedPage = fakeRes.redirect.mock.calls[0][0];
@@ -89,7 +89,7 @@ describe("On region with a flower", () => {
     const id = await saveRegionWithFlower();
 
     await emulateCallingController(delete_post, {
-      body: { region: id },
+      body: { regionId: id },
     });
 
     const foundRegion = await Region.findById(id).exec();
@@ -102,7 +102,7 @@ describe("On region with a flower", () => {
     const { fakeRes, getRenderInformation } = await emulateCallingController(
       delete_post,
       {
-        body: { region: id },
+        body: { regionId: id },
       }
     );
 
@@ -126,7 +126,7 @@ describe("On region with a flower", () => {
     const { fakeRes, getRenderInformation } = await emulateCallingController(
       delete_post,
       {
-        body: { region: id },
+        body: { regionId: id },
       }
     );
 
@@ -163,7 +163,7 @@ describe("On region with multiple flowers", () => {
     const { fakeRes, getRenderInformation } = await emulateCallingController(
       delete_post,
       {
-        body: { region: id },
+        body: { regionId: id },
       }
     );
 

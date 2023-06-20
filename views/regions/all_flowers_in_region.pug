@@ -15,7 +15,7 @@ block content
         p= description
   form(method='POST' action='/regions/delete')
     - const hasFlowers = flower_list.length !== 0
-    input(type='hidden', value=region._id, name='region')
+    input(type='hidden', value=region._id, name='regionId')
     button(
       type='submit'
       disabled=(hasFlowers ? true : undefined)

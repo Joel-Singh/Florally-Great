@@ -32,19 +32,19 @@ exports[`delete_get controller renders with regions 1`] = `
         <label class="center-text" for="name 1">name 1</label
         ><input
           type="radio"
-          name="region"
+          name="regionId"
           id="name 1"
           value="647cd591a7047c50e71bc287"
         /><label class="center-text" for="name 2">name 2</label
         ><input
           type="radio"
-          name="region"
+          name="regionId"
           id="name 2"
           value="647cd591a7047c50e71bc288"
         /><label class="center-text" for="name 3">name 3</label
         ><input
           type="radio"
-          name="region"
+          name="regionId"
           id="name 3"
           value="647cd591a7047c50e71bc289"
         /><button type="submit">Delete</button>
