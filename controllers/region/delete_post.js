@@ -5,22 +5,7 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegion.js");
 
 module.exports = asyncHandler(async (req, res, next) => {
-  const regionId = req.body.regionId;
-
-  if (req.body.fromRegionDetailPage === true) {
-    if (await regionHasFlower(regionId)) {
-      res.render("message", {
-        title: "failure!",
-        message: "Region not deleted",
-      });
-    } else {
-      await Region.findByIdAndDelete(regionId);
-      res.render("message", {
-        title: "success!",
-        message: "Region successfully deleted",
-      });
-    }
-  }
+  const { regionId, fromRegionDetailPage } = req.body;
 
   if (typeof regionId === "undefined") {
     await renderDeleteRegion(res, {
@@ -33,15 +18,38 @@ module.exports = asyncHandler(async (req, res, next) => {
     return;
   }
 
-  if (await regionHasNoFlower(regionId)) {
-    await Region.findByIdAndDelete(regionId);
-    res.redirect("/regions/delete");
-    return;
+  if (await regionHasFlower(regionId)) {
+    await regionDeleteFailureRender(regionId, res, fromRegionDetailPage);
   } else {
-    await renderRegionHasFlowerError(regionId, res);
-    return;
+    await Region.findByIdAndDelete(regionId);
+    await regionDeleteSuccessRender(res, fromRegionDetailPage);
   }
 });
+
+async function regionDeleteFailureRender(regionId, res, fromRegionDetailPage) {
+  if (fromRegionDetailPage === true) {
+    res.render("message", {
+      title: "failure!",
+      message: "Region not deleted",
+    });
+    return;
+  } else {
+    await renderDeleteRegionWithFlowerError(regionId, res);
+    return;
+  }
+}
+
+async function regionDeleteSuccessRender(res, fromRegionDetailPage) {
+  if (fromRegionDetailPage === true) {
+    res.render("message", {
+      title: "success!",
+      message: "Region successfully deleted",
+    });
+  } else {
+    res.redirect("/regions/delete");
+    return;
+  }
+}
 
 async function regionHasFlower(regionId) {
   const flower = await Flower.findOne({ region: regionId }).exec();
@@ -49,11 +57,7 @@ async function regionHasFlower(regionId) {
   else return true;
 }
 
-async function regionHasNoFlower(regionId) {
-  return !(await regionHasFlower(regionId));
-}
-
-async function renderRegionHasFlowerError(regionId, res) {
+async function renderDeleteRegionWithFlowerError(regionId, res) {
   const flowersOfRegion = await Flower.find({ region: regionId }).exec();
   const errors = [
     {
