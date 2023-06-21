@@ -8,13 +8,14 @@ module.exports = asyncHandler(async (req, res, next) => {
     .populate("region", "name")
     .exec();
 
-  const { name, description, price, numberInStock } = flower;
+  const { name, description, price, numberInStock, _id } = flower;
   res.render("flowers/flower_detail", {
     title: name,
     name,
     description,
     price,
     numberInStock,
+    flowerId: _id,
     region: flower.region,
   });
 });

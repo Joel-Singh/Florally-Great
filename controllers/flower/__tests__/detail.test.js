@@ -17,6 +17,7 @@ test("Passes in flower information", async () => {
   expect(locals).toMatchInlineSnapshot(`
     {
       "description": "description",
+      "flowerId": "64936dd0799eebb27f143f77",
       "name": "name",
       "numberInStock": 21,
       "price": 32,
@@ -31,6 +32,7 @@ test("Passes in flower information", async () => {
 
 async function saveFlower(flowerName) {
   const regionId = "64936c336ee5fbeeed356dda";
+  const flowerId = "64936dd0799eebb27f143f77";
 
   await new Region({
     name: "name",
@@ -43,6 +45,7 @@ async function saveFlower(flowerName) {
     description: "description",
     price: 32,
     numberInStock: 21,
+    _id: flowerId,
     region: regionId,
   }).save();
 }
