@@ -3,6 +3,10 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const Region = require(path.join(appRoot, "models", "region.js"));
 const detail = require("../detail.js");
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
+const {
+  saveDummyFlower,
+  saveDummyRegion,
+} = require("../../testingUtils/savingDummyDataToDb.js");
 
 test("Passes in flower information", async () => {
   const flowerName = "name";
@@ -34,18 +38,7 @@ async function saveFlower(flowerName) {
   const regionId = "64936c336ee5fbeeed356dda";
   const flowerId = "64936dd0799eebb27f143f77";
 
-  await new Region({
-    name: "name",
-    description: "description",
-    _id: regionId,
-  }).save();
+  await saveDummyRegion({ _id: regionId });
 
-  await new Flower({
-    name: flowerName,
-    description: "description",
-    price: 32,
-    numberInStock: 21,
-    _id: flowerId,
-    region: regionId,
-  }).save();
+  await saveDummyFlower(regionId, { _id: flowerId, name: flowerName });
 }
