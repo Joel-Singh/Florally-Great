@@ -6,6 +6,22 @@ const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegio
 
 module.exports = asyncHandler(async (req, res, next) => {
   const regionId = req.body.regionId;
+
+  if (req.body.fromRegionDetailPage === true) {
+    if (await regionHasFlower(regionId)) {
+      res.render("message", {
+        title: "failure!",
+        message: "Region not deleted",
+      });
+    } else {
+      await Region.findByIdAndDelete(regionId);
+      res.render("message", {
+        title: "success!",
+        message: "Region successfully deleted",
+      });
+    }
+  }
+
   if (typeof regionId === "undefined") {
     await renderDeleteRegion(res, {
       errors: [

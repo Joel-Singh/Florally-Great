@@ -134,22 +134,6 @@ describe("On region with a flower", () => {
 
     expect(locals.all_regions).toMatchSnapshot();
   });
-
-  async function saveRegionWithFlower() {
-    const id = await saveRegionToBeDeleted();
-
-    const flowerInRegion = new Flower({
-      name: "Flower",
-      description: "desc",
-      price: "32",
-      numberInStock: "1",
-      region: id,
-    });
-
-    await flowerInRegion.save();
-
-    return id;
-  }
 });
 
 describe("On region with multiple flowers", () => {
@@ -184,6 +168,80 @@ describe("On region with multiple flowers", () => {
     }
   });
 });
+
+describe("From deleting through region detail page", () => {
+  test("If region doesn't have flowers, deletes region and redirects with success message", async () => {
+    const id = await saveRegionToBeDeleted();
+    const { fakeRes, getRenderInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: {
+          regionId: id,
+          fromRegionDetailPage: true,
+        },
+      }
+    );
+
+    const { view, locals } = getRenderInformation(fakeRes);
+
+    const foundRegion = await Region.findById(id).exec();
+    expect(foundRegion).toBeNull();
+
+    expect(view).toMatchInlineSnapshot(`"message"`);
+    expect(locals).toMatchInlineSnapshot(
+      `
+      {
+        "message": "Region successfully deleted",
+        "title": "success!",
+      }
+    `
+    );
+  });
+
+  test("If region does have flowers, don't delete region and redirect with error", async () => {
+    const id = await saveRegionWithFlower();
+    const { fakeRes, getRenderInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: {
+          regionId: id,
+          fromRegionDetailPage: true,
+        },
+      }
+    );
+
+    const { view, locals } = getRenderInformation(fakeRes);
+
+    const foundRegion = await Region.findById(id).exec();
+    expect(foundRegion).not.toBeNull();
+
+    expect(view).toMatchInlineSnapshot(`"message"`);
+    expect(locals).toMatchInlineSnapshot(
+      `
+      {
+        "message": "Region not deleted",
+        "title": "failure!",
+      }
+    `
+    );
+  });
+});
+
+async function saveRegionWithFlower() {
+  const id = await saveRegionToBeDeleted();
+
+  const flowerInRegion = new Flower({
+    name: "Flower",
+    description: "desc",
+    price: "32",
+    numberInStock: "1",
+    region: id,
+  });
+
+  await flowerInRegion.save();
+
+  return id;
+}
 
 async function saveRegionToBeDeleted() {
   const regionToBeDeleted = new Region({
