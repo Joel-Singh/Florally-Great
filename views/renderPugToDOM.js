@@ -1,8 +1,8 @@
 const pug = require("pug");
 const { JSDOM } = require("jsdom");
 
-module.exports = (filePath, locals) => {
-  const compiledTemplate = pug.compileFile(filePath);
+module.exports = (absoluteFilePath, locals) => {
+  const compiledTemplate = pug.compileFile(absoluteFilePath);
 
   const html = compiledTemplate(locals);
 
