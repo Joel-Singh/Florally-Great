@@ -13,7 +13,7 @@ const generateSequentialObjectid = (() => {
   return generateId;
 })();
 
-exports.saveDummyFlower = async function (overwrites, regionId) {
+exports.saveDummyFlower = async function (overwrites = {}, regionId) {
   if (typeof regionId === "undefined")
     overwrites.region = (await saveDummyRegion())._id;
 
@@ -32,7 +32,7 @@ exports.saveDummyFlower = async function (overwrites, regionId) {
 
 exports.saveDummyRegion = saveDummyRegion;
 
-async function saveDummyRegion(overwrites) {
+async function saveDummyRegion(overwrites = {}) {
   const dummyData = {
     name: "name",
     description: "description",
