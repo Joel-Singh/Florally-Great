@@ -14,5 +14,6 @@ router.post("/create", requireFlowerController("create_post"));
 router.get("/:name", requireFlowerController("detail"));
 router.get("/:name/update", requireFlowerController("update_get"));
 router.post("/:name/update", requireFlowerController("update_post"));
+router.post("/:name", requireFlowerController("delete_post"));
 
 module.exports = router;
