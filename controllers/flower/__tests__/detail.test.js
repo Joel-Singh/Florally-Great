@@ -42,11 +42,9 @@ test("Renders error if invalid flower is passed in", async () => {
   const { view, locals } = getRenderInformation(fakeRes);
 
   expect(view).toMatchInlineSnapshot(`"message"`);
-  expect(locals).toMatchInlineSnapshot(
-    `
+  expect(locals).toMatchInlineSnapshot(`
     {
       "title": "FlowerThatDoesNotExist couldn't be found",
     }
-  `
-  );
+  `);
 });
