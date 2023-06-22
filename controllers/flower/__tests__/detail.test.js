@@ -33,3 +33,20 @@ test("Passes in flower information to flower detail", async () => {
     }
   `);
 });
+
+test("Renders error if invalid flower is passed in", async () => {
+  const { fakeRes, getRenderInformation } = await emulateCallingController(
+    detail,
+    { params: { name: "FlowerThatDoesNotExist" } }
+  );
+  const { view, locals } = getRenderInformation(fakeRes);
+
+  expect(view).toMatchInlineSnapshot(`"message"`);
+  expect(locals).toMatchInlineSnapshot(
+    `
+    {
+      "title": "FlowerThatDoesNotExist couldn't be found",
+    }
+  `
+  );
+});

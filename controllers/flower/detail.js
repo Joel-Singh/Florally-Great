@@ -8,6 +8,11 @@ module.exports = asyncHandler(async (req, res, next) => {
     .populate("region", "name")
     .exec();
 
+  if (flower === null) {
+    res.render("message", { title: `${flowerName} couldn't be found` });
+    return;
+  }
+
   const { name, description, price, numberInStock, _id } = flower;
   res.render("flowers/flower_detail", {
     title: name,
