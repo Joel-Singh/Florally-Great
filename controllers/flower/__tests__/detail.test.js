@@ -7,7 +7,7 @@ const {
   saveDummyFlower,
 } = require("../../testingUtils/savingDummyDataToDb.js");
 
-test("Passes in flower information", async () => {
+test("Passes in flower information to flower detail", async () => {
   const flowerName = "name";
   await saveDummyFlower({ name: flowerName });
 
@@ -15,8 +15,9 @@ test("Passes in flower information", async () => {
     detail,
     { params: { name: flowerName } }
   );
-  const { locals } = getRenderInformation(fakeRes);
+  const { view, locals } = getRenderInformation(fakeRes);
 
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_detail"`);
   expect(locals).toMatchInlineSnapshot(`
     {
       "description": "description",
