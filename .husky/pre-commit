@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-git stash -q --keep-index
+git stash -q --keep-index --include-untracked
 if [ $? -ne 0 ]; then
     echo "Stashing unstaged changes failed!"
     exit 1
