@@ -21,6 +21,7 @@ module.exports = asyncHandler(async (req, res, next) => {
     price,
     numberInStock,
     flowerId: _id,
+    flowerUrl: flower.url,
     region: flower.region,
   });
 });

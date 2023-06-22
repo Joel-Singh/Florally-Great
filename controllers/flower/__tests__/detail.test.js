@@ -22,6 +22,7 @@ test("Passes in flower information to flower detail", async () => {
     {
       "description": "description",
       "flowerId": "000000000000000000000002",
+      "flowerUrl": "/flowers/name",
       "name": "name",
       "numberInStock": 21,
       "price": 32,
