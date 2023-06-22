@@ -5,12 +5,11 @@ const detail = require("../detail.js");
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 const {
   saveDummyFlower,
-  saveDummyRegion,
 } = require("../../testingUtils/savingDummyDataToDb.js");
 
 test("Passes in flower information", async () => {
   const flowerName = "name";
-  await saveFlower(flowerName);
+  await saveDummyFlower({ name: flowerName });
 
   const { fakeRes, getRenderInformation } = await emulateCallingController(
     detail,
@@ -21,24 +20,15 @@ test("Passes in flower information", async () => {
   expect(locals).toMatchInlineSnapshot(`
     {
       "description": "description",
-      "flowerId": "64936dd0799eebb27f143f77",
+      "flowerId": "000000000000000000000002",
       "name": "name",
       "numberInStock": 21,
       "price": 32,
       "region": {
-        "_id": "64936c336ee5fbeeed356dda",
+        "_id": "000000000000000000000001",
         "name": "name",
       },
       "title": "name",
     }
   `);
 });
-
-async function saveFlower(flowerName) {
-  const regionId = "64936c336ee5fbeeed356dda";
-  const flowerId = "64936dd0799eebb27f143f77";
-
-  await saveDummyRegion({ _id: regionId });
-
-  await saveDummyFlower(regionId, { _id: flowerId, name: flowerName });
-}
