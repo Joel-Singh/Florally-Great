@@ -7,3 +7,8 @@ block content
   p Number In Stock: #[span.pale-text #{numberInStock}]
   p Region:
     a(href=region.url)= " " + region.name
+  form(method='POST' action='')
+    input(type='hidden', value=flowerId, name='flowerId')
+    button(
+      type='submit'
+    ) Delete Flower
