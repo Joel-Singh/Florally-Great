@@ -27,7 +27,7 @@ exports.saveDummyFlower = async function (overwrites, regionId) {
     ...overwrites,
   };
 
-  await new Flower(dummyData).save();
+  return await new Flower(dummyData).save();
 };
 
 exports.saveDummyRegion = saveDummyRegion;
