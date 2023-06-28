@@ -1,31 +1,15 @@
 const path = require("path");
 
-const express = require("express");
-
 const Region = require(path.join(appRoot, "models", "region.js"));
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 const formatHtml = require("../../testingUtils/formatHtml.js");
 
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 
-const sendFormData = require(path.join(
-  appRoot,
-  "controllers",
-  "testingUtils",
-  "sendFormData.js"
-));
-
 const configureExpressApp = require(path.join(
   appRoot,
   "appMiddlewares",
   "configureExpressApp"
-));
-
-const convertStringToDOM = require(path.join(
-  appRoot,
-  "controllers",
-  "testingUtils",
-  "convertStringToDOM.js"
 ));
 
 const delete_post = require("../delete_post");
