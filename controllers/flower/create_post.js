@@ -3,7 +3,7 @@ const path = require("path");
 const he = require("he");
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 const Region = require(path.join(appRoot, "models", "region.js"));
-const renderFlowerForm = require("./renderWrappers/renderFlowerForm");
+const renderFlowerForm = require("./rendersWithDefaultLocals/renderFlowerForm.js");
 
 const { body, validationResult } = require("express-validator");
 
