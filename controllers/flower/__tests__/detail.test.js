@@ -11,11 +11,10 @@ test("Passes in flower information to flower detail", async () => {
   const flowerName = "name";
   await saveDummyFlower({ name: flowerName });
 
-  const { fakeRes, getRenderInformation } = await emulateCallingController(
-    detail,
-    { params: { name: flowerName } }
-  );
-  const { view, locals } = getRenderInformation(fakeRes);
+  const { getRenderInformation } = await emulateCallingController(detail, {
+    params: { name: flowerName },
+  });
+  const { view, locals } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"flowers/flower_detail"`);
   expect(locals).toMatchInlineSnapshot(`
@@ -36,11 +35,10 @@ test("Passes in flower information to flower detail", async () => {
 });
 
 test("Renders error if invalid flower is passed in", async () => {
-  const { fakeRes, getRenderInformation } = await emulateCallingController(
-    detail,
-    { params: { name: "FlowerThatDoesNotExist" } }
-  );
-  const { view, locals } = getRenderInformation(fakeRes);
+  const { getRenderInformation } = await emulateCallingController(detail, {
+    params: { name: "FlowerThatDoesNotExist" },
+  });
+  const { view, locals } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"message"`);
   expect(locals).toMatchInlineSnapshot(`

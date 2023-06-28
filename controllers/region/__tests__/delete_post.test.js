@@ -25,14 +25,11 @@ beforeAll(async () => {
 });
 
 test("If no region is selected, error message is returned", async () => {
-  const { fakeRes, getRenderInformation } = await emulateCallingController(
-    delete_post,
-    {
-      body: { regionId: undefined },
-    }
-  );
+  const { getRenderInformation } = await emulateCallingController(delete_post, {
+    body: { regionId: undefined },
+  });
 
-  const { view, locals } = getRenderInformation(fakeRes);
+  const { view, locals } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"regions/delete_region"`);
   expect(locals.errors).toMatchInlineSnapshot(`
@@ -83,14 +80,14 @@ describe("On region with a flower", () => {
   test("Renders Error, hyperlinking to flower", async () => {
     const id = await saveRegionWithFlower();
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(
+    const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
         body: { regionId: id },
       }
     );
 
-    const { locals } = getRenderInformation(fakeRes);
+    const { locals } = getRenderInformation();
 
     const errorMsg = locals.errors[0].msg;
     expect(formatHtml(errorMsg)).toMatchSnapshot();
@@ -107,14 +104,14 @@ describe("On region with a flower", () => {
 
     await regionShouldShowUp.save();
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(
+    const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
         body: { regionId: id },
       }
     );
 
-    const { locals } = getRenderInformation(fakeRes);
+    const { locals } = getRenderInformation();
 
     expect(locals.all_regions).toMatchSnapshot();
   });
@@ -128,14 +125,14 @@ describe("On region with multiple flowers", () => {
     await addFlowerToRegion("Flower 2", id);
     await addFlowerToRegion("Flower 3", id);
 
-    const { fakeRes, getRenderInformation } = await emulateCallingController(
+    const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
         body: { regionId: id },
       }
     );
 
-    const { locals } = getRenderInformation(fakeRes);
+    const { locals } = getRenderInformation();
 
     const errorMsg = locals.errors[0].msg;
     expect(formatHtml(errorMsg)).toMatchSnapshot();
@@ -156,7 +153,7 @@ describe("On region with multiple flowers", () => {
 describe("From deleting through region detail page", () => {
   test("If region doesn't have flowers, deletes region and redirects with success message", async () => {
     const id = await saveRegionToBeDeleted();
-    const { fakeRes, getRenderInformation } = await emulateCallingController(
+    const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
         body: {
@@ -166,7 +163,7 @@ describe("From deleting through region detail page", () => {
       }
     );
 
-    const { view, locals } = getRenderInformation(fakeRes);
+    const { view, locals } = getRenderInformation();
 
     const foundRegion = await Region.findById(id).exec();
     expect(foundRegion).toBeNull();
@@ -184,7 +181,7 @@ describe("From deleting through region detail page", () => {
 
   test("If region does have flowers, don't delete region and redirect with error", async () => {
     const id = await saveRegionWithFlower();
-    const { fakeRes, getRenderInformation } = await emulateCallingController(
+    const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
         body: {
@@ -194,7 +191,7 @@ describe("From deleting through region detail page", () => {
       }
     );
 
-    const { view, locals } = getRenderInformation(fakeRes);
+    const { view, locals } = getRenderInformation();
 
     const foundRegion = await Region.findById(id).exec();
     expect(foundRegion).not.toBeNull();

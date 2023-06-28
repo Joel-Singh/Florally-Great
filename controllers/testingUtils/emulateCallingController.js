@@ -6,7 +6,7 @@ module.exports = async function (controller, reqProperties, resProperties) {
   return {
     fakeReq,
     fakeRes,
-    getRenderInformation,
+    getRenderInformation: getRenderInformation.bind(null, fakeRes),
   };
 
   function getFakeMiddleware(options) {

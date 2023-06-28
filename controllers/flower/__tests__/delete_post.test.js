@@ -17,13 +17,13 @@ test("Deletes flower", async () => {
 
 test("Redirects to success message after deleting flower", async () => {
   const id = (await saveDummyFlower())._id;
-  const { fakeRes, getRenderInformation } = await emulateCallingController(
+  const { getRenderInformation } = await emulateCallingController(
     delete_post,
     { body: { flowerId: id } },
     {}
   );
 
-  const { view, locals } = getRenderInformation(fakeRes);
+  const { view, locals } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"message"`);
   expect(locals).toMatchInlineSnapshot(`

@@ -11,9 +11,10 @@ test("Tries rendering correct view", async () => {
 
   await addRegionToDb(regionName);
 
-  const { fakeRes, getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
-  const { view } = getRenderInformation(fakeRes);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
+  const { view } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"regions/all_flowers_in_region"`);
 });
@@ -23,9 +24,10 @@ test("Passes in region with empty flower list", async () => {
 
   await addRegionToDb(regionName);
 
-  const { fakeRes, getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
-  const { locals } = getRenderInformation(fakeRes);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
+  const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
     {
@@ -46,9 +48,10 @@ test("Passes in region and flowers", async () => {
   const regionId = await addRegionToDb(regionName);
   await addFlowerToDb(regionId);
 
-  const { fakeRes, getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
-  const { locals } = getRenderInformation(fakeRes);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
+  const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
     {
