@@ -68,7 +68,7 @@ input[type="radio"]:hover {
   border-color: var(--white);
 }
 
-button[type='submit'] {
+button[type='submit'], .button {
   background-color: var(--gray);
   border: 7px solid var(--darker-black);
   color: var(--pale);
@@ -78,6 +78,7 @@ button[type='submit'] {
   width: 100px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 button[type='submit'][disabled] {
@@ -95,7 +96,7 @@ button[type='submit'][disabled]:hover::after {
   margin-top: 10px;
 }
 
-button[type='submit']:hover:not([disabled]) {
+:is(button[type='submit'], .button):hover:not([disabled]) {
   border-color: var(--white);
   color: var(--white);
 }
