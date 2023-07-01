@@ -56,12 +56,15 @@ describe("On region without a flower", () => {
   test("Renders form again", async () => {
     const id = await saveRegionToBeDeleted();
 
-    const { fakeRes } = await emulateCallingController(delete_post, {
-      body: { regionId: id },
-    });
+    const { getRedirectInformation } = await emulateCallingController(
+      delete_post,
+      {
+        body: { regionId: id },
+      }
+    );
 
-    const redirectedPage = fakeRes.redirect.mock.calls[0][0];
-    expect(redirectedPage).toMatchInlineSnapshot(`"/regions/delete"`);
+    const { redirectPage } = getRedirectInformation();
+    expect(redirectPage).toMatchInlineSnapshot(`"/regions/delete"`);
   });
 });
 

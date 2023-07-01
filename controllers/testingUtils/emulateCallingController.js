@@ -7,6 +7,7 @@ module.exports = async function (controller, reqProperties, resProperties) {
     fakeReq,
     fakeRes,
     getRenderInformation: getRenderInformation.bind(null, fakeRes),
+    getRedirectInformation: getRedirectInformation.bind(null, fakeRes),
   };
 
   function getFakeMiddleware(options) {
@@ -32,5 +33,16 @@ function getRenderInformation(fakeRes) {
   return {
     view: renderCall[0],
     locals: renderCall[1],
+  };
+}
+
+function getRedirectInformation(fakeRes) {
+  const redirectCalls = fakeRes.redirect.mock.calls;
+  if (redirectCalls.length === 0)
+    throw new Error("Redirect hasn't been called!");
+
+  const redirectCall = redirectCalls[0];
+  return {
+    redirectPage: redirectCall[0],
   };
 }
