@@ -6,8 +6,15 @@ module.exports = async function (controller, reqProperties, resProperties) {
   return {
     fakeReq,
     fakeRes,
-    getRenderInformation: getRenderInformation.bind(null, fakeRes),
-    getRedirectInformation: getRedirectInformation.bind(null, fakeRes),
+    getRenderInformation: createMockInfoGetter(
+      fakeRes.render,
+      "view",
+      "locals"
+    ),
+    getRedirectInformation: createMockInfoGetter(
+      fakeRes.redirect,
+      "redirectPage"
+    ),
   };
 
   function getFakeMiddleware(options) {
@@ -25,24 +32,19 @@ module.exports = async function (controller, reqProperties, resProperties) {
   }
 };
 
-function getRenderInformation(fakeRes) {
-  const renderCalls = fakeRes.render.mock.calls;
-  if (renderCalls.length === 0) throw new Error("Render hasn't been called!");
+function createMockInfoGetter(mockFunction, ...namesInArgumentOrder) {
+  return function () {
+    const mockCalls = mockFunction.mock.calls;
+    if (mockCalls.length === 0)
+      throw new Error("Mock function hasn't been called!");
 
-  const renderCall = renderCalls[0];
-  return {
-    view: renderCall[0],
-    locals: renderCall[1],
-  };
-}
+    const mockCall = mockCalls[0];
+    const mockInfo = {};
 
-function getRedirectInformation(fakeRes) {
-  const redirectCalls = fakeRes.redirect.mock.calls;
-  if (redirectCalls.length === 0)
-    throw new Error("Redirect hasn't been called!");
+    namesInArgumentOrder.forEach((name, index) => {
+      mockInfo[name] = mockCall[index];
+    });
 
-  const redirectCall = redirectCalls[0];
-  return {
-    redirectPage: redirectCall[0],
+    return mockInfo;
   };
 }
