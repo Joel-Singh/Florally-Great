@@ -17,7 +17,7 @@ module.exports = async function (controller, reqProperties, resProperties) {
     ),
   };
 
-  function getFakeMiddleware(options) {
+  function getFakeMiddleware(reqProperties, resProperties) {
     const fakeReq = {
       ...reqProperties,
     };
