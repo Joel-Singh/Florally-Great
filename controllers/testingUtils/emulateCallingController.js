@@ -16,21 +16,21 @@ module.exports = async function (controller, reqProperties, resProperties) {
       "redirectPage"
     ),
   };
-
-  function getFakeMiddleware(reqProperties, resProperties) {
-    const fakeReq = {
-      ...reqProperties,
-    };
-
-    const fakeRes = {
-      render: jest.fn(),
-      redirect: jest.fn(),
-      ...resProperties,
-    };
-
-    return { fakeReq, fakeRes };
-  }
 };
+
+function getFakeMiddleware(reqProperties, resProperties) {
+  const fakeReq = {
+    ...reqProperties,
+  };
+
+  const fakeRes = {
+    render: jest.fn(),
+    redirect: jest.fn(),
+    ...resProperties,
+  };
+
+  return { fakeReq, fakeRes };
+}
 
 function createMockInfoGetter(mockFunction, ...namesInArgumentOrder) {
   return function () {
