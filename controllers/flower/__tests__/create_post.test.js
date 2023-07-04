@@ -21,6 +21,20 @@ describe("Test validation", () => {
       ).toMatchSnapshot();
     }
   );
+
+  test(`Only accepts numbers for number in stock`, async () => {
+    expect(
+      await getFilteredValidationErrors("numberInStock", 32, "number")
+    ).toEqual([]);
+
+    expect(
+      await getFilteredValidationErrors(
+        "numberInStock",
+        "not a number",
+        "number"
+      )
+    ).toMatchSnapshot();
+  });
 });
 
 async function getFilteredValidationErrors(name, value, msgMustInclude) {

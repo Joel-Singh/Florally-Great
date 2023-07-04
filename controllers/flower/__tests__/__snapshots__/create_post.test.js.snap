@@ -95,3 +95,15 @@ exports[`Test validation Doesn't accept just spaces for price 1`] = `
   },
 ]
 `;
+
+exports[`Test validation Only accepts numbers for number in stock 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Number in stock needs to be a number",
+    "path": "numberInStock",
+    "type": "field",
+    "value": "not a number",
+  },
+]
+`;
