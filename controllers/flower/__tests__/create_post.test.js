@@ -35,6 +35,16 @@ describe("Test validation", () => {
       )
     ).toMatchSnapshot();
   });
+
+  test(`Only accepts property formatted prices`, async () => {
+    expect(
+      await getFilteredValidationErrors("price", 32, "format")
+    ).toMatchSnapshot();
+
+    expect(
+      await getFilteredValidationErrors("price", "$3.86", "format")
+    ).toEqual([]);
+  });
 });
 
 async function getFilteredValidationErrors(name, value, msgMustInclude) {
