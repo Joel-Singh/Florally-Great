@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test validation Doesn't accept empty input for description 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Description can't be empty",
+    "path": "description",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept empty input for name 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Name can't be empty",
+    "path": "name",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept empty input for numberInStock 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Number in stock can't be empty",
+    "path": "numberInStock",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept empty input for price 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Price can't be empty",
+    "path": "price",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept just spaces for description 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Description can't be empty",
+    "path": "description",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept just spaces for name 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Name can't be empty",
+    "path": "name",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept just spaces for numberInStock 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Number in stock can't be empty",
+    "path": "numberInStock",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
+
+exports[`Test validation Doesn't accept just spaces for price 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Price can't be empty",
+    "path": "price",
+    "type": "field",
+    "value": "",
+  },
+]
+`;
