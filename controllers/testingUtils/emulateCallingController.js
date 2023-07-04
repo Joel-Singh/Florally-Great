@@ -1,7 +1,12 @@
 module.exports = async function (controller, reqProperties, resProperties) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
 
-  await controller(fakeReq, fakeRes);
+  if (!Array.isArray(controller)) {
+    await controller(fakeReq, fakeRes);
+  } else {
+    controller = controller.flat(Infinity);
+    await runMiddlewareArray(controller, fakeReq, fakeRes);
+  }
 
   return {
     fakeReq,
@@ -47,4 +52,15 @@ function createMockInfoGetter(mockFunction, ...namesInArgumentOrder) {
 
     return mockInfo;
   };
+}
+
+async function runMiddlewareArray(middlewares, req, res) {
+  for (const middleware of middlewares) {
+    let nextCalled = false;
+    const next = () => {
+      nextCalled = true;
+    };
+    await middleware(req, res, next);
+    if (!nextCalled) break;
+  }
 }
