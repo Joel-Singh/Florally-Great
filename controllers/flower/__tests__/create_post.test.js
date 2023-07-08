@@ -1,6 +1,8 @@
 const { validationResult } = require("express-validator");
 const emulateCallingController = require("../../testingUtils/emulateCallingController");
 const create_post = require("../create_post");
+const { saveDummyRegion } = require("../../testingUtils/savingDummyDataToDb");
+const Region = require("../../../models/region");
 
 describe("Test validation", () => {
   const flowerProperties = ["name", "description", "numberInStock", "price"];
@@ -43,6 +45,35 @@ describe("Test validation", () => {
 
     expect(
       await getFilteredValidationErrors("price", "$3.86", "format")
+    ).toEqual([]);
+  });
+
+  test(`Doesn't accept nonexistent regions`, async () => {
+    expect(
+      await getFilteredValidationErrors(
+        "regionID",
+        "asdfasdf",
+        "Region does not exist"
+      )
+    ).toMatchInlineSnapshot(`
+      [
+        {
+          "location": "body",
+          "msg": "Region does not exist",
+          "path": "regionID",
+          "type": "field",
+          "value": "asdfasdf",
+        },
+      ]
+    `);
+
+    const realRegionID = (await saveDummyRegion())._id.toString();
+    expect(
+      await getFilteredValidationErrors(
+        "regionID",
+        realRegionID,
+        "Region does not exist"
+      )
     ).toEqual([]);
   });
 });
