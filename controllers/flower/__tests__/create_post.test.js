@@ -27,7 +27,7 @@ describe("Test validation", () => {
 
   async function getValidInputData() {
     return {
-      name: "Name",
+      name: "Name" + Math.random(),
       description: "Description",
       numberInStock: 32,
       price: "$3.89",
