@@ -9,7 +9,7 @@
     "test": "jest",
     "debug": "node --inspect-brk bin/www",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --run-in-band",
-    "test:inspect": "node inspect localhost:9229",
+    "inspect": "node inspect localhost:9229",
     "prepare": "husky install"
   },
   "dependencies": {
