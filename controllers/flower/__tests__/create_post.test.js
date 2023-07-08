@@ -35,6 +35,16 @@ describe("Test validation", () => {
     };
   }
 
+  test(`No errors with valid data`, async () => {
+    const { fakeReq } = await emulateCallingController(create_post, {
+      body: {
+        ...(await getValidInputData()),
+      },
+    });
+
+    expect(validationResult(fakeReq).errors).toEqual([]);
+  });
+
   const flowerProperties = ["name", "description", "numberInStock", "price"];
   test.each(flowerProperties)(
     `Doesn't accept empty input for %s`,
