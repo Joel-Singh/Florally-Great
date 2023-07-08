@@ -1,7 +1,10 @@
 const { validationResult } = require("express-validator");
 const emulateCallingController = require("../../testingUtils/emulateCallingController");
 const create_post = require("../create_post");
-const { saveDummyRegion } = require("../../testingUtils/savingDummyDataToDb");
+const {
+  saveDummyRegion,
+  saveDummyFlower,
+} = require("../../testingUtils/savingDummyDataToDb");
 const Region = require("../../../models/region");
 
 describe("Test validation", () => {
@@ -20,6 +23,16 @@ describe("Test validation", () => {
     );
 
     return errorsForJustProperty;
+  }
+
+  async function getValidInputData() {
+    return {
+      name: "Name",
+      description: "Description",
+      numberInStock: 32,
+      price: "$3.89",
+      regionID: (await saveDummyRegion())._id.toString(),
+    };
   }
 
   const flowerProperties = ["name", "description", "numberInStock", "price"];
@@ -92,5 +105,26 @@ describe("Test validation", () => {
         "Region does not exist"
       )
     ).toEqual([]);
+  });
+
+  test(`Doesn't accept duplicate flowers`, async () => {
+    await saveDummyFlower({ name: "duplicate" });
+    const { getRenderInformation } = await emulateCallingController(
+      create_post,
+      {
+        body: {
+          ...(await getValidInputData()),
+          name: "duplicate",
+        },
+      }
+    );
+
+    expect(getRenderInformation().locals.errors).toMatchInlineSnapshot(`
+      [
+        {
+          "msg": "Flower with that name already exists",
+        },
+      ]
+    `);
   });
 });
