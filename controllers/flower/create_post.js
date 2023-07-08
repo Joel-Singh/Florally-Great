@@ -61,7 +61,7 @@ const checkDuplicateFlower = asyncHandler(async (req, res, next) => {
   const flowerExists = await Flower.findOne({ name }).exec();
   if (flowerExists) {
     await renderFlowerForm(res, next, {
-      errors: [{ msg: "Flower already exists" }],
+      errors: [{ msg: "Flower with that name already exists" }],
     });
     return;
   }
