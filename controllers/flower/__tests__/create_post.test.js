@@ -5,7 +5,6 @@ const {
   saveDummyRegion,
   saveDummyFlower,
 } = require("../../testingUtils/savingDummyDataToDb");
-const Region = require("../../../models/region");
 
 describe("Test validation", () => {
   async function getFilteredValidationErrors(name, value, msgMustInclude) {
