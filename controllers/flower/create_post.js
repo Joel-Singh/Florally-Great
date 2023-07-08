@@ -56,17 +56,14 @@ const validateInput = async (req, res, next) => {
   next();
 };
 
-const checkDuplicateFlower = asyncHandler(async (req, res, next) => {
-  const { name } = req.body;
-  const flowerExists = await Flower.findOne({ name }).exec();
-  if (flowerExists) {
-    await renderFlowerForm(res, next, {
-      errors: [{ msg: "Flower with that name already exists" }],
-    });
-    return;
-  }
-  next();
-});
+const checkDuplicateFlower = asyncHandler(
+  body("name").custom(async (name) => {
+    const foundFlower = await Flower.findOne({ name }).exec();
+    if (foundFlower !== null) {
+      throw new Error("Flower with that name already exists");
+    }
+  })
+);
 
 const saveFlower = asyncHandler(async (req, res, next) => {
   const { name, description, price, numberInStock, regionID } = req.body;
