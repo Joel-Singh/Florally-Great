@@ -133,14 +133,12 @@ describe("Test validation", () => {
 
   test(`Doesn't accept duplicate flowers`, async () => {
     await saveDummyFlower({ name: "duplicate" });
-    const { fakeReq } = await emulateCallingController(create_post, {
-      body: {
-        ...(await getValidInputData()),
-        name: "duplicate",
-      },
-    });
 
-    expect(validationResult(fakeReq).errors).toMatchInlineSnapshot(`
+    expect(
+      await getValidationErrors({
+        name: "duplicate",
+      })
+    ).toMatchInlineSnapshot(`
       [
         {
           "location": "body",
