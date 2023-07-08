@@ -7,21 +7,20 @@ const {
 } = require("../../testingUtils/savingDummyDataToDb");
 
 describe("Test validation", () => {
-  async function getFilteredValidationErrors(name, value, msgMustInclude) {
+  async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
     const { fakeReq } = await emulateCallingController(create_post, {
       body: {
-        [name]: value,
+        ...(await getValidInputData()),
+        ...bodyOverwrites,
       },
     });
 
-    const resultOfValidation = validationResult(fakeReq);
-    const errorsForJustProperty = resultOfValidation.errors.filter(
-      ({ path, msg }) => {
-        return path === name && msg.includes(msgMustInclude);
-      }
-    );
-
-    return errorsForJustProperty;
+    const errors = validationResult(fakeReq).errors;
+    if (typeof errorMsgMustInclude === "undefined") return errors;
+    else
+      return errors.filter(({ msg }) => {
+        return msg.includes(errorMsgMustInclude);
+      });
   }
 
   async function getValidInputData() {
@@ -35,13 +34,7 @@ describe("Test validation", () => {
   }
 
   test(`No errors with valid data`, async () => {
-    const { fakeReq } = await emulateCallingController(create_post, {
-      body: {
-        ...(await getValidInputData()),
-      },
-    });
-
-    expect(validationResult(fakeReq).errors).toEqual([]);
+    expect(await getValidationErrors()).toEqual([]);
   });
 
   const flowerProperties = ["name", "description", "numberInStock", "price"];
@@ -49,7 +42,12 @@ describe("Test validation", () => {
     `Doesn't accept empty input for %s`,
     async (property) => {
       expect(
-        await getFilteredValidationErrors(property, "", "empty")
+        await getValidationErrors(
+          {
+            [property]: "",
+          },
+          "empty"
+        )
       ).toMatchSnapshot();
     }
   );
@@ -58,40 +56,56 @@ describe("Test validation", () => {
     `Doesn't accept just spaces for %s`,
     async (property) => {
       expect(
-        await getFilteredValidationErrors(property, "   ", "empty")
+        await getValidationErrors(
+          {
+            [property]: "   ",
+          },
+          "empty"
+        )
       ).toMatchSnapshot();
     }
   );
 
   test(`Only accepts numbers for number in stock`, async () => {
     expect(
-      await getFilteredValidationErrors("numberInStock", 32, "number")
+      await getValidationErrors({
+        numberInStock: 32,
+      })
     ).toEqual([]);
 
     expect(
-      await getFilteredValidationErrors(
-        "numberInStock",
-        "not a number",
-        "number"
-      )
+      await getValidationErrors({
+        numberInStock: "not a number",
+      })
     ).toMatchSnapshot();
   });
 
   test(`Only accepts property formatted prices`, async () => {
     expect(
-      await getFilteredValidationErrors("price", 32, "format")
+      await getValidationErrors(
+        {
+          price: 32,
+        },
+        "format"
+      )
     ).toMatchSnapshot();
 
     expect(
-      await getFilteredValidationErrors("price", "$3.86", "format")
+      await getValidationErrors(
+        {
+          price: "$3.86",
+        },
+        "format"
+      )
     ).toEqual([]);
   });
 
   test(`Doesn't accept nonexistent regions`, async () => {
     expect(
-      await getFilteredValidationErrors(
-        "regionID",
-        "asdfasdf",
+      await getValidationErrors(
+        {
+          regionID: "asdfasdf",
+        },
         "Region does not exist"
       )
     ).toMatchInlineSnapshot(`
@@ -108,9 +122,10 @@ describe("Test validation", () => {
 
     const realRegionID = (await saveDummyRegion())._id.toString();
     expect(
-      await getFilteredValidationErrors(
-        "regionID",
-        realRegionID,
+      await getValidationErrors(
+        {
+          regionID: realRegionID,
+        },
         "Region does not exist"
       )
     ).toEqual([]);
