@@ -17,6 +17,15 @@ const regionExistsValidation = asyncHandler(
   })
 );
 
+const checkDuplicateFlower = asyncHandler(
+  body("name").custom(async (name) => {
+    const foundFlower = await Flower.findOne({ name }).exec();
+    if (foundFlower !== null) {
+      throw new Error("Flower with that name already exists");
+    }
+  })
+);
+
 const validationFunctions = [
   body("name")
     .trim()
@@ -45,6 +54,7 @@ const validationFunctions = [
     .withMessage("Price needs to be in $x.xx format, e.g $3.86 or $287.00"),
 
   regionExistsValidation,
+  checkDuplicateFlower,
 ];
 
 const validateInput = async (req, res, next) => {
@@ -55,15 +65,6 @@ const validateInput = async (req, res, next) => {
   }
   next();
 };
-
-const checkDuplicateFlower = asyncHandler(
-  body("name").custom(async (name) => {
-    const foundFlower = await Flower.findOne({ name }).exec();
-    if (foundFlower !== null) {
-      throw new Error("Flower with that name already exists");
-    }
-  })
-);
 
 const saveFlower = asyncHandler(async (req, res, next) => {
   const { name, description, price, numberInStock, regionID } = req.body;
@@ -83,9 +84,4 @@ const saveFlower = asyncHandler(async (req, res, next) => {
   res.redirect(flower.url);
 });
 
-module.exports = [
-  validationFunctions,
-  validateInput,
-  checkDuplicateFlower,
-  saveFlower,
-];
+module.exports = [validationFunctions, validateInput, saveFlower];
