@@ -5,12 +5,13 @@ const {
   saveDummyRegion,
   saveDummyFlower,
 } = require("../../../testingUtils/dummyData/savingDummyDataToDb.js");
+const getValidFlowerPostData = require("../../../testingUtils/dummyData/getValidFlowerPostData.js");
 
 describe("Test validation", () => {
   async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
     const { fakeReq } = await emulateCallingController(validateFlowerRequest, {
       body: {
-        ...(await getValidInputData()),
+        ...(await getValidFlowerPostData()),
         ...bodyOverwrites,
       },
     });
@@ -21,16 +22,6 @@ describe("Test validation", () => {
       return errors.filter(({ msg }) => {
         return msg.includes(errorMsgMustInclude);
       });
-  }
-
-  async function getValidInputData() {
-    return {
-      name: "Name" + Math.random(),
-      description: "Description",
-      numberInStock: 32,
-      price: "$3.89",
-      regionID: (await saveDummyRegion())._id.toString(),
-    };
   }
 
   test(`No errors with valid data`, async () => {
