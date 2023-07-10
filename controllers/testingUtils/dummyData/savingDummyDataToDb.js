@@ -1,17 +1,7 @@
 const path = require("path");
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 const Region = require(path.join(appRoot, "models", "region.js"));
-
-const generateSequentialObjectid = (() => {
-  let counter = 0;
-
-  function generateId() {
-    counter++;
-    const counterStr = counter.toString().padStart(24, "0");
-    return counterStr;
-  }
-  return generateId;
-})();
+const { generateSequentialObjectId } = require("./SequentialGenerators.js");
 
 exports.saveDummyFlower = async function (overwrites = {}, regionId) {
   if (typeof regionId === "undefined")
@@ -23,7 +13,7 @@ exports.saveDummyFlower = async function (overwrites = {}, regionId) {
     price: 32,
     numberInStock: 21,
     region: regionId,
-    _id: generateSequentialObjectid(),
+    _id: generateSequentialObjectId(),
     ...overwrites,
   };
 
@@ -36,7 +26,7 @@ async function saveDummyRegion(overwrites = {}) {
   const dummyData = {
     name: "name",
     description: "description",
-    _id: generateSequentialObjectid(),
+    _id: generateSequentialObjectId(),
     ...overwrites,
   };
   return await new Region(dummyData).save();
