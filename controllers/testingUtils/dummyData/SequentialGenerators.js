@@ -1,10 +1,16 @@
-exports.generateSequentialObjectId = (() => {
-  let counter = 0;
+const generateSequentialNumber = (() => {
+  let counter = 1;
+  return () => counter++;
+})();
 
+exports.generateSequentialObjectId = (() => {
   function generateId() {
-    counter++;
-    const counterStr = counter.toString().padStart(24, "0");
-    return counterStr;
+    const number = generateSequentialNumber();
+
+    const id = number.toString().padStart(24, "0");
+    return id;
   }
   return generateId;
 })();
+
+exports.generateSequentialNumber = generateSequentialNumber;
