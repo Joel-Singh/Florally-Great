@@ -4,7 +4,7 @@ const validateFlowerRequest = require("../validateFlowerRequest.js");
 const {
   saveDummyRegion,
   saveDummyFlower,
-} = require("../../../testingUtils/savingDummyDataToDb.js");
+} = require("../../../testingUtils/dummyData/savingDummyDataToDb.js");
 
 describe("Test validation", () => {
   async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {

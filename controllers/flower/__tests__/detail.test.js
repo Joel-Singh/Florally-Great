@@ -5,7 +5,7 @@ const detail = require("../detail.js");
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 const {
   saveDummyFlower,
-} = require("../../testingUtils/savingDummyDataToDb.js");
+} = require("../../testingUtils/dummyData/savingDummyDataToDb.js");
 
 test("Passes in flower information to flower detail", async () => {
   const flowerName = "name";
