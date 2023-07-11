@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test validation Doesn't accept empty input for description 1`] = `
+exports[`Doesn't accept empty input for description 1`] = `
 [
   {
     "location": "body",
@@ -12,7 +12,7 @@ exports[`Test validation Doesn't accept empty input for description 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept empty input for name 1`] = `
+exports[`Doesn't accept empty input for name 1`] = `
 [
   {
     "location": "body",
@@ -24,7 +24,7 @@ exports[`Test validation Doesn't accept empty input for name 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept empty input for numberInStock 1`] = `
+exports[`Doesn't accept empty input for numberInStock 1`] = `
 [
   {
     "location": "body",
@@ -36,7 +36,7 @@ exports[`Test validation Doesn't accept empty input for numberInStock 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept empty input for price 1`] = `
+exports[`Doesn't accept empty input for price 1`] = `
 [
   {
     "location": "body",
@@ -48,7 +48,7 @@ exports[`Test validation Doesn't accept empty input for price 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept just spaces for description 1`] = `
+exports[`Doesn't accept just spaces for description 1`] = `
 [
   {
     "location": "body",
@@ -60,7 +60,7 @@ exports[`Test validation Doesn't accept just spaces for description 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept just spaces for name 1`] = `
+exports[`Doesn't accept just spaces for name 1`] = `
 [
   {
     "location": "body",
@@ -72,7 +72,7 @@ exports[`Test validation Doesn't accept just spaces for name 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept just spaces for numberInStock 1`] = `
+exports[`Doesn't accept just spaces for numberInStock 1`] = `
 [
   {
     "location": "body",
@@ -84,7 +84,7 @@ exports[`Test validation Doesn't accept just spaces for numberInStock 1`] = `
 ]
 `;
 
-exports[`Test validation Doesn't accept just spaces for price 1`] = `
+exports[`Doesn't accept just spaces for price 1`] = `
 [
   {
     "location": "body",
@@ -96,7 +96,7 @@ exports[`Test validation Doesn't accept just spaces for price 1`] = `
 ]
 `;
 
-exports[`Test validation Only accepts numbers for number in stock 1`] = `
+exports[`Only accepts numbers for number in stock 1`] = `
 [
   {
     "location": "body",
@@ -108,7 +108,7 @@ exports[`Test validation Only accepts numbers for number in stock 1`] = `
 ]
 `;
 
-exports[`Test validation Only accepts property formatted prices 1`] = `
+exports[`Only accepts property formatted prices 1`] = `
 [
   {
     "location": "body",
