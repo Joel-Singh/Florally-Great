@@ -16,6 +16,24 @@ test("Redirects and saves flower with valid data", async () => {
   expect(getRedirectInformation()).toMatchSnapshot("Correct Redirect");
 });
 
+test("Renders flower form with errors with invalid data", async () => {
+  const { getRenderInformation } = await emulateCallingController(create_post, {
+    body: {
+      ...(await getValidFlowerPostData()),
+      numberInStock: "Not a number!",
+    },
+  });
+
+  expect(await Flower.find({})).toStrictEqual([]);
+
+  const {
+    view,
+    locals: { errors },
+  } = getRenderInformation();
+  expect(errors.length).toBeGreaterThanOrEqual(1);
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
+});
+
 function snapshotWithoutId(document, snapshotName) {
   document = document.toObject();
   delete document._id;
