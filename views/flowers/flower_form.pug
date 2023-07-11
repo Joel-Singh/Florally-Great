@@ -17,22 +17,22 @@ mixin generateRegionSelect(regionList)
     );
 
   label(for='region') Region:
-  select#region(placeholder='select region', name='regionID')
+  select#region(placeholder='select region' name='regionID')
     for region in regionList
       option(value=region._id) #{region.name}
 
 block form elements
   label(for='name') Name:
-  input#name(type='text', placeholder='Enter name here' name='name')
+  input#name(type='text' placeholder='Enter name here' name='name')
 
   label(for='description') Description:
-  input#description(type='text', placeholder='Enter description here' name='description')
+  input#description(type='text' placeholder='Enter description here' name='description')
 
   label(for='numberInStock') Number In Stock:
-  input#description(type='text', placeholder='Enter number in stock' name='numberInStock')
+  input#description(type='text' placeholder='Enter number in stock' name='numberInStock')
 
   label(for='price') Price:
-  input#price(type='text', placeholder='Enter price here' name='price')
+  input#price(type='text' placeholder='Enter price here' name='price')
 
   +generateRegionSelect(regionList)
 
