@@ -1,5 +1,8 @@
 const { saveDummyRegion } = require("./savingDummyDataToDb");
-const { generateSequentialNumber } = require("./SequentialGenerators.js");
+const {
+  generateSequentialNumber,
+  generateSequentialObjectId,
+} = require("./SequentialGenerators.js");
 
 module.exports = async function () {
   return {
@@ -8,5 +11,6 @@ module.exports = async function () {
     numberInStock: 32,
     price: "$3.89",
     regionID: (await saveDummyRegion())._id.toString(),
+    _id: generateSequentialObjectId(),
   };
 };
