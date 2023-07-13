@@ -10,6 +10,7 @@
     "debug": "node --inspect-brk bin/www",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
+    "formatAll": "npx prettier --write .",
     "prepare": "husky install"
   },
   "dependencies": {
