@@ -6,7 +6,7 @@ block title
 block header
   h1= title || "Add New Flower"
 
-mixin generateRegionSelect(regionList = [])
+mixin generateRegionSelect(regionList)
   -
     regionList.sort(
       function(a, b) {
@@ -21,7 +21,15 @@ mixin generateRegionSelect(regionList = [])
     for region in regionList
       option(value=region._id) #{region.name}
 
+mixin initializeDefaultLocalValues()
+  -
+    if (typeof regionList === 'undefined') {
+        regionList = []
+    }
+
 block form elements
+  +initializeDefaultLocalValues
+
   label(for='name') Name:
   input#name(type='text' placeholder='Enter name here' name='name')
 
