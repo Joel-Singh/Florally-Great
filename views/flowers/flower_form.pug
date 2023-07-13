@@ -6,7 +6,7 @@ block title
 block header
   h1= title || "Add New Flower"
 
-mixin generateRegionSelect(regionList)
+mixin generateRegionSelect(regionList = [])
   -
     regionList.sort(
       function(a, b) {
