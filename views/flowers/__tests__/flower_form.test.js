@@ -1,6 +1,6 @@
 const renderPugToDOM = require("../../renderPugToDOM.js");
 
-test("Display default values", () => {
+test("Display default values with no passed in preopulated values", () => {
   expect(getDefaultInputValueAttributesInFlowerForm({})).toMatchInlineSnapshot(`
     [
       "",
