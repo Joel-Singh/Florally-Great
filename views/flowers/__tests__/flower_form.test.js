@@ -1,15 +1,7 @@
 const renderPugToDOM = require("../../renderPugToDOM.js");
 
 test("Display default values", () => {
-  const renderedForm = renderPugToDOM("./views/flowers/flower_form.pug", {});
-  let inputs = renderedForm.querySelectorAll("input");
-  inputs = Array.from(inputs);
-
-  const inputValues = inputs.map((element) => {
-    return element.getAttribute("value");
-  });
-
-  expect(inputValues).toMatchInlineSnapshot(`
+  expect(getDefaultInputValueAttributesInFlowerForm({})).toMatchInlineSnapshot(`
     [
       "",
       "",
@@ -29,6 +21,18 @@ test("Display prepopulated values", () => {
     },
   };
 
+  expect(getDefaultInputValueAttributesInFlowerForm(locals))
+    .toMatchInlineSnapshot(`
+    [
+      "prepopulated name",
+      "preopopulated description",
+      "32",
+      "$3.21",
+    ]
+  `);
+});
+
+function getDefaultInputValueAttributesInFlowerForm(locals) {
   const renderedForm = renderPugToDOM(
     "./views/flowers/flower_form.pug",
     locals
@@ -40,12 +44,5 @@ test("Display prepopulated values", () => {
     return element.getAttribute("value");
   });
 
-  expect(inputValues).toMatchInlineSnapshot(`
-    [
-      "prepopulated name",
-      "preopopulated description",
-      "32",
-      "$3.21",
-    ]
-  `);
-});
+  return inputValues;
+}
