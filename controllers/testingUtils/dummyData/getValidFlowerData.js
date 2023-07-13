@@ -17,7 +17,7 @@ async function getValidFlowerPostData() {
 
 async function getValidFlowerModelData() {
   return {
-    ...getValidFlowerPostData(),
+    ...(await getValidFlowerPostData()),
     price: 3.89,
   };
 }
