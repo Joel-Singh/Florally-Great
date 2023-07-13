@@ -3,7 +3,8 @@ form {
   flex-direction: column;
 }
 
-input, button[type='submit'] {
+input,
+button[type="submit"] {
   border: 0;
 }
 
@@ -22,10 +23,10 @@ input::placeholder {
 }
 
 input:hover::placeholder {
-  color: var(--white)
+  color: var(--white);
 }
 
-input:hover:not([type='radio']) {
+input:hover:not([type="radio"]) {
   outline: 3px solid var(--white);
 }
 
@@ -68,7 +69,8 @@ input[type="radio"]:hover {
   border-color: var(--white);
 }
 
-button[type='submit'], .button {
+button[type="submit"],
+.button {
   background-color: var(--gray);
   border: 7px solid var(--darker-black);
   color: var(--pale);
@@ -87,7 +89,7 @@ button[disabled] {
 }
 
 button[disabled]:hover::after {
-  content: 'Delete all flowers to delete region';
+  content: "Delete all flowers to delete region";
   position: absolute;
   background-color: var(--darker-gray);
   color: var(--white);

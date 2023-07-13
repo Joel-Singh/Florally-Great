@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
 
 :root {
-  --black: #212C38;
+  --black: #212c38;
   --darker-black: #191f28;
   --gray: #465363;
   --darker-gray: gray;
-  --white: #D7EFE9;
-  --pale: #E9DCA5;
-  --salmon: #D98E69;
+  --white: #d7efe9;
+  --pale: #e9dca5;
+  --salmon: #d98e69;
   color: var(--white);
   background-color: var(--black);
 
-  font-family: 'EB Garamond', serif;
+  font-family: "EB Garamond", serif;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
 }
@@ -29,7 +30,7 @@ main > h1 {
 }
 
 main {
-  display:  flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
@@ -37,7 +38,7 @@ main {
 }
 
 .pale-text {
-  color: var(--pale)
+  color: var(--pale);
 }
 
 nav {
@@ -60,7 +61,7 @@ nav > h1 {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
   text-decoration: none;
 }
 
