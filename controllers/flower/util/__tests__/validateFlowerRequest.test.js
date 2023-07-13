@@ -5,7 +5,9 @@ const {
   saveDummyRegion,
   saveDummyFlower,
 } = require("../../../testingUtils/dummyData/savingDummyDataToDb.js");
-const getValidFlowerPostData = require("../../../testingUtils/dummyData/getValidFlowerPostData.js");
+const {
+  getValidFlowerPostData,
+} = require("../../../testingUtils/dummyData/getValidFlowerData.js");
 
 async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {

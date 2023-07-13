@@ -4,7 +4,7 @@ const {
   generateSequentialObjectId,
 } = require("./SequentialGenerators.js");
 
-module.exports = async function () {
+async function getValidFlowerPostData() {
   return {
     name: "Name" + generateSequentialNumber(),
     description: "Description",
@@ -13,4 +13,16 @@ module.exports = async function () {
     regionID: (await saveDummyRegion())._id.toString(),
     _id: generateSequentialObjectId(),
   };
+}
+
+async function getValidFlowerModelData() {
+  return {
+    ...getValidFlowerPostData(),
+    price: 3.89,
+  };
+}
+
+module.exports = {
+  getValidFlowerPostData,
+  getValidFlowerModelData,
 };
