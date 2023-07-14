@@ -16,10 +16,14 @@ async function getValidFlowerPostData() {
 }
 
 async function getValidFlowerModelData() {
-  return {
-    ...(await getValidFlowerPostData()),
-    price: 3.89,
-  };
+  const data = await getValidFlowerPostData();
+
+  data.region = data.regionID;
+  delete data.regionID;
+
+  data.price = 3.89;
+
+  return data;
 }
 
 module.exports = {
