@@ -17,14 +17,14 @@ test("Passes in flower information to flower detail", async () => {
   expect(view).toMatchInlineSnapshot(`"flowers/flower_detail"`);
   expect(locals).toMatchInlineSnapshot(`
     {
-      "description": "description",
-      "flowerId": "000000000000000000000002",
+      "description": "Description",
+      "flowerId": "000000000000000000000003",
       "flowerUrl": "/flowers/name",
       "name": "name",
-      "numberInStock": 21,
-      "price": 32,
+      "numberInStock": 32,
+      "price": 3.89,
       "region": {
-        "_id": "000000000000000000000001",
+        "_id": "000000000000000000000002",
         "name": "name",
       },
       "title": "name",
