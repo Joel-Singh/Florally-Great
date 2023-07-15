@@ -2,13 +2,13 @@ const { validationResult } = require("express-validator");
 const emulateCallingController = require("../../../testingUtils/emulateCallingController.js");
 const validateFlowerRequest = require("../validateFlowerRequest.js");
 
-const saveDummyRegion = require("../../../testingUtils/dummyData/savingDummyDataToDb/saveDummyRegion.js");
+const saveDummyRegion = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.js");
 
-const saveDummyFlower = require("../../../testingUtils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
+const saveDummyFlower = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
 
 const {
   getValidFlowerPostData,
-} = require("../../../testingUtils/dummyData/getValidFlowerData.js");
+} = require("../../../../utils/dummyData/getValidFlowerData.js");
 
 async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {

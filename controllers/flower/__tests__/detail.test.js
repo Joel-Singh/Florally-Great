@@ -3,7 +3,7 @@ const Flower = require(path.join(appRoot, "models", "flower.js"));
 const Region = require(path.join(appRoot, "models", "region.js"));
 const detail = require("../detail.js");
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
-const saveDummyFlower = require("../../testingUtils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
+const saveDummyFlower = require("../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
 
 test("Passes in flower information to flower detail", async () => {
   const flowerName = "name";
