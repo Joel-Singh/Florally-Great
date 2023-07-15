@@ -3,11 +3,12 @@ const {
   generateSequentialObjectId,
 } = require("../SequentialGenerators.js");
 
-function getValidRegionData() {
+function getValidRegionData(overwrites = {}) {
   return {
     name: "Name" + generateSequentialNumber(),
     description: "Description",
     _id: generateSequentialObjectId(),
+    ...overwrites,
   };
 }
 
