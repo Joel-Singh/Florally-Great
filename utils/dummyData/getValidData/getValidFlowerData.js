@@ -1,8 +1,8 @@
-const saveDummyRegion = require("./savingDummyDataToDb/saveDummyRegion.js");
+const saveDummyRegion = require("../savingDummyDataToDb/saveDummyRegion.js");
 const {
   generateSequentialNumber,
   generateSequentialObjectId,
-} = require("./SequentialGenerators.js");
+} = require("../SequentialGenerators.js");
 
 async function getValidFlowerPostData() {
   return {
