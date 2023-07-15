@@ -1,10 +1,11 @@
 const renderPugToDOM = require("../../renderPugToDOM.js");
 const getValidRegionData = require("./../../../utils/dummyData/getValidData/getValidRegionData.js");
 
-function renderRegionSelect(regionList) {
-  const renderedForm = renderPugToDOM("./views/flowers/flower_form.pug", {
-    regionList,
-  });
+function renderRegionSelect(locals) {
+  const renderedForm = renderPugToDOM(
+    "./views/flowers/flower_form.pug",
+    locals
+  );
 
   const regionListElement = renderedForm.querySelector(
     "[placeholder='select region']"
@@ -15,20 +16,24 @@ function renderRegionSelect(regionList) {
 
 describe("testing generate region select", () => {
   test("Region select is empty with no regions", () => {
-    expect(renderRegionSelect([])).toMatchSnapshot();
+    expect(renderRegionSelect({ regionList: [] })).toMatchSnapshot();
   });
 
   test("Region select has one region", () => {
-    expect(renderRegionSelect([getValidRegionData()])).toMatchSnapshot();
+    expect(
+      renderRegionSelect({ regionList: [getValidRegionData()] })
+    ).toMatchSnapshot();
   });
 
   test("Region select has multiple regions", () => {
     expect(
-      renderRegionSelect([
-        getValidRegionData(),
-        getValidRegionData(),
-        getValidRegionData(),
-      ])
+      renderRegionSelect({
+        regionList: [
+          getValidRegionData(),
+          getValidRegionData(),
+          getValidRegionData(),
+        ],
+      })
     ).toMatchSnapshot();
   });
 });
