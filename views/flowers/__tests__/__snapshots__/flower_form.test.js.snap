@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`testing generate region select Region select has multiple regions 1`] = `
+exports[`Generate region select test region option generation Region select has multiple regions 1`] = `
 <select
   id="region"
   name="regionID"
@@ -24,7 +24,7 @@ exports[`testing generate region select Region select has multiple regions 1`] =
 </select>
 `;
 
-exports[`testing generate region select Region select has one region 1`] = `
+exports[`Generate region select test region option generation Region select has one region 1`] = `
 <select
   id="region"
   name="regionID"
@@ -38,7 +38,7 @@ exports[`testing generate region select Region select has one region 1`] = `
 </select>
 `;
 
-exports[`testing generate region select Region select is empty with no regions 1`] = `
+exports[`Generate region select test region option generation Region select is empty with no regions 1`] = `
 <select
   id="region"
   name="regionID"

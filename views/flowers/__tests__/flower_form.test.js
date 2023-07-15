@@ -14,27 +14,29 @@ function renderRegionSelect(locals) {
   return regionListElement;
 }
 
-describe("testing generate region select", () => {
-  test("Region select is empty with no regions", () => {
-    expect(renderRegionSelect({ regionList: [] })).toMatchSnapshot();
-  });
+describe("Generate region select", () => {
+  describe("test region option generation", () => {
+    test("Region select is empty with no regions", () => {
+      expect(renderRegionSelect({ regionList: [] })).toMatchSnapshot();
+    });
 
-  test("Region select has one region", () => {
-    expect(
-      renderRegionSelect({ regionList: [getValidRegionData()] })
-    ).toMatchSnapshot();
-  });
+    test("Region select has one region", () => {
+      expect(
+        renderRegionSelect({ regionList: [getValidRegionData()] })
+      ).toMatchSnapshot();
+    });
 
-  test("Region select has multiple regions", () => {
-    expect(
-      renderRegionSelect({
-        regionList: [
-          getValidRegionData(),
-          getValidRegionData(),
-          getValidRegionData(),
-        ],
-      })
-    ).toMatchSnapshot();
+    test("Region select has multiple regions", () => {
+      expect(
+        renderRegionSelect({
+          regionList: [
+            getValidRegionData(),
+            getValidRegionData(),
+            getValidRegionData(),
+          ],
+        })
+      ).toMatchSnapshot();
+    });
   });
 });
 
