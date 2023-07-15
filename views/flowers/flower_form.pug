@@ -6,6 +6,45 @@ block title
 block header
   h1= title || "Add New Flower"
 
+block form elements
+  +initializeDefaultLocalValues
+
+  label(for='name') Name:
+  input#name(
+    type='text'
+    placeholder='Enter name here'
+    name='name'
+    value=prepopulatedValues.name
+  )
+
+  label(for='description') Description:
+  input#description(
+    type='text'
+    placeholder='Enter description here'
+    name='description'
+    value=prepopulatedValues.description
+  )
+
+  label(for='numberInStock') Number In Stock:
+  input#description(
+    type='text'
+    placeholder='Enter number in stock'
+    name='numberInStock'
+    value=prepopulatedValues.numberInStock
+  )
+
+  label(for='price') Price:
+  input#price(
+    type='text'
+    placeholder='Enter price here'
+    name='price'
+    value=prepopulatedValues.price
+  )
+
+  +generateRegionSelect(regionList)
+
+  button(type='submit') Submit
+
 mixin generateRegionSelect(regionList)
   -
     regionList.sort(
@@ -43,22 +82,3 @@ mixin initializeDefaultLocalValues()
 
       return new Proxy(obj, handler);
     }
-
-block form elements
-  +initializeDefaultLocalValues
-
-  label(for='name') Name:
-  input#name(type='text' placeholder='Enter name here' name='name' value=prepopulatedValues.name)
-
-  label(for='description') Description:
-  input#description(type='text' placeholder='Enter description here' name='description' value=prepopulatedValues.description)
-
-  label(for='numberInStock') Number In Stock:
-  input#description(type='text' placeholder='Enter number in stock' name='numberInStock' value=prepopulatedValues.numberInStock)
-
-  label(for='price') Price:
-  input#price(type='text' placeholder='Enter price here' name='price' value=prepopulatedValues.price)
-
-  +generateRegionSelect(regionList)
-
-  button(type='submit') Submit
