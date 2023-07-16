@@ -18,14 +18,14 @@ test("Passes in flower information to flower detail", async () => {
   expect(locals).toMatchInlineSnapshot(`
     {
       "description": "Description",
-      "flowerId": "000000000000000000000003",
+      "flowerId": "000000000000000000000004",
       "flowerUrl": "/flowers/name",
       "name": "name",
       "numberInStock": 32,
       "price": 3.89,
       "region": {
-        "_id": "000000000000000000000002",
-        "name": "name",
+        "_id": "000000000000000000000003",
+        "name": "name2",
       },
       "title": "name",
     }

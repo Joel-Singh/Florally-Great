@@ -13,6 +13,6 @@ exports[`Redirects and saves flower with valid data: Flower saved 1`] = `
   "name": "Name1",
   "numberInStock": 32,
   "price": 3.89,
-  "region": "000000000000000000000002",
+  "region": "000000000000000000000003",
 }
 `;
