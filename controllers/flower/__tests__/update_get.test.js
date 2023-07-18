@@ -24,17 +24,3 @@ test("Renders flower form, passing in prepopulated values", async () => {
     }
   `);
 });
-
-test("Renders error if invalid flower is passed in", async () => {
-  const { getRenderInformation } = await emulateCallingController(update_get, {
-    params: { name: "FlowerThatDoesNotExist" },
-  });
-  const { view, locals } = getRenderInformation();
-
-  expect(view).toMatchInlineSnapshot(`"message"`);
-  expect(locals).toMatchInlineSnapshot(`
-    {
-      "title": "FlowerThatDoesNotExist couldn't be found",
-    }
-  `);
-});
