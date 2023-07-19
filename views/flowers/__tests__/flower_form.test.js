@@ -97,6 +97,25 @@ describe("Prepopulated input values", () => {
     `);
   });
 
+  test("Properly sets the prepopulated hidden id value", () => {
+    const idValue = "0000000000001";
+    const locals = {
+      prepopulatedValues: {
+        id: idValue,
+      },
+    };
+    const renderedForm = renderPugToDOM(
+      "./views/flowers/flower_form_update.pug",
+      locals
+    );
+
+    const hiddenIdInput = renderedForm.querySelector(
+      'input[type="hidden"][name="id"]'
+    );
+
+    expect(hiddenIdInput.value).toMatch(idValue);
+  });
+
   function getDefaultInputValueAttributesInFlowerForm(locals) {
     const renderedForm = renderPugToDOM(
       "./views/flowers/flower_form.pug",

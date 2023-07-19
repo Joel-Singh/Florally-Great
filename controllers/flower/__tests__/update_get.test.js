@@ -12,11 +12,12 @@ test("Renders flower form, passing in prepopulated values", async () => {
 
   const { view, locals } = getRenderInformation();
 
-  expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_form_update"`);
 
   expect(locals.prepopulatedValues).toMatchInlineSnapshot(`
     {
       "description": "Description",
+      "id": "000000000000000000000004",
       "name": "Name1",
       "numberInStock": 32,
       "price": "$3.89",
