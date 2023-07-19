@@ -31,6 +31,7 @@ function getFakeMiddleware(reqProperties, resProperties) {
   const fakeRes = {
     render: jest.fn(),
     redirect: jest.fn(),
+    send: jest.fn(),
     ...resProperties,
   };
 
