@@ -4,7 +4,7 @@ const asyncHandler = require("express-async-handler");
 module.exports = function (controller) {
   return async (req, res, next) => {
     const flowerName = req.params.name;
-    let flower = await Flower.findOne({ name: flowerName })
+    const flower = await Flower.findOne({ name: flowerName })
       .populate("region", "name")
       .exec();
 
