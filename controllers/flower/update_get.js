@@ -8,7 +8,6 @@ module.exports = asyncHandler(
     const { name, description, numberInStock, price, _id } = flower;
     await renderFlowerForm(
       res,
-      next,
       {
         prepopulatedValues: {
           name,

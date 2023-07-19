@@ -2,12 +2,7 @@ const path = require("path");
 const asyncHandler = require("express-async-handler");
 const Region = require(path.join(appRoot, "models", "region.js"));
 
-module.exports = asyncHandler(async function (
-  res,
-  next,
-  viewContext,
-  options = {}
-) {
+module.exports = asyncHandler(async function (res, viewContext, options = {}) {
   const allRegionNames = await Region.find({}, "name").exec();
 
   const formToRender = options.isUpdate

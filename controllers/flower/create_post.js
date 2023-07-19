@@ -12,7 +12,7 @@ module.exports = [
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      await renderFlowerForm(res, next, { errors: errors.array() });
+      await renderFlowerForm(res, { errors: errors.array() });
     } else {
       const flower = await saveFlower(req);
       res.redirect(flower.url);
