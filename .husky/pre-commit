@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+stash_count_before=$(git stash list | wc -l)
 git stash -q --keep-index --include-untracked
+stash_count_after=$(git stash list | wc -l)
+
 if [ $? -ne 0 ]; then
     echo "Stashing unstaged changes failed!"
     exit 1
@@ -10,21 +13,17 @@ fi
 git diff --name-only --cached | xargs prettier --check
 if [ $? -ne 0 ]; then
     echo "Files not formatted!"
-    git stash pop -q
     exit 1
 fi
 
 npm test
 if [ $? -ne 0 ]; then
     echo "Tests failed!"
-    git stash pop -q
     exit 1
 fi
 
-git stash pop -q
-if [ $? -ne 0 ]; then
-    echo "Popping unstaged changes failed!"
-    exit 1
+if (( stash_count_after > stash_count_before )); then
+    git stash pop -q
 fi
 
 exit 0
