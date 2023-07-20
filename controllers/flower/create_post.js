@@ -1,9 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const path = require("path");
-const he = require("he");
 const Flower = require(path.join(appRoot, "models", "flower.js"));
 const renderFlowerForm = require("./rendersWithDefaultLocals/renderFlowerForm.js");
 const validateFlowerRequest = require("./util/validateFlowerRequest.js");
+const getFlowerModelDataFromReqBody = require("./util/getFlowerModelDataFromReqBody.js");
 
 const { validationResult } = require("express-validator");
 
@@ -21,19 +21,7 @@ module.exports = [
 ];
 
 async function saveFlower(req) {
-  const { name, description, price, numberInStock, regionID } = req.body;
-  const priceToNumber = parseFloat(price.slice(1));
-
-  const convertedName = he.decode(name);
-  const convertedDescription = he.decode(description);
-
-  const flower = new Flower({
-    name: convertedName,
-    description: convertedDescription,
-    price: priceToNumber,
-    numberInStock,
-    region: regionID,
-  });
+  const flower = new Flower(getFlowerModelDataFromReqBody(req));
   await flower.save();
   return flower;
 }
