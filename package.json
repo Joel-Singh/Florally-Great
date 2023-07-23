@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
+    "start": "ts-node ./bin/www",
+    "devstart": "nodemon --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "jest",
-    "debug": "node --inspect-brk bin/www",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --run-in-band",
+    "debug": "ts-node --inspect-brk bin/www",
+    "test:debug": "ts-node --inspect-brk node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
     "prepare": "husky install"
