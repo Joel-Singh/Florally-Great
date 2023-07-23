@@ -14,7 +14,7 @@ const viewEngineSetup = require(path.join(
   "appMiddlewares",
   "viewEngineSetup.js"
 ));
-const Region = require(path.join(appRoot, "models", "region.js"));
+const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 
 const delete_get = require("../delete_get.js");
 

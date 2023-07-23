@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const path = require("path");
-const Region = require(path.join(appRoot, "models", "region.js"));
+const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegion.js");
 

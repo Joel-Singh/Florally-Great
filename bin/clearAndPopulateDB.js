@@ -7,7 +7,7 @@ const mongoDB = userArgs[0];
 
 const mongoose = require("mongoose");
 const { default: Flower } = require("../models/flower");
-const Region = require("../models/region");
+const { default: Region } = require("../models/region");
 
 main().catch((error) => console.error(error));
 

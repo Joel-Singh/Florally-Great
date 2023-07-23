@@ -1,6 +1,6 @@
 const path = require("path");
 const asyncHandler = require("express-async-handler");
-const Region = require(path.join(appRoot, "models", "region.js"));
+const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 
 module.exports = asyncHandler(async function (res, viewContext, options = {}) {
   const allRegionNames = await Region.find({}, "name").exec();

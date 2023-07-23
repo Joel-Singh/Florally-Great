@@ -1,5 +1,5 @@
 const path = require("path");
-const Region = require(path.join(appRoot, "models", "region.js"));
+const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 
 module.exports = async (res, locals) => {
   const allRegions = await Region.find({}, "name").exec();
