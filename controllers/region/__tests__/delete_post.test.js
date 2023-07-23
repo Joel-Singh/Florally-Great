@@ -1,7 +1,7 @@
 const path = require("path");
 
 const Region = require(path.join(appRoot, "models", "region.js"));
-const Flower = require(path.join(appRoot, "models", "flower.js"));
+const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 const formatHtml = require("../../testingUtils/formatHtml.js");
 
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");

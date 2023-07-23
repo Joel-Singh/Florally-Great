@@ -3,7 +3,7 @@ const update_post = require("./../update_post.js");
 const saveDummyFlower = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
 const saveDummyRegion = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.js");
 
-const Flower = require("./../../../models/flower.js");
+const { default: Flower } = require("./../../../models/flower.ts");
 
 test("Updates flower in db", async () => {
   const dummyFlower = (await saveDummyFlower()).toObject({ versionKey: false });

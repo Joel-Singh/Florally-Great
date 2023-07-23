@@ -6,7 +6,7 @@ const userArgs = process.argv.slice(2);
 const mongoDB = userArgs[0];
 
 const mongoose = require("mongoose");
-const Flower = require("../models/flower");
+const { default: Flower } = require("../models/flower");
 const Region = require("../models/region");
 
 main().catch((error) => console.error(error));

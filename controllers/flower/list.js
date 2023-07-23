@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const path = require("path");
-const Flower = require(path.join(appRoot, "models", "flower.js"));
+const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 
 module.exports = asyncHandler(async (req, res, next) => {
   const allFlowers = await Flower.find({}, "name description url")

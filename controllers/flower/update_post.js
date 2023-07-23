@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const Flower = require("./../../models/flower.js");
+const { default: Flower } = require("./../../models/flower.ts");
 const getFlowerModelDataFromReqBody = require("./util/getFlowerModelDataFromReqBody.js");
 
 module.exports = asyncHandler(async (req, res, next) => {

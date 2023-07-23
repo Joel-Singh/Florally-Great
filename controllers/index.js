@@ -1,5 +1,5 @@
 const Region = require("../models/region");
-const Flower = require("../models/flower");
+const { default: Flower } = require("../models/flower");
 const asyncHandler = require("express-async-handler");
 
 module.exports = asyncHandler(async (req, res, next) => {
