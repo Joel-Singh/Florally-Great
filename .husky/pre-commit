@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-git diff --name-only --cached | xargs prettier --check
+git diff --name-only --cached --diff-filter=d | xargs prettier --check
 if [ $? -ne 0 ]; then
     echo "Files not formatted!"
     exit 1
