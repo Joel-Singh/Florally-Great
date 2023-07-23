@@ -7,8 +7,8 @@
     "devstart": "nodemon --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "jest",
-    "debug": "ts-node --inspect-brk bin/www",
-    "test:debug": "ts-node --inspect-brk node_modules/.bin/jest --run-in-band",
+    "debug": "node --inspect-brk -r ts-node/register bin/www",
+    "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
     "prepare": "husky install"
