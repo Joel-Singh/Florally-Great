@@ -1,5 +1,5 @@
 const emulateCallingController = require("./../../testingUtils/emulateCallingController.js");
-const update_post = require("./../update_post.js");
+const { default: update_post } = require("./../update_post.ts");
 const saveDummyFlower = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
 const saveDummyRegion = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.js");
 
