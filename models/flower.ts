@@ -6,7 +6,7 @@ export interface IFlower {
   price: number;
   numberInStock: number;
   region: mongoose.Schema.Types.ObjectId;
-  url: string;
+  url?: string;
 }
 
 const flowerSchema: Schema = new Schema({
