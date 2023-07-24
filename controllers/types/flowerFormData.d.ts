@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export default interface FlowerFormData {
   name: string;
   description: string;
