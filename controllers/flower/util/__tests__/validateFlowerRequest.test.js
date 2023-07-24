@@ -2,7 +2,9 @@ const { validationResult } = require("express-validator");
 const emulateCallingController = require("../../../testingUtils/emulateCallingController.js");
 const validateFlowerRequest = require("../validateFlowerRequest.js");
 
-const saveDummyRegion = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.js");
+const {
+  default: saveDummyRegion,
+} = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.ts");
 
 const saveDummyFlower = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
 

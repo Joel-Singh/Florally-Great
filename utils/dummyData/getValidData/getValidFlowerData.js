@@ -1,4 +1,6 @@
-const saveDummyRegion = require("../savingDummyDataToDb/saveDummyRegion.js");
+const {
+  default: saveDummyRegion,
+} = require("../savingDummyDataToDb/saveDummyRegion.ts");
 const {
   generateSequentialNumber,
   generateSequentialObjectId,
