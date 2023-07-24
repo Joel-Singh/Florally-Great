@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const { default: Flower } = require("./../../models/flower.ts");
-const getFlowerModelDataFromReqBody = require("./util/getFlowerModelDataFromReqBody.js");
+const {
+  default: getFlowerModelDataFromReqBody,
+} = require("./util/getFlowerModelDataFromReqBody.ts");
 
 module.exports = asyncHandler(async (req, res, next) => {
   const flowerId = req.body.id;
