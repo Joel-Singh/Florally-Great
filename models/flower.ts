@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface IFlower extends Document {
+export interface IFlower {
   name: string;
   description: string;
   price: number;
