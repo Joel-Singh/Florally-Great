@@ -6,3 +6,7 @@ export default interface FlowerFormData {
   regionID: string;
   id?: string;
 }
+
+export interface RequestWithFlowerData extends Request {
+  body: FlowerFormData;
+}
