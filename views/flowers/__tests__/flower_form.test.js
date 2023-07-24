@@ -1,5 +1,5 @@
 const renderPugToDOM = require("../../renderPugToDOM.js");
-const getValidRegionData = require("./../../../utils/dummyData/getValidData/getValidRegionData.js");
+import getValidRegionData from "./../../../utils/dummyData/getValidData/getValidRegionData";
 
 function renderRegionSelect(locals) {
   const renderedForm = renderPugToDOM(
