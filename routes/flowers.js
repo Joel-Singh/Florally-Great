@@ -3,7 +3,20 @@ const router = express.Router();
 const path = require("path");
 
 const requireFlowerController = (controllerName) => {
-  return require(path.join(appRoot, "controllers", "flower", controllerName));
+  const requiredController = require(path.join(
+    appRoot,
+    "controllers",
+    "flower",
+    controllerName
+  ));
+  if (
+    typeof requiredController === "function" ||
+    Array.isArray(requiredController)
+  ) {
+    return requiredController;
+  } else {
+    return requiredController.default;
+  }
 };
 
 router.get("/", requireFlowerController("list"));
