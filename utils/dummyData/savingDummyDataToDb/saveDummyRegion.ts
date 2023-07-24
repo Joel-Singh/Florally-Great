@@ -1,15 +1,24 @@
-import Region from "../../../models/region";
+import Region, {
+  IRegionDocument,
+  IRegionProperties,
+} from "../../../models/region";
+
 import {
   generateSequentialObjectId,
   generateSequentialNumber,
 } from "../SequentialGenerators.js";
 
-export default async function (overwrites = {}) {
-  const dummyData = {
+export default async function (
+  overwrites: Partial<IRegionProperties> = {}
+): Promise<IRegionDocument> {
+  const dummyData: IRegionProperties = {
     name: "name" + generateSequentialNumber(),
     description: "description",
-    _id: generateSequentialObjectId(),
     ...overwrites,
   };
-  return await new Region(dummyData).save();
+
+  return await new Region({
+    ...dummyData,
+    _id: generateSequentialObjectId(),
+  }).save();
 }
