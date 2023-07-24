@@ -14,7 +14,8 @@ const updateFlowerHandler: RequestHandler = async (
   const update = getFlowerModelDataFromReqBody(req);
 
   await Flower.findByIdAndUpdate(flowerId, update);
-  res.send("Update successful");
+  const updatedFlowerUrl = (await Flower.findById(flowerId))!.url;
+  res.redirect(updatedFlowerUrl);
 };
 
 export default asyncHandler(updateFlowerHandler as any);

@@ -5,6 +5,7 @@ import saveDummyRegion from "./../../../utils/dummyData/savingDummyDataToDb/save
 
 import Flower, { IFlowerDocument } from "./../../../models/flower";
 import FlowerFormData from "../../types/flowerFormData";
+import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
 
 test("Updates flower in db", async () => {
   const dummyFlower: IFlowerDocument = (await saveDummyFlower()).toObject({
@@ -37,4 +38,26 @@ test("Updates flower in db", async () => {
   expect(updatedFlower.price).toBe(parseFloat(flowerPostData.price.slice(1)));
 
   expect(updatedFlower.region.toString()).toBe(flowerPostData.regionID);
+});
+
+test("Redirects to flower on successful update", async () => {
+  const dummyFlower: IFlowerDocument = await saveDummyFlower();
+  const dummyFlowerId: string = dummyFlower._id.toString();
+
+  const body: FlowerFormData = {
+    ...(await getValidFlowerPostData()),
+    id: dummyFlowerId,
+  };
+
+  const { getRedirectInformation } = await emulateCallingController(
+    update_post,
+    {
+      body,
+    }
+  );
+
+  const { redirectPage } = getRedirectInformation();
+
+  expect(redirectPage).toBeDefined();
+  expect(redirectPage).toMatchInlineSnapshot(`"/flowers/Name11"`);
 });
