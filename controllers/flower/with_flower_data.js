@@ -1,4 +1,4 @@
-const { default: Flower} = require("./../../models/flower.ts");
+const { default: Flower } = require("./../../models/flower.ts");
 const asyncHandler = require("express-async-handler");
 
 module.exports = function (controller) {

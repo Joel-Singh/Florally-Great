@@ -1,5 +1,5 @@
 const path = require("path");
-const { default: Flower} = require(path.join(appRoot, "models", "flower.ts"));
+const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 
 const {
   getValidFlowerModelData,
