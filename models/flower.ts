@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface IFlower {
+export interface IFlowerProperties {
   name: string;
   description: string;
   price: number;
@@ -17,10 +17,10 @@ const flowerSchema: Schema = new Schema({
   region: { type: Schema.Types.ObjectId, ref: "Region", required: true },
 });
 
-flowerSchema.virtual("url").get(function (this: IFlower) {
+flowerSchema.virtual("url").get(function (this: IFlowerProperties) {
   return `/flowers/${this.name}`;
 });
 
-const FlowerModel = mongoose.model<IFlower>("Flower", flowerSchema);
+const FlowerModel = mongoose.model<IFlowerProperties>("Flower", flowerSchema);
 
 export default FlowerModel;

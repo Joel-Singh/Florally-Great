@@ -1,6 +1,6 @@
 import he from "he";
 import { RequestWithFlowerData } from "../../types/flowerFormData";
-import { IFlower } from "../../../models/flower";
+import { IFlowerProperties } from "../../../models/flower";
 import mongoose from "mongoose";
 
 export default function (req: RequestWithFlowerData) {
@@ -9,7 +9,7 @@ export default function (req: RequestWithFlowerData) {
 
   const convertedName = he.decode(name);
   const convertedDescription = he.decode(description);
-  const modelData: IFlower = {
+  const modelData: IFlowerProperties = {
     name: convertedName,
     description: convertedDescription,
     price: priceToNumber,
