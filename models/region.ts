@@ -3,6 +3,7 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface IRegionProperties {
   name: string;
   description: string;
+  _id?: mongoose.Types.ObjectId;
 }
 
 export type IRegionDocument = IRegionProperties & Document & { url: string };
