@@ -1,6 +1,8 @@
 const emulateCallingController = require("./../../testingUtils/emulateCallingController.js");
 const with_flower_data = require("./../with_flower_data.js");
-const saveDummyFlower = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
+const {
+  default: saveDummyFlower,
+} = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");
 
 test("Passes in flower data to controller", async () => {
   const dummyFlowerName = "dummyFlowerName";

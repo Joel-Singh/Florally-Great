@@ -6,7 +6,9 @@ const {
   default: saveDummyRegion,
 } = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.ts");
 
-const saveDummyFlower = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
+const {
+  default: saveDummyFlower,
+} = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");
 
 const {
   getValidFlowerPostData,

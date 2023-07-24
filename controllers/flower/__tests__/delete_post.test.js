@@ -1,6 +1,8 @@
 const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
 
-const saveDummyFlower = require("../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.js");
+const {
+  default: saveDummyFlower,
+} = require("../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");
 
 const { default: Flower } = require("../../../models/flower.ts");
 
