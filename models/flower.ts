@@ -23,6 +23,6 @@ flowerSchema.virtual("url").get(function (this: IFlowerProperties) {
   return `/flowers/${this.name}`;
 });
 
-const FlowerModel = mongoose.model<IFlowerProperties>("Flower", flowerSchema);
+const FlowerModel = mongoose.model<IFlowerDocument>("Flower", flowerSchema);
 
 export default FlowerModel;
