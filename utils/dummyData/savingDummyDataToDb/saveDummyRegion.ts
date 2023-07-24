@@ -6,7 +6,7 @@ import Region, {
 import {
   generateSequentialObjectId,
   generateSequentialNumber,
-} from "../SequentialGenerators.js";
+} from "../SequentialGenerators";
 
 export default async function (
   overwrites: Partial<IRegionProperties> = {}

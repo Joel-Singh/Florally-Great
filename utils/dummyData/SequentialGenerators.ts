@@ -1,9 +1,9 @@
-const generateSequentialNumber = (() => {
+const generateSequentialNumber: () => number = (() => {
   let counter = 1;
   return () => counter++;
 })();
 
-exports.generateSequentialObjectId = (() => {
+const generateSequentialObjectId: () => string = (() => {
   function generateId() {
     const number = generateSequentialNumber();
 
@@ -13,4 +13,4 @@ exports.generateSequentialObjectId = (() => {
   return generateId;
 })();
 
-exports.generateSequentialNumber = generateSequentialNumber;
+export { generateSequentialNumber, generateSequentialObjectId };

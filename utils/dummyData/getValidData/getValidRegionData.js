@@ -1,7 +1,7 @@
 const {
   generateSequentialNumber,
   generateSequentialObjectId,
-} = require("../SequentialGenerators.js");
+} = require("../SequentialGenerators.ts");
 
 function getValidRegionData(overwrites = {}) {
   return {
