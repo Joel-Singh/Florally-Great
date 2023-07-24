@@ -16,7 +16,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-npm test
+npm test -- --onlyChanged --forceExit
 if [ $? -ne 0 ]; then
     echo "Tests failed!"
     exit 1
