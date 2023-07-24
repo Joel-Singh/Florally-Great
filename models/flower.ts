@@ -9,6 +9,8 @@ export interface IFlowerProperties {
   url?: string;
 }
 
+export type IFlowerDocument = IFlowerProperties & Document;
+
 const flowerSchema: Schema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
