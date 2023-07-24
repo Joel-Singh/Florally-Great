@@ -6,10 +6,9 @@ export interface IFlowerProperties {
   price: number;
   numberInStock: number;
   region: mongoose.Types.ObjectId;
-  url?: string;
 }
 
-export type IFlowerDocument = IFlowerProperties & Document;
+export type IFlowerDocument = IFlowerProperties & Document & { url: string };
 
 const flowerSchema: Schema = new Schema({
   name: { type: String, required: true },
