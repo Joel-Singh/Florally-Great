@@ -5,7 +5,7 @@ export interface IFlower {
   description: string;
   price: number;
   numberInStock: number;
-  region: mongoose.Schema.Types.ObjectId;
+  region: mongoose.Schema.Types.ObjectId | string;
   url?: string;
 }
 
