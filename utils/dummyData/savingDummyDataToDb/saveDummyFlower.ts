@@ -1,6 +1,6 @@
 import Flower, { IFlowerProperties } from "../../../models/flower";
 
-import { getValidFlowerModelData } from "../getValidData/getValidFlowerData.js";
+import { getValidFlowerModelData } from "../getValidData/getValidFlowerData";
 
 export default async function (overwrites: Partial<IFlowerProperties> = {}) {
   const dummyData: IFlowerProperties = {

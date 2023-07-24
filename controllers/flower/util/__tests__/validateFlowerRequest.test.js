@@ -12,7 +12,7 @@ const {
 
 const {
   getValidFlowerPostData,
-} = require("../../../../utils/dummyData/getValidData/getValidFlowerData.js");
+} = require("../../../../utils/dummyData/getValidData/getValidFlowerData.ts");
 
 async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {

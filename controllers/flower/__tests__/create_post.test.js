@@ -2,7 +2,7 @@ const emulateCallingController = require("../../testingUtils/emulateCallingContr
 const create_post = require("../create_post.js");
 const {
   getValidFlowerPostData,
-} = require("../../../utils/dummyData/getValidData/getValidFlowerData.js");
+} = require("../../../utils/dummyData/getValidData/getValidFlowerData.ts");
 const { default: Flower } = require("../../../models/flower.ts");
 
 test("Redirects and saves flower with valid data", async () => {
