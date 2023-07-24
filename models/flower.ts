@@ -6,6 +6,7 @@ export interface IFlowerProperties {
   price: number;
   numberInStock: number;
   region: mongoose.Types.ObjectId;
+  _id?: mongoose.Types.ObjectId;
 }
 
 export type IFlowerDocument = IFlowerProperties & Document & { url: string };
