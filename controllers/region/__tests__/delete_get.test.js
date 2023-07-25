@@ -4,10 +4,10 @@ const request = require("supertest");
 
 const formatHtml = require("../../testingUtils/formatHtml.js");
 
-const addGeneralMiddleware = require(path.join(
+const { default: addGeneralMiddleware } = require(path.join(
   appRoot,
   "appMiddlewares",
-  "addGeneralMiddleware.js"
+  "addGeneralMiddleware.ts"
 ));
 const viewEngineSetup = require(path.join(
   appRoot,
