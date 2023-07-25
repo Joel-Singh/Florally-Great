@@ -3,7 +3,9 @@ global.appRoot = path.resolve(__dirname);
 
 const mongoose = require("mongoose");
 
-const configureExpressApp = require("./appMiddlewares/configureExpressApp");
+const {
+  default: configureExpressApp,
+} = require("./appMiddlewares/configureExpressApp");
 
 connectToMongoDB();
 

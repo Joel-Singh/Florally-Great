@@ -8,7 +8,7 @@ const {
   default: emulateCallingController,
 } = require("../../testingUtils/emulateCallingController.ts");
 
-const configureExpressApp = require(path.join(
+const { default: configureExpressApp } = require(path.join(
   appRoot,
   "appMiddlewares",
   "configureExpressApp"
