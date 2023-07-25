@@ -1,5 +1,7 @@
 const { validationResult } = require("express-validator");
-const emulateCallingController = require("../../../testingUtils/emulateCallingController.js");
+const {
+  default: emulateCallingController,
+} = require("../../../testingUtils/emulateCallingController.ts");
 const validateFlowerRequest = require("../validateFlowerRequest.js");
 
 const {

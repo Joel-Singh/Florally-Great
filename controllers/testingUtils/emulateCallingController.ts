@@ -1,11 +1,19 @@
-module.exports = async function (controller, reqProperties, resProperties) {
+import { Request, Response } from "express";
+
+type nestedFunctionArray = Array<Function | nestedFunctionArray>;
+export default async function emulateCallingController(
+  controller: nestedFunctionArray | Function,
+  reqProperties: Partial<Request> = {},
+  resProperties: Partial<Response> = {}
+) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
 
   if (!Array.isArray(controller)) {
     await controller(fakeReq, fakeRes);
   } else {
-    controller = controller.flat(Infinity);
-    await runMiddlewareArray(controller, fakeReq, fakeRes);
+    // @ts-ignore
+    controller = controller.flat(Infinity) as Array<Function>;
+    await runMiddlewareArray(controller as Array<Function>, fakeReq, fakeRes);
   }
 
   return {
@@ -21,41 +29,51 @@ module.exports = async function (controller, reqProperties, resProperties) {
       "redirectPage"
     ),
   };
-};
+}
 
-function getFakeMiddleware(reqProperties, resProperties) {
+function getFakeMiddleware(
+  reqProperties: Partial<Request>,
+  resProperties: Partial<Response>
+) {
   const fakeReq = {
     ...reqProperties,
   };
 
   const fakeRes = {
+    ...resProperties,
     render: jest.fn(),
     redirect: jest.fn(),
     send: jest.fn(),
-    ...resProperties,
   };
 
   return { fakeReq, fakeRes };
 }
 
-function createMockInfoGetter(mockFunction, ...namesInArgumentOrder) {
+function createMockInfoGetter<T extends Record<string, any>>(
+  mockFunction: jest.Mock,
+  ...namesInArgumentOrder: Array<keyof T>
+) {
   return function () {
     const mockCalls = mockFunction.mock.calls;
     if (mockCalls.length === 0)
       throw new Error("Mock function hasn't been called!");
 
     const mockCall = mockCalls[0];
-    const mockInfo = {};
+    const mockInfo: Partial<T> = {};
 
     namesInArgumentOrder.forEach((name, index) => {
       mockInfo[name] = mockCall[index];
     });
 
-    return mockInfo;
+    return mockInfo as T;
   };
 }
 
-async function runMiddlewareArray(middlewares, req, res) {
+async function runMiddlewareArray(
+  middlewares: Array<Function>,
+  req: Partial<Request>,
+  res: Partial<Response>
+) {
   for (const middleware of middlewares) {
     let nextCalled = false;
     const next = () => {

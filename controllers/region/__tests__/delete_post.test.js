@@ -4,7 +4,9 @@ const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 const formatHtml = require("../../testingUtils/formatHtml.js");
 
-const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
+const {
+  default: emulateCallingController,
+} = require("../../testingUtils/emulateCallingController.ts");
 
 const configureExpressApp = require(path.join(
   appRoot,

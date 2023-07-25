@@ -3,7 +3,9 @@ const path = require("path");
 const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 
-const emulateCallingController = require("../../testingUtils/emulateCallingController.js");
+const {
+  default: emulateCallingController,
+} = require("../../testingUtils/emulateCallingController.ts");
 const all_flowers_in_region = require("../all_flowers_in_region.js");
 
 test("Tries rendering correct view", async () => {
