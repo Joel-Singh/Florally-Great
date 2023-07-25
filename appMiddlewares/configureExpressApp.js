@@ -1,6 +1,6 @@
 const viewEngineSetup = require("./viewEngineSetup.js");
 const { default: addGeneralMiddleware } = require("./addGeneralMiddleware.ts");
-const addRoutes = require("./addRoutes.js");
+const { default: addRoutes } = require("./addRoutes.ts");
 const addErrorHandlingMiddleware = require("./addErrorHandlingMiddleware.ts");
 
 const express = require("express");
