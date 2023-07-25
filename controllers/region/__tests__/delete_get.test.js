@@ -9,10 +9,10 @@ const { default: addGeneralMiddleware } = require(path.join(
   "appMiddlewares",
   "addGeneralMiddleware.ts"
 ));
-const viewEngineSetup = require(path.join(
+const { default: viewEngineSetup } = require(path.join(
   appRoot,
   "appMiddlewares",
-  "viewEngineSetup.js"
+  "viewEngineSetup.ts"
 ));
 const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 

@@ -1,5 +1,5 @@
 // @ts-ignore
-import viewEngineSetup from "./viewEngineSetup.js";
+import viewEngineSetup from "./viewEngineSetup.ts";
 import addGeneralMiddleware from "./addGeneralMiddleware";
 import addRoutes from "./addRoutes";
 import addErrorHandlingMiddleware from "./addErrorHandlingMiddleware";
