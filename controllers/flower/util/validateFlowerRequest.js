@@ -4,24 +4,20 @@ const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 const { body } = require("express-validator");
 
-const regionExistsValidation = asyncHandler(
-  body("regionID").custom(async (regionID) => {
-    const regionDocsWithIDs = await Region.find({}, "_id").exec();
-    const regionIDArray = regionDocsWithIDs.map((doc) => doc._id.toString());
+const regionExistsValidation = body("regionID").custom(async (regionID) => {
+  const regionDocsWithIDs = await Region.find({}, "_id").exec();
+  const regionIDArray = regionDocsWithIDs.map((doc) => doc._id.toString());
 
-    if (!regionIDArray.includes(regionID))
-      throw new Error("Region does not exist");
-  })
-);
+  if (!regionIDArray.includes(regionID))
+    throw new Error("Region does not exist");
+});
 
-const checkDuplicateFlower = asyncHandler(
-  body("name").custom(async (name) => {
-    const foundFlower = await Flower.findOne({ name }).exec();
-    if (foundFlower !== null) {
-      throw new Error("Flower with that name already exists");
-    }
-  })
-);
+const checkDuplicateFlower = body("name").custom(async (name) => {
+  const foundFlower = await Flower.findOne({ name }).exec();
+  if (foundFlower !== null) {
+    throw new Error("Flower with that name already exists");
+  }
+});
 
 module.exports = [
   body("name")
