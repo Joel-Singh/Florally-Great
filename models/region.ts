@@ -6,7 +6,8 @@ export interface IRegionProperties {
   _id?: mongoose.Types.ObjectId;
 }
 
-export type IRegionDocument = IRegionProperties & Document & { url: string };
+export type IRegionDocument = IRegionProperties &
+  Document<mongoose.Types.ObjectId> & { url: string };
 
 const regionSchema: Schema = new Schema({
   name: { type: String, required: true },
