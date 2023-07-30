@@ -13,7 +13,7 @@ async function getValidFlowerPostData(): Promise<FlowerFormData> {
     description: "Description",
     numberInStock: "32",
     price: "$3.89",
-    regionID: (await saveDummyRegion())._id.toString(),
+    regionID: (await saveDummyRegion())._id!.toString(),
     id: generateSequentialObjectId(),
   };
 }

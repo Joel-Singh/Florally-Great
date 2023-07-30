@@ -2,7 +2,9 @@ const { validationResult } = require("express-validator");
 const {
   default: emulateCallingController,
 } = require("../../../testingUtils/emulateCallingController.ts");
-const validateFlowerRequest = require("../validateFlowerRequest.js");
+const {
+  default: validateFlowerRequest,
+} = require("../validateFlowerRequest.ts");
 
 const {
   default: saveDummyRegion,
