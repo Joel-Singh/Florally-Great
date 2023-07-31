@@ -6,8 +6,8 @@ const userArgs = process.argv.slice(2);
 const mongoDB = userArgs[0];
 
 const mongoose = require("mongoose");
-const { default: Flower } = require("../models/flower");
-const { default: Region } = require("../models/region");
+import Flower, { IFlowerDocument, IFlowerProperties } from "../models/flower";
+import Region, { IRegionDocument } from "../models/region";
 
 main().catch((error) => console.error(error));
 
@@ -33,23 +33,28 @@ async function populateDatabase() {
   const regions = await populateRegionData();
   await populateFlowerData(regions);
 
-  async function populateRegionData() {
+  async function populateRegionData(): Promise<IRegionDocument[]> {
     const regionData = getRegionData();
     const regions = await Region.insertMany(regionData);
     console.log("Regions added:", regions);
     return regions;
   }
 
-  async function populateFlowerData(regions) {
+  async function populateFlowerData(regions: IRegionDocument[]) {
     const flowerData = getFlowerData();
-    const flowerDocuments = flowerData.map((flower) => {
-      const regionId = regions.find(
+    const flowerDocuments: IFlowerDocument[] = flowerData.map((flower) => {
+      const region = regions.find(
         (region) => region.name === flower.regionName
       );
-      flower.region = regionId;
-      delete flower.regionName;
 
-      return new Flower(flower);
+      const flowerModelData: IFlowerProperties = {
+        name: flower.name,
+        price: flower.price,
+        region: region!._id!,
+        description: flower.description,
+        numberInStock: flower.numberInStock,
+      };
+      return new Flower(flowerModelData);
     });
 
     const flowers = await Flower.insertMany(flowerDocuments);
@@ -57,7 +62,12 @@ async function populateDatabase() {
   }
 }
 
-function getRegionData() {
+interface regionInfo {
+  name: string;
+  description: string;
+}
+
+function getRegionData(): regionInfo[] {
   return [
     {
       name: "Tropical",
@@ -84,7 +94,15 @@ function getRegionData() {
   ];
 }
 
-function getFlowerData() {
+interface flowerInfo {
+  name: string;
+  description: string;
+  price: number;
+  numberInStock: number;
+  regionName: string;
+}
+
+function getFlowerData(): flowerInfo[] {
   return [
     {
       name: "Orchid",
