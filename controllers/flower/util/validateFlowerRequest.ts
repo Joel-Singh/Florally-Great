@@ -7,7 +7,6 @@ const regionExistsValidation = body("regionID").custom(
     const regionDocsWithIDs = await Region.find({}, "_id").exec();
     const regionIDArray = regionDocsWithIDs.map((doc) => doc._id.toString());
 
-    debugger;
     if (!regionIDArray.includes(regionID))
       throw new Error("Region does not exist");
   }
