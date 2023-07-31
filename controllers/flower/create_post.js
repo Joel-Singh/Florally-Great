@@ -1,7 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const path = require("path");
 const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
-const renderFlowerForm = require("./rendersWithDefaultLocals/renderFlowerForm.js");
+const {
+  default: renderFlowerForm,
+} = require("./rendersWithDefaultLocals/renderFlowerForm.ts");
 const {
   default: validateFlowerRequest,
 } = require("./util/validateFlowerRequest.ts");
