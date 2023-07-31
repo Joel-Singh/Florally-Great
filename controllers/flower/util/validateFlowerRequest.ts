@@ -1,4 +1,3 @@
-import asyncHandler from "express-async-handler";
 import Flower from "../../../models/flower";
 import Region from "../../../models/region";
 import { body } from "express-validator";
