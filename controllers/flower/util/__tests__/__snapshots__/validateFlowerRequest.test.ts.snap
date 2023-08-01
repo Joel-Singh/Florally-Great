@@ -131,3 +131,15 @@ exports[`Only accepts property formatted prices 2`] = `
   },
 ]
 `;
+
+exports[`Only accepts property formatted prices 3`] = `
+[
+  {
+    "location": "body",
+    "msg": "Price needs to be in $x.xx format, e.g $3.86 or $287.00",
+    "path": "price",
+    "type": "field",
+    "value": "$3aaa",
+  },
+]
+`;

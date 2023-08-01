@@ -43,7 +43,7 @@ export default [
     .trim()
     .isLength({ min: 1 })
     .withMessage(`Price can't be empty`)
-    .matches(/\$[0-9]+\.[0-9][0-9]/)
+    .matches(/^\$[0-9]+(\.[0-9]{1,2})?$/)
     .withMessage("Price needs to be in $x.xx format, e.g $3.86 or $287.00"),
 
   regionExistsValidation,
