@@ -99,29 +99,29 @@ test(`Only accepts numbers for number in stock`, async () => {
   });
 });
 
-test(`Only accepts property formatted prices`, async () => {
-  await testValidation("price", "32", {
-    isValid: false,
-    errorFilter: "format",
-  });
+describe(`Price validation`, () => {
+  const invalidFlowerPrices: string[] = ["$3aaa", "32.00", "32"];
 
-  await testValidation("price", "32.00", {
-    isValid: false,
-    errorFilter: "format",
-  });
+  const validFlowerPrices: string[] = ["$3.86", "$3"];
 
-  await testValidation("price", "$3aaa", {
-    isValid: false,
-    errorFilter: "format",
-  });
+  test.each(invalidFlowerPrices)(
+    `%s flower price gives error`,
+    async (flowerPrice) => {
+      await testValidation("price", flowerPrice, {
+        isValid: false,
+        errorFilter: "format",
+      });
+    }
+  );
 
-  await testValidation("price", "$3.86", {
-    isValid: true,
-  });
-
-  await testValidation("price", "$3", {
-    isValid: true,
-  });
+  test.each(validFlowerPrices)(
+    `%s flower price DOES NOT give error`,
+    async (flowerPrice) => {
+      await testValidation("price", flowerPrice, {
+        isValid: true,
+      });
+    }
+  );
 });
 
 test(`Doesn't accept nonexistent regions`, async () => {

@@ -132,7 +132,19 @@ exports[`Only accepts numbers for number in stock 1`] = `
 ]
 `;
 
-exports[`Only accepts property formatted prices 1`] = `
+exports[`Price validation $3aaa flower price gives error 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Price needs to be in $x.xx format, e.g $3.86 or $287.00",
+    "path": "price",
+    "type": "field",
+    "value": "$3aaa",
+  },
+]
+`;
+
+exports[`Price validation 32 flower price gives error 1`] = `
 [
   {
     "location": "body",
@@ -144,7 +156,7 @@ exports[`Only accepts property formatted prices 1`] = `
 ]
 `;
 
-exports[`Only accepts property formatted prices 2`] = `
+exports[`Price validation 32.00 flower price gives error 1`] = `
 [
   {
     "location": "body",
@@ -152,18 +164,6 @@ exports[`Only accepts property formatted prices 2`] = `
     "path": "price",
     "type": "field",
     "value": "32.00",
-  },
-]
-`;
-
-exports[`Only accepts property formatted prices 3`] = `
-[
-  {
-    "location": "body",
-    "msg": "Price needs to be in $x.xx format, e.g $3.86 or $287.00",
-    "path": "price",
-    "type": "field",
-    "value": "$3aaa",
   },
 ]
 `;
