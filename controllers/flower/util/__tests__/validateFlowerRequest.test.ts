@@ -1,24 +1,17 @@
-const { validationResult } = require("express-validator");
-const {
-  default: emulateCallingController,
-} = require("../../../testingUtils/emulateCallingController.ts");
-const {
-  default: validateFlowerRequest,
-} = require("../validateFlowerRequest.ts");
+import { validationResult } from "express-validator";
+import emulateCallingController from "../../../testingUtils/emulateCallingController";
+import validateFlowerRequest from "../validateFlowerRequest";
 
-const {
-  default: saveDummyRegion,
-} = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion.ts");
+import saveDummyRegion from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion";
 
-const {
-  default: saveDummyFlower,
-} = require("../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");
+import saveDummyFlower from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower";
 
-const {
-  getValidFlowerPostData,
-} = require("../../../../utils/dummyData/getValidData/getValidFlowerData.ts");
+import { getValidFlowerPostData } from "../../../../utils/dummyData/getValidData/getValidFlowerData";
 
-async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
+async function getValidationErrors(
+  bodyOverwrites = {},
+  errorMsgMustInclude?: string
+) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {
     body: {
       ...(await getValidFlowerPostData()),
@@ -26,7 +19,7 @@ async function getValidationErrors(bodyOverwrites = {}, errorMsgMustInclude) {
     },
   });
 
-  const errors = validationResult(fakeReq).errors;
+  const errors = validationResult(fakeReq).array();
   if (typeof errorMsgMustInclude === "undefined") return errors;
   else
     return errors.filter(({ msg }) => {
