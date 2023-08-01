@@ -7,9 +7,10 @@ import saveDummyRegion from "../../../../utils/dummyData/savingDummyDataToDb/sav
 import saveDummyFlower from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower";
 
 import { getValidFlowerPostData } from "../../../../utils/dummyData/getValidData/getValidFlowerData";
+import FlowerFormData from "../../../types/flowerFormData";
 
 async function getValidationErrors(
-  bodyOverwrites = {},
+  bodyOverwrites: Partial<FlowerFormData> = {},
   errorMsgMustInclude?: string
 ) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {
@@ -63,7 +64,7 @@ test.each(flowerProperties)(
 test(`Only accepts numbers for number in stock`, async () => {
   expect(
     await getValidationErrors({
-      numberInStock: 32,
+      numberInStock: "32",
     })
   ).toEqual([]);
 
@@ -78,7 +79,7 @@ test(`Only accepts property formatted prices`, async () => {
   expect(
     await getValidationErrors(
       {
-        price: 32,
+        price: "32",
       },
       "format"
     )
