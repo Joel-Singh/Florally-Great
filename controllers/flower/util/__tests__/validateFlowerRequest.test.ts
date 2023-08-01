@@ -87,6 +87,15 @@ test(`Only accepts property formatted prices`, async () => {
   expect(
     await getValidationErrors(
       {
+        price: "32.00",
+      },
+      "format"
+    )
+  ).toMatchSnapshot();
+
+  expect(
+    await getValidationErrors(
+      {
         price: "$3.86",
       },
       "format"
