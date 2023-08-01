@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Doesn't accept duplicate flowers 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Flower with that name already exists",
+    "path": "name",
+    "type": "field",
+    "value": "duplicate",
+  },
+]
+`;
+
 exports[`Doesn't accept empty input for description 1`] = `
 [
   {
@@ -92,6 +104,18 @@ exports[`Doesn't accept just spaces for price 1`] = `
     "path": "price",
     "type": "field",
     "value": "",
+  },
+]
+`;
+
+exports[`Doesn't accept nonexistent regions 1`] = `
+[
+  {
+    "location": "body",
+    "msg": "Region does not exist",
+    "path": "regionID",
+    "type": "field",
+    "value": "asdfasdf",
   },
 ]
 `;

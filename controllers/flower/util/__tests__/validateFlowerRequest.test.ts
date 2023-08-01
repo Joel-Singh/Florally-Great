@@ -28,147 +28,119 @@ async function getValidationErrors(
     });
 }
 
+async function testValidation<Key extends keyof FlowerFormData>(
+  property: Key,
+  propertyValue: FlowerFormData[Key],
+  options:
+    | {
+        isValid: true;
+      }
+    | {
+        isValid: false;
+        errorFilter: string;
+      }
+) {
+  if (options.isValid) {
+    expect(
+      await getValidationErrors({
+        [property]: propertyValue,
+      })
+    ).toEqual([]);
+  } else {
+    expect(
+      await getValidationErrors(
+        {
+          [property]: propertyValue,
+        },
+        options.errorFilter
+      )
+    ).toMatchSnapshot();
+  }
+}
+
 test(`No errors with valid data`, async () => {
   expect(await getValidationErrors()).toEqual([]);
 });
 
-const flowerProperties = ["name", "description", "numberInStock", "price"];
+const flowerProperties: Array<keyof FlowerFormData> = [
+  "name",
+  "description",
+  "numberInStock",
+  "price",
+];
 test.each(flowerProperties)(
   `Doesn't accept empty input for %s`,
   async (property) => {
-    expect(
-      await getValidationErrors(
-        {
-          [property]: "",
-        },
-        "empty"
-      )
-    ).toMatchSnapshot();
+    await testValidation(property, "", {
+      isValid: false,
+      errorFilter: "empty",
+    });
   }
 );
 
 test.each(flowerProperties)(
   `Doesn't accept just spaces for %s`,
   async (property) => {
-    expect(
-      await getValidationErrors(
-        {
-          [property]: "   ",
-        },
-        "empty"
-      )
-    ).toMatchSnapshot();
+    await testValidation(property, "   ", {
+      isValid: false,
+      errorFilter: "empty",
+    });
   }
 );
 
 test(`Only accepts numbers for number in stock`, async () => {
-  expect(
-    await getValidationErrors({
-      numberInStock: "32",
-    })
-  ).toEqual([]);
+  await testValidation("numberInStock", "32", {
+    isValid: true,
+  });
 
-  expect(
-    await getValidationErrors({
-      numberInStock: "not a number",
-    })
-  ).toMatchSnapshot();
+  await testValidation("numberInStock", "not a number", {
+    isValid: false,
+    errorFilter: "needs to be a number",
+  });
 });
 
 test(`Only accepts property formatted prices`, async () => {
-  expect(
-    await getValidationErrors(
-      {
-        price: "32",
-      },
-      "format"
-    )
-  ).toMatchSnapshot();
+  await testValidation("price", "32", {
+    isValid: false,
+    errorFilter: "format",
+  });
 
-  expect(
-    await getValidationErrors(
-      {
-        price: "32.00",
-      },
-      "format"
-    )
-  ).toMatchSnapshot();
+  await testValidation("price", "32.00", {
+    isValid: false,
+    errorFilter: "format",
+  });
 
-  expect(
-    await getValidationErrors(
-      {
-        price: "$3aaa",
-      },
-      "format"
-    )
-  ).toMatchSnapshot();
+  await testValidation("price", "$3aaa", {
+    isValid: false,
+    errorFilter: "format",
+  });
 
-  expect(
-    await getValidationErrors(
-      {
-        price: "$3.86",
-      },
-      "format"
-    )
-  ).toEqual([]);
+  await testValidation("price", "$3.86", {
+    isValid: true,
+  });
 
-  expect(
-    await getValidationErrors(
-      {
-        price: "$3",
-      },
-      "format"
-    )
-  ).toEqual([]);
+  await testValidation("price", "$3", {
+    isValid: true,
+  });
 });
 
 test(`Doesn't accept nonexistent regions`, async () => {
-  expect(
-    await getValidationErrors(
-      {
-        regionID: "asdfasdf",
-      },
-      "Region does not exist"
-    )
-  ).toMatchInlineSnapshot(`
-      [
-        {
-          "location": "body",
-          "msg": "Region does not exist",
-          "path": "regionID",
-          "type": "field",
-          "value": "asdfasdf",
-        },
-      ]
-    `);
+  await testValidation("regionID", "asdfasdf", {
+    isValid: false,
+    errorFilter: "Region does not exist",
+  });
 
   const realRegionID = (await saveDummyRegion())._id.toString();
-  expect(
-    await getValidationErrors(
-      {
-        regionID: realRegionID,
-      },
-      "Region does not exist"
-    )
-  ).toEqual([]);
+  await testValidation("regionID", realRegionID, {
+    isValid: true,
+  });
 });
 
 test(`Doesn't accept duplicate flowers`, async () => {
   await saveDummyFlower({ name: "duplicate" });
 
-  expect(
-    await getValidationErrors({
-      name: "duplicate",
-    })
-  ).toMatchInlineSnapshot(`
-      [
-        {
-          "location": "body",
-          "msg": "Flower with that name already exists",
-          "path": "name",
-          "type": "field",
-          "value": "duplicate",
-        },
-      ]
-    `);
+  await testValidation("name", "duplicate", {
+    isValid: false,
+    errorFilter: "name already exists",
+  });
 });
