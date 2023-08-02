@@ -68,25 +68,30 @@ const flowerProperties: Array<keyof FlowerFormData> = [
   "numberInStock",
   "price",
 ];
-test.each(flowerProperties)(
-  `Doesn't accept empty input for %s`,
-  async (property) => {
-    await testValidation(property, "", {
-      isValid: false,
-      errorFilter: "empty",
-    });
-  }
-);
 
-test.each(flowerProperties)(
-  `Doesn't accept just spaces for %s`,
-  async (property) => {
-    await testValidation(property, "   ", {
-      isValid: false,
-      errorFilter: "empty",
-    });
-  }
-);
+describe("Empty input", () => {
+  test.each(flowerProperties)(
+    `Doesn't accept empty input for %s`,
+    async (property) => {
+      await testValidation(property, "", {
+        isValid: false,
+        errorFilter: "empty",
+      });
+    }
+  );
+});
+
+describe("Just spaces", () => {
+  test.each(flowerProperties)(
+    `Doesn't accept just spaces for %s`,
+    async (property) => {
+      await testValidation(property, "   ", {
+        isValid: false,
+        errorFilter: "empty",
+      });
+    }
+  );
+});
 
 test(`Only accepts numbers for number in stock`, async () => {
   await testValidation("numberInStock", "32", {
