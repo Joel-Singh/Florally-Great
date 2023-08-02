@@ -9,7 +9,7 @@ const updateFlowerHandler: RequestHandler = async (
   res,
   next
 ) => {
-  const flowerId: string = req.body.id!;
+  const flowerId: string = req.body.id;
 
   const update = getFlowerModelDataFromReqBody(req);
 
