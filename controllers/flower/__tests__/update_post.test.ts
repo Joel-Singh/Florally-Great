@@ -5,20 +5,21 @@ import saveDummyRegion from "./../../../utils/dummyData/savingDummyDataToDb/save
 
 import Flower, { IFlowerDocument } from "./../../../models/flower";
 import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
-import FlowerFormData from "../../../views/flowers/flowerFormData";
+import { FlowerUpdateFormData } from "../../../views/flowers/flowerFormData";
 
 test("Updates flower in db", async () => {
   const dummyFlower: IFlowerDocument = (await saveDummyFlower()).toObject({
     versionKey: false,
   });
 
-  const flowerPostData: FlowerFormData = {
+  const flowerPostData: FlowerUpdateFormData = {
     name: "newName",
     description: "newDescription",
     numberInStock: "193",
     price: "$9.14",
     regionID: (await saveDummyRegion())._id!.toString(),
     id: dummyFlower._id!.toString(),
+    isUpdate: "true",
   };
 
   await emulateCallingController(update_post, {
@@ -44,9 +45,10 @@ test("Redirects to flower on successful update", async () => {
   const dummyFlower: IFlowerDocument = await saveDummyFlower();
   const dummyFlowerId: string = dummyFlower._id.toString();
 
-  const body: FlowerFormData = {
+  const body: FlowerUpdateFormData = {
     ...(await getValidFlowerPostData()),
     id: dummyFlowerId,
+    isUpdate: "true",
   };
 
   const { getRedirectInformation } = await emulateCallingController(

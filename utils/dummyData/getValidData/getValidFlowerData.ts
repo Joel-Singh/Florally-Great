@@ -5,7 +5,10 @@ import {
   generateSequentialNumber,
   generateSequentialObjectId,
 } from "../SequentialGenerators";
-import FlowerFormData from "../../../views/flowers/flowerFormData";
+import {
+  FlowerUpdateFormData,
+  FlowerFormData,
+} from "../../../views/flowers/flowerFormData";
 
 async function getValidFlowerPostData(): Promise<FlowerFormData> {
   return {
@@ -14,12 +17,21 @@ async function getValidFlowerPostData(): Promise<FlowerFormData> {
     numberInStock: "32",
     price: "$3.89",
     regionID: (await saveDummyRegion())._id!.toString(),
-    id: generateSequentialObjectId(),
   };
 }
 
+async function getValidFlowerUpdatePostData() {
+  const regularPostData = await getValidFlowerPostData();
+  const updatePostData: FlowerUpdateFormData = {
+    ...regularPostData,
+    id: generateSequentialObjectId(),
+    isUpdate: "true",
+  };
+  return updatePostData;
+}
+
 async function getValidFlowerModelData(): Promise<IFlowerProperties> {
-  const postData = await getValidFlowerPostData();
+  const postData = await getValidFlowerUpdatePostData();
 
   const modelData: IFlowerProperties = {
     name: postData.name,

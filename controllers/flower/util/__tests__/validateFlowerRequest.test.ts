@@ -7,7 +7,7 @@ import saveDummyRegion from "../../../../utils/dummyData/savingDummyDataToDb/sav
 import saveDummyFlower from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower";
 
 import { getValidFlowerPostData } from "../../../../utils/dummyData/getValidData/getValidFlowerData";
-import FlowerFormData from "../../../../views/flowers/flowerFormData";
+import { FlowerFormData } from "../../../../views/flowers/flowerFormData";
 
 async function getValidationErrors(
   bodyOverwrites: Partial<FlowerFormData> = {},

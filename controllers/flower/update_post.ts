@@ -2,10 +2,10 @@ import asyncHandler from "express-async-handler";
 import Flower from "../../models/flower";
 import getFlowerModelDataFromReqBody from "./util/getFlowerModelDataFromReqBody";
 import { RequestHandler } from "express";
-import { RequestWithFlowerData } from "../types/flowerFormData";
+import { RequestWithFlowerFormData } from "../../views/flowers/flowerFormData";
 
 const updateFlowerHandler: RequestHandler = async (
-  req: RequestWithFlowerData,
+  req: RequestWithFlowerFormData,
   res,
   next
 ) => {
