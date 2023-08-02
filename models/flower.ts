@@ -1,4 +1,5 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
+import CustomDocument from "./CustomDocument";
 
 export interface IFlowerProperties {
   name: string;
@@ -9,8 +10,10 @@ export interface IFlowerProperties {
   _id?: mongoose.Types.ObjectId;
 }
 
-export type IFlowerDocument = IFlowerProperties &
-  Document & { url: string; _id: mongoose.Types.ObjectId };
+export type IFlowerDocument = CustomDocument<
+  IFlowerProperties,
+  { url: string }
+>;
 
 const flowerSchema: Schema = new Schema({
   name: { type: String, required: true },

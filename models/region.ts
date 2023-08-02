@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import CustomDocument from "./CustomDocument";
 
 export interface IRegionProperties {
   name: string;
@@ -6,10 +7,10 @@ export interface IRegionProperties {
   _id?: mongoose.Types.ObjectId;
 }
 
-export type IRegionDocument = Document & {
-  url: string;
-  _id: mongoose.Types.ObjectId;
-} & IRegionProperties;
+export type IRegionDocument = CustomDocument<
+  IRegionProperties,
+  { url: string }
+>;
 
 const regionSchema: Schema = new Schema({
   name: { type: String, required: true },
