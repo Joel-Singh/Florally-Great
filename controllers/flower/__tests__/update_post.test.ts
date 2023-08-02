@@ -4,8 +4,8 @@ import saveDummyFlower from "./../../../utils/dummyData/savingDummyDataToDb/save
 import saveDummyRegion from "./../../../utils/dummyData/savingDummyDataToDb/saveDummyRegion";
 
 import Flower, { IFlowerDocument } from "./../../../models/flower";
-import FlowerFormData from "../../types/flowerFormData";
 import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
+import FlowerFormData from "../../../views/flowers/flowerFormData";
 
 test("Updates flower in db", async () => {
   const dummyFlower: IFlowerDocument = (await saveDummyFlower()).toObject({

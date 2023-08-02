@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import FlowerFormData from "../../../controllers/types/flowerFormData";
 import { IFlowerProperties } from "../../../models/flower";
 import saveDummyRegion from "../savingDummyDataToDb/saveDummyRegion";
 import {
   generateSequentialNumber,
   generateSequentialObjectId,
 } from "../SequentialGenerators";
+import FlowerFormData from "../../../views/flowers/flowerFormData";
 
 async function getValidFlowerPostData(): Promise<FlowerFormData> {
   return {

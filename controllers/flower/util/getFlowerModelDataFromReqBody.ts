@@ -1,7 +1,7 @@
 import he from "he";
-import { RequestWithFlowerData } from "../../types/flowerFormData";
 import { IFlowerProperties } from "../../../models/flower";
 import mongoose from "mongoose";
+import { RequestWithFlowerData } from "../../../views/flowers/flowerFormData";
 
 export default function (req: RequestWithFlowerData) {
   const { name, description, price, numberInStock, regionID } = req.body;
