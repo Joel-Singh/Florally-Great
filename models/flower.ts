@@ -9,7 +9,8 @@ export interface IFlowerProperties {
   _id?: mongoose.Types.ObjectId;
 }
 
-export type IFlowerDocument = IFlowerProperties & Document & { url: string };
+export type IFlowerDocument = IFlowerProperties &
+  Document & { url: string; _id: mongoose.Types.ObjectId };
 
 const flowerSchema: Schema = new Schema({
   name: { type: String, required: true },
