@@ -7,10 +7,10 @@ import saveDummyRegion from "../../../../utils/dummyData/savingDummyDataToDb/sav
 import saveDummyFlower from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower";
 
 import { getValidFlowerPostData } from "../../../../utils/dummyData/getValidData/getValidFlowerData";
-import { FlowerFormData } from "../../../../views/flowers/flowerFormData";
+import { FlowerUpdateFormData } from "../../../../views/flowers/flowerFormData";
 
 async function getValidationErrors(
-  bodyOverwrites: Partial<FlowerFormData> = {},
+  bodyOverwrites: Partial<FlowerUpdateFormData> = {},
   errorMsgMustInclude?: string
 ) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {
@@ -28,9 +28,9 @@ async function getValidationErrors(
     });
 }
 
-async function testValidation<Key extends keyof FlowerFormData>(
+async function testValidation<Key extends keyof FlowerUpdateFormData>(
   property: Key,
-  propertyValue: FlowerFormData[Key],
+  propertyValue: FlowerUpdateFormData[Key],
   options:
     | {
         isValid: true;
@@ -62,7 +62,7 @@ test(`No errors with valid data`, async () => {
   expect(await getValidationErrors()).toEqual([]);
 });
 
-const flowerProperties: Array<keyof FlowerFormData> = [
+const flowerProperties: Array<keyof FlowerUpdateFormData> = [
   "name",
   "description",
   "numberInStock",
