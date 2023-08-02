@@ -18,7 +18,7 @@ test("Updates flower in db", async () => {
     numberInStock: "193",
     price: "$9.14",
     regionID: (await saveDummyRegion())._id!.toString(),
-    id: dummyFlower._id,
+    id: dummyFlower._id!.toString(),
   };
 
   await emulateCallingController(update_post, {
