@@ -13,10 +13,10 @@ export interface FlowerUpdateFormData extends FlowerFormData {
   isUpdate: "true";
 }
 
-export interface RequestWithFlowerData extends Request {
+export interface RequestWithFlowerFormData extends Request {
   body: FlowerFormData;
 }
 
-export interface RequestWithFlowerFormData extends Request {
+export interface RequestWithFlowerUpdateFormData extends Request {
   body: FlowerUpdateFormData;
 }

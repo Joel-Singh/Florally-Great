@@ -1,9 +1,9 @@
 import he from "he";
 import { IFlowerProperties } from "../../../models/flower";
 import mongoose from "mongoose";
-import { RequestWithFlowerData } from "../../../views/flowers/flowerFormData";
+import { RequestWithFlowerFormData } from "../../../views/flowers/flowerFormData";
 
-export default function (req: RequestWithFlowerData) {
+export default function (req: RequestWithFlowerFormData) {
   const { name, description, price, numberInStock, regionID } = req.body;
   const priceToNumber = parseFloat(price.slice(1));
 
