@@ -1,21 +1,41 @@
 import asyncHandler from "express-async-handler";
 import Flower from "../../models/flower";
 import getFlowerModelDataFromReqBody from "./util/getFlowerModelDataFromReqBody";
-import { RequestHandler } from "express";
-import { RequestWithFlowerUpdateFormData } from "../../views/flowers/flowerFormData";
+import { RequestHandler, Response } from "express";
+import {
+  RequestWithFlowerFormData,
+  RequestWithFlowerUpdateFormData,
+} from "../../views/flowers/flowerFormData";
+import { validationResult } from "express-validator";
+import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
+import validateFlowerRequest from "./util/validateFlowerRequest";
 
 const updateFlowerHandler: RequestHandler = async (
   req: RequestWithFlowerUpdateFormData,
   res,
   next
 ) => {
-  const flowerId: string = req.body.id;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    await renderFlowerForm(res, { errors: errors.array() });
+  } else {
+    await updateAndRedirect(req, res);
+  }
+};
 
+async function updateAndRedirect(
+  req: RequestWithFlowerUpdateFormData,
+  res: Response
+) {
+  const flowerId: string = req.body.id!;
   const update = getFlowerModelDataFromReqBody(req);
 
   await Flower.findByIdAndUpdate(flowerId, update);
   const updatedFlowerUrl = (await Flower.findById(flowerId))!.url;
   res.redirect(updatedFlowerUrl);
-};
+}
 
-export default asyncHandler(updateFlowerHandler as any);
+export default [
+  validateFlowerRequest,
+  asyncHandler(updateFlowerHandler as any),
+];

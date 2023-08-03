@@ -1,6 +1,10 @@
 import Flower from "../../../models/flower";
 import Region from "../../../models/region";
 import { body } from "express-validator";
+import {
+  RequestWithFlowerFormData,
+  RequestWithFlowerUpdateFormData,
+} from "../../../views/flowers/flowerFormData";
 
 const regionExistsValidation = body("regionID").custom(
   async (regionID: string) => {
@@ -12,10 +16,39 @@ const regionExistsValidation = body("regionID").custom(
   }
 );
 
-const checkDuplicateFlower = body("name").custom(async (name: string) => {
-  const foundFlower = await Flower.findOne({ name }).exec();
-  if (foundFlower !== null) {
-    throw new Error("Flower with that name already exists");
+const checkDuplicateFlower = body("name").custom(async (name: string, meta) => {
+  const flowerDuplicateError = new Error(
+    "Flower with that name already exists"
+  );
+  const req = meta.req as
+    | RequestWithFlowerFormData
+    | RequestWithFlowerUpdateFormData;
+
+  if ("isUpdate" in req.body) {
+    await checkFlowerForUpdate(name, req as RequestWithFlowerUpdateFormData);
+  } else {
+    await checkFlowerForCreate(name);
+  }
+
+  async function checkFlowerForCreate(name: string) {
+    const foundFlower = await Flower.findOne({ name }).exec();
+    if (foundFlower !== null) {
+      throw flowerDuplicateError;
+    }
+  }
+
+  async function checkFlowerForUpdate(
+    name: string,
+    req: RequestWithFlowerUpdateFormData
+  ) {
+    const foundFlowers = await Flower.find({ name });
+    const foundFlowersWithoutOriginal = foundFlowers.filter(
+      (flower) => flower.id !== req.body.id
+    );
+
+    if (foundFlowersWithoutOriginal.length > 0) {
+      throw flowerDuplicateError;
+    }
   }
 });
 

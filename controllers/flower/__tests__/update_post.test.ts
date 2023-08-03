@@ -63,3 +63,35 @@ test("Redirects to flower on successful update", async () => {
   expect(redirectPage).toBeDefined();
   expect(redirectPage).toMatchInlineSnapshot(`"/flowers/Name11"`);
 });
+
+test("Rerenders form with error on error", async () => {
+  const dummyFlower: IFlowerDocument = await saveDummyFlower();
+  const dummyFlowerId: string = dummyFlower._id.toString();
+  const invalidName = "";
+
+  const body: FlowerUpdateFormData = {
+    ...(await getValidFlowerPostData()),
+    name: invalidName,
+    id: dummyFlowerId,
+    isUpdate: "true",
+  };
+
+  const { getRenderInformation } = await emulateCallingController(update_post, {
+    body,
+  });
+
+  const { view, locals } = getRenderInformation();
+
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
+  expect(locals.errors).toMatchInlineSnapshot(`
+    [
+      {
+        "location": "body",
+        "msg": "Name can't be empty",
+        "path": "name",
+        "type": "field",
+        "value": "",
+      },
+    ]
+  `);
+});

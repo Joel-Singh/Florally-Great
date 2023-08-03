@@ -149,3 +149,46 @@ test(`Doesn't accept duplicate flowers`, async () => {
     errorFilter: "name already exists",
   });
 });
+
+test("No duplicate flower error on name-unchanged update", async () => {
+  const name = "name";
+  const flowerBeingUpdated = await saveDummyFlower({ name });
+
+  expect(
+    await getValidationErrors(
+      {
+        name,
+        isUpdate: "true",
+        id: flowerBeingUpdated._id.toString(),
+      },
+      "name already exists"
+    )
+  ).toStrictEqual([]);
+});
+
+test("THERE IS duplicate flower error on name-changed update when there is already a flower with that name", async () => {
+  const name = "name";
+  const flowerBeingUpdated = await saveDummyFlower({ name });
+  await saveDummyFlower({ name });
+
+  expect(
+    await getValidationErrors(
+      {
+        name,
+        isUpdate: "true",
+        id: flowerBeingUpdated._id.toString(),
+      },
+      "name already exists"
+    )
+  ).toMatchInlineSnapshot(`
+    [
+      {
+        "location": "body",
+        "msg": "Flower with that name already exists",
+        "path": "name",
+        "type": "field",
+        "value": "name",
+      },
+    ]
+  `);
+});
