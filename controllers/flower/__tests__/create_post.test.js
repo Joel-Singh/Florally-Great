@@ -1,7 +1,7 @@
 const {
   default: emulateCallingController,
 } = require("../../testingUtils/emulateCallingController.ts");
-const create_post = require("../create_post.js");
+const { default: create_post } = require("../create_post.ts");
 const {
   getValidFlowerPostData,
 } = require("../../../utils/dummyData/getValidData/getValidFlowerData.ts");
