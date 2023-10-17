@@ -21,7 +21,7 @@ module.exports = app;
 async function connectToMongoDB() {
   mongoose.set("strictQuery", false);
   const mongoDB =
-    "mongodb+srv://Joel:Joel@flower-store.byzszdj.mongodb.net/?retryWrites=true&w=majority";
+    "mongodb+srv://joel:joel@cluster0.7fk43dg.mongodb.net/?retryWrites=true&w=majority";
 
   try {
     await mongoose.connect(mongoDB);
