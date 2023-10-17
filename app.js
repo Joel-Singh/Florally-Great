@@ -7,17 +7,6 @@ const {
   default: configureExpressApp,
 } = require("./appMiddlewares/configureExpressApp");
 
-connectToMongoDB();
-
-const app = configureExpressApp({
-  viewEngine: true,
-  generalMiddleware: true,
-  routes: true,
-  errorHandling: true,
-});
-
-module.exports = app;
-
 async function connectToMongoDB() {
   mongoose.set("strictQuery", false);
   const mongoDB =
@@ -29,3 +18,14 @@ async function connectToMongoDB() {
     console.error(error);
   }
 }
+
+connectToMongoDB();
+
+const app = configureExpressApp({
+  viewEngine: true,
+  generalMiddleware: true,
+  routes: true,
+  errorHandling: true,
+});
+
+module.exports = app;
