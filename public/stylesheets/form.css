@@ -107,3 +107,7 @@ select {
   height: 100px;
   margin-top: 5px;
 }
+
+option {
+  background-color: var(--black);
+}
