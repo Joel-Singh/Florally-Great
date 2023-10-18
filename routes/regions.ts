@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 
+// @ts-ignore
 const requireRegionController = (controllerName) => {
+  // @ts-ignore
   return require(path.join(appRoot, "controllers", "region", controllerName));
 };
 
