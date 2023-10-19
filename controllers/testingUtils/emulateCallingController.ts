@@ -4,7 +4,7 @@ type nestedFunctionArray = Array<Function | nestedFunctionArray>;
 export default async function emulateCallingController(
   controller: nestedFunctionArray | Function,
   reqProperties: Partial<Request> = {},
-  resProperties: Partial<Response> = {}
+  resProperties: Partial<Response> = {},
 ) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
 
@@ -22,18 +22,18 @@ export default async function emulateCallingController(
     getRenderInformation: createMockInfoGetter(
       fakeRes.render,
       "view",
-      "locals"
+      "locals",
     ),
     getRedirectInformation: createMockInfoGetter(
       fakeRes.redirect,
-      "redirectPage"
+      "redirectPage",
     ),
   };
 }
 
 function getFakeMiddleware(
   reqProperties: Partial<Request>,
-  resProperties: Partial<Response>
+  resProperties: Partial<Response>,
 ) {
   const fakeReq = {
     ...reqProperties,
@@ -72,7 +72,7 @@ function createMockInfoGetter<T extends Record<string, any>>(
 async function runMiddlewareArray(
   middlewares: Array<Function>,
   req: Partial<Request>,
-  res: Partial<Response>
+  res: Partial<Response>,
 ) {
   for (const middleware of middlewares) {
     let nextCalled = false;
