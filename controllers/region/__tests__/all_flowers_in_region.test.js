@@ -6,16 +6,15 @@ const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
 const {
   default: emulateCallingController,
 } = require("../../testingUtils/emulateCallingController.ts");
-const all_flowers_in_region = require("../all_flowers_in_region.js");
+const { default: all_flowers_in_region } = require("../all_flowers_in_region");
 
 test("Tries rendering correct view", async () => {
   const regionName = "regionName";
 
   await addRegionToDb(regionName);
 
-  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
-    regionName
-  );
+  const { getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
   const { view } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"regions/all_flowers_in_region"`);
@@ -26,9 +25,8 @@ test("Passes in region with empty flower list", async () => {
 
   await addRegionToDb(regionName);
 
-  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
-    regionName
-  );
+  const { getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
   const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
@@ -50,9 +48,8 @@ test("Passes in region and flowers", async () => {
   const regionId = await addRegionToDb(regionName);
   await addFlowerToDb(regionId);
 
-  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
-    regionName
-  );
+  const { getRenderInformation } =
+    await simulateInvokingAllFlowersInRegion(regionName);
   const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
