@@ -7,13 +7,19 @@ export default async function emulateCallingController(
   resProperties: Partial<Response> = {},
 ) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
+  const mockNext = jest.fn();
 
   if (!Array.isArray(controller)) {
-    await controller(fakeReq, fakeRes);
+    await controller(fakeReq, fakeRes, mockNext);
   } else {
     // @ts-ignore
     controller = controller.flat(Infinity) as Array<Function>;
-    await runMiddlewareArray(controller as Array<Function>, fakeReq, fakeRes);
+    await runMiddlewareArray(
+      controller as Array<Function>,
+      fakeReq,
+      fakeRes,
+      mockNext,
+    );
   }
 
   return {
@@ -28,6 +34,7 @@ export default async function emulateCallingController(
       fakeRes.redirect,
       "redirectPage",
     ),
+    mockNext,
   };
 }
 
@@ -73,13 +80,13 @@ async function runMiddlewareArray(
   middlewares: Array<Function>,
   req: Partial<Request>,
   res: Partial<Response>,
+  next: ReturnType<typeof jest.fn>,
 ) {
   for (const middleware of middlewares) {
-    let nextCalled = false;
-    const next = () => {
-      nextCalled = true;
-    };
+    let previousCallLength = next.mock.calls.length;
     await middleware(req, res, next);
-    if (!nextCalled) break;
+    let currentCallLength = next.mock.calls.length;
+    let nextWasCalled = currentCallLength > previousCallLength;
+    if (!nextWasCalled) break;
   }
 }
