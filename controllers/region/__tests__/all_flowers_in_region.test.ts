@@ -71,6 +71,16 @@ test("Passes in region and flowers", async () => {
   `);
 });
 
+test("Calls next with a 404 if region not found", async () => {
+  const nonExistingRegion = "IDontExist";
+
+  const { getMockNextInformation } =
+    await simulateInvokingAllFlowersInRegion(nonExistingRegion);
+
+  const { errorOrEmpty } = getMockNextInformation();
+  expect(errorOrEmpty.status).toMatchInlineSnapshot(`404`);
+});
+
 async function addRegionToDb(regionName) {
   const id = "6483d106cdcd7f4f8d6ed46a";
   await new Region({
