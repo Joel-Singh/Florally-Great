@@ -25,6 +25,7 @@ export default async function emulateCallingController(
   return {
     fakeReq,
     fakeRes,
+    mockNext,
     getRenderInformation: createMockInfoGetter(
       fakeRes.render,
       "view",
@@ -34,7 +35,7 @@ export default async function emulateCallingController(
       fakeRes.redirect,
       "redirectPage",
     ),
-    mockNext,
+    getMockNextInformation: createMockInfoGetter(mockNext, "errorOrEmpty"),
   };
 }
 
