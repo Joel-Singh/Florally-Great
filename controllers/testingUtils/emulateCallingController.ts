@@ -4,7 +4,7 @@ type nestedFunctionArray = Array<Function | nestedFunctionArray>;
 export default async function emulateCallingController(
   controller: nestedFunctionArray | Function,
   reqProperties: Partial<Request> = {},
-  resProperties: Partial<Response> = {},
+  resProperties: Partial<Response> = {}
 ) {
   const { fakeReq, fakeRes } = getFakeMiddleware(reqProperties, resProperties);
   const mockNext = jest.fn();
@@ -18,7 +18,7 @@ export default async function emulateCallingController(
       controller as Array<Function>,
       fakeReq,
       fakeRes,
-      mockNext,
+      mockNext
     );
   }
 
@@ -29,11 +29,11 @@ export default async function emulateCallingController(
     getRenderInformation: createMockInfoGetter(
       fakeRes.render,
       "view",
-      "locals",
+      "locals"
     ),
     getRedirectInformation: createMockInfoGetter(
       fakeRes.redirect,
-      "redirectPage",
+      "redirectPage"
     ),
     getMockNextInformation: createMockInfoGetter(mockNext, "errorOrEmpty"),
   };
@@ -41,7 +41,7 @@ export default async function emulateCallingController(
 
 function getFakeMiddleware(
   reqProperties: Partial<Request>,
-  resProperties: Partial<Response>,
+  resProperties: Partial<Response>
 ) {
   const fakeReq = {
     ...reqProperties,
@@ -81,7 +81,7 @@ async function runMiddlewareArray(
   middlewares: Array<Function>,
   req: Partial<Request>,
   res: Partial<Response>,
-  next: ReturnType<typeof jest.fn>,
+  next: ReturnType<typeof jest.fn>
 ) {
   for (const middleware of middlewares) {
     let previousCallLength = next.mock.calls.length;
