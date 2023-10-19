@@ -5,7 +5,7 @@ const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
 
 module.exports = asyncHandler(async (req, res, next) => {
   const regionName = req.params.name;
-  let region = await Region.findOne({ name: regionName }).exec();
+  let region = await Region.findOne({ name: regionName });
 
   let flowersInRegion = await Flower.find({ region: region._id });
 
