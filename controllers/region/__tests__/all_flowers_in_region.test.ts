@@ -9,8 +9,9 @@ test("Tries rendering correct view", async () => {
 
   await addRegionToDb(regionName);
 
-  const { getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
   const { view } = getRenderInformation();
 
   expect(view).toMatchInlineSnapshot(`"regions/all_flowers_in_region"`);
@@ -21,8 +22,9 @@ test("Passes in region with empty flower list", async () => {
 
   await addRegionToDb(regionName);
 
-  const { getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
   const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
@@ -44,8 +46,9 @@ test("Passes in region and flowers", async () => {
   const regionId = await addRegionToDb(regionName);
   await addFlowerToDb(regionId);
 
-  const { getRenderInformation } =
-    await simulateInvokingAllFlowersInRegion(regionName);
+  const { getRenderInformation } = await simulateInvokingAllFlowersInRegion(
+    regionName
+  );
   const { locals } = getRenderInformation();
 
   expect(locals).toMatchInlineSnapshot(`
@@ -74,8 +77,9 @@ test("Passes in region and flowers", async () => {
 test("Calls next with a 404 if region not found", async () => {
   const nonExistingRegion = "IDontExist";
 
-  const { getMockNextInformation } =
-    await simulateInvokingAllFlowersInRegion(nonExistingRegion);
+  const { getMockNextInformation } = await simulateInvokingAllFlowersInRegion(
+    nonExistingRegion
+  );
 
   const { errorOrEmpty } = getMockNextInformation();
   expect(errorOrEmpty.status).toMatchInlineSnapshot(`404`);

@@ -21,5 +21,5 @@ export default asyncHandler(
         flower_list: flowersInRegion,
       });
     }
-  },
+  }
 );
