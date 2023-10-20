@@ -11,7 +11,8 @@ fi
 git diff --name-only --cached --diff-filter=d | xargs prettier --check
 if [ $? -ne 0 ]; then
     echo "Formatting files..."
-    npm run formatAll
+    git diff --name-only --cached --diff-filter=d | xargs prettier --write
+    git add .
     echo "Files formatted!"
 fi
 
