@@ -1,6 +1,4 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 stash_count_before=$(git stash list | wc -l)
 git stash -q --keep-index --include-untracked
 stash_count_after=$(git stash list | wc -l)
@@ -15,7 +13,6 @@ if [ $? -ne 0 ]; then
     echo "Formatting files..."
     npm run formatAll
     echo "Files formatted!"
-    exit 1
 fi
 
 npm test -- --onlyChanged --forceExit

@@ -12,7 +12,7 @@
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
     "clearAndPopulateDB": "ts-node bin/clearAndPopulateDB.ts mongodb+srv://joel:joel@cluster0.7fk43dg.mongodb.net/?retryWrites=true&w=majority",
-    "prepare": "husky install"
+    "prepare": "git config core.hooksPath ./git-hooks"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -37,7 +37,6 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.4.4",
     "babel-jest": "^29.6.1",
-    "husky": "^8.0.3",
     "jest": "^29.7.0",
     "mongodb-memory-server": "^8.12.2",
     "nodemon": "^2.0.22",
