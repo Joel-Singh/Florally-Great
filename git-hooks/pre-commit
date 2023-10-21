@@ -5,7 +5,6 @@ git commit --no-verify -m "[pre-commit] stashing unstaged changes"
 git stash push -u
 git reset --soft HEAD^
 
-git stash push -k
 stash_count_after=$(git stash list | wc -l)
 
 if [ $? -ne 0 ]; then
