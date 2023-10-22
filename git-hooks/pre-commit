@@ -33,6 +33,7 @@ popIfPreviouslyStashed() {
 
 npm test -- --onlyChanged --forceExit
 if [ $? -ne 0 ]; then
+    popIfPreviouslyStashed
     echo "Tests failed!"
     exit 1
 fi
