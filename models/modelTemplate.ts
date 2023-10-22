@@ -1,11 +1,16 @@
-import { Schema as SchemaMongoose, ObjectId } from "mongoose";
+import mongoose, {
+  Schema as SchemaMongoose,
+  ObjectId as SchemaObjectIdType,
+} from "mongoose";
 import CustomDocument from "./CustomDocument";
+
+type RegularObjectId = mongoose.Types.ObjectId;
 
 type getPropertyType<T> = T extends StringConstructor
   ? string
   : T extends NumberConstructor
   ? number
-  : ObjectId;
+  : RegularObjectId;
 
 type SchemaStructure = Record<
   string,
@@ -20,7 +25,7 @@ type SchemaStructure = Record<
 export type Properties<Schema extends SchemaStructure> = {
   [property in keyof Schema]: getPropertyType<Schema[property]["type"]>;
 } & {
-  _id?: ObjectId;
+  _id?: RegularObjectId;
 };
 
 export type Document<
