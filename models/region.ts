@@ -1,26 +1,16 @@
-import mongoose, { Schema, Document } from "mongoose";
-import CustomDocument from "./CustomDocument";
+import mongoose, { ObjectId, Schema } from "mongoose";
+import { Document, Properties, setURLVirtual } from "./modelTemplate";
 
-export interface IRegionProperties {
-  name: string;
-  description: string;
-  _id?: mongoose.Types.ObjectId;
-}
-
-export type IRegionDocument = CustomDocument<
-  IRegionProperties,
-  { url: string }
->;
-
-const regionSchema: Schema = new Schema({
+const schemaObj = {
   name: { type: String, required: true },
   description: { type: String, required: true },
-});
+};
 
-regionSchema.virtual("url").get(function (this: IRegionProperties) {
-  return `/regions/${this.name}`;
-});
+export type IRegionProperties = Properties<typeof schemaObj>;
+export type IRegionDocument = Document<typeof schemaObj, { url: string }>;
+const regionSchema: Schema = new Schema(schemaObj);
+
+setURLVirtual(regionSchema, "Region");
 
 const RegionModel = mongoose.model<IRegionDocument>("Region", regionSchema);
-
 export default RegionModel;
