@@ -1,9 +1,14 @@
 #!/usr/bin/env sh
+
+stashUnstagedChanges() {
+  git commit --no-verify -m "[pre-commit] stashing unstaged changes"
+  git stash push -u
+  git reset --soft HEAD^
+}
+
 stash_count_before=$(git stash list | wc -l)
 
-git commit --no-verify -m "[pre-commit] stashing unstaged changes"
-git stash push -u
-git reset --soft HEAD^
+stashUnstagedChanges
 
 stash_count_after=$(git stash list | wc -l)
 
