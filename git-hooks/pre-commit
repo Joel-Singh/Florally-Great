@@ -25,14 +25,18 @@ if [ $? -ne 0 ]; then
     echo "Files formatted!"
 fi
 
+popIfPreviouslyStashed() {
+  if (( stash_count_after > stash_count_before )); then
+      git stash pop -q
+  fi
+}
+
 npm test -- --onlyChanged --forceExit
 if [ $? -ne 0 ]; then
     echo "Tests failed!"
     exit 1
 fi
 
-if (( stash_count_after > stash_count_before )); then
-    git stash pop -q
-fi
+popIfPreviouslyStashed
 
 exit 0
