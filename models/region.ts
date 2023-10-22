@@ -6,6 +6,7 @@ const schemaObj = {
   description: { type: String, required: true },
 };
 
+export const regionKeys = Object.keys(schemaObj);
 export type IRegionProperties = Properties<typeof schemaObj>;
 export type IRegionDocument = Document<typeof schemaObj, { url: string }>;
 const regionSchema: Schema = new Schema(schemaObj);

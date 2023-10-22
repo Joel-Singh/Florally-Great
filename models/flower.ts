@@ -9,6 +9,7 @@ const schemaObj = {
   region: { type: Schema.Types.ObjectId, ref: "Region", required: true },
 };
 
+export const flowerKeys = Object.keys(schemaObj);
 export type IFlowerProperties = Properties<typeof schemaObj>;
 export type IFlowerDocument = Document<typeof schemaObj, { url: string }>;
 const flowerSchema: Schema = new Schema(schemaObj);
