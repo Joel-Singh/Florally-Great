@@ -11,7 +11,7 @@ export type IRegionProperties = Properties<typeof schemaObj>;
 export type IRegionDocument = Document<typeof schemaObj, { url: string }>;
 const regionSchema: Schema = new Schema(schemaObj);
 
-setURLVirtual(regionSchema, "Region");
+setURLVirtual(regionSchema, "regions");
 
 const RegionModel = mongoose.model<IRegionDocument>("Region", regionSchema);
 export default RegionModel;
