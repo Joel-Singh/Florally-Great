@@ -4,8 +4,6 @@ import {
   ValidationError,
   validationResult,
 } from "express-validator";
-import { IRegionDocument, IRegionProperties } from "../../models/region";
-import { IFlowerDocument, IFlowerProperties } from "../../models/flower";
 import asyncHandler from "express-async-handler";
 
 export default function getCreatePostMiddleware<
