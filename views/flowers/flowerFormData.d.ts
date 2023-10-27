@@ -1,12 +1,15 @@
 import { Request } from "express";
 
-export interface FlowerFormData {
-  name: string;
-  description: string;
-  numberInStock: string;
-  price: string;
-  regionID: string;
-}
+export const flowerFormKeys = [
+  "name",
+  "description",
+  "numberInStock",
+  "price",
+  "regionID",
+] as const;
+export type FlowerFormData = {
+  [K in (typeof flowerFormKeys)[number]]: string;
+};
 
 export interface FlowerUpdateFormData extends FlowerFormData {
   id: string;
