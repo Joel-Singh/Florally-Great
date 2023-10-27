@@ -1,3 +1,14 @@
 {
-  "setupFilesAfterEnv": ["./jestSetup.js"]
+  "setupFilesAfterEnv": ["./jestSetup.js"],
+  "moduleFileExtensions": [
+    "js",
+    "mjs",
+    "cjs",
+    "jsx",
+    "ts",
+    "tsx",
+    "json",
+    "node",
+    "d.ts"
+  ]
 }
