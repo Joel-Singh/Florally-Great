@@ -2,7 +2,7 @@ import create_post from "../create_post";
 import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
 import Flower from "../../../models/flower";
 import emulateCallingController from "../../testingUtils/emulateCallingController";
-import { Document } from "mongoose";
+import { snapshotWithoutId } from "../../commonTestUtil/snapshotWithoutId";
 
 test("Redirects and saves flower with valid data", async () => {
   const { getRedirectInformation } = await emulateCallingController(
@@ -34,9 +34,3 @@ test("Renders flower form with errors with invalid data", async () => {
   expect(errors.length).toBeGreaterThanOrEqual(1);
   expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
 });
-
-function snapshotWithoutId(document: Document, snapshotName: string) {
-  document = document.toObject();
-  delete document._id;
-  expect(document).toMatchSnapshot(snapshotName);
-}
