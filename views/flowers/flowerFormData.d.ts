@@ -1,4 +1,5 @@
 import { Request } from "express";
+import typeFromStringTuple from "../typeFromStringTuple";
 
 export const flowerFormKeys = [
   "name",
@@ -7,9 +8,8 @@ export const flowerFormKeys = [
   "price",
   "regionID",
 ] as const;
-export type FlowerFormData = {
-  [K in (typeof flowerFormKeys)[number]]: string;
-};
+
+export type FlowerFormData = typeFromStringTuple<typeof flowerFormKeys>;
 
 export interface FlowerUpdateFormData extends FlowerFormData {
   id: string;
