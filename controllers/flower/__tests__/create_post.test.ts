@@ -1,18 +1,15 @@
-const {
-  default: emulateCallingController,
-} = require("../../testingUtils/emulateCallingController.ts");
-const { default: create_post } = require("../create_post.ts");
-const {
-  getValidFlowerPostData,
-} = require("../../../utils/dummyData/getValidData/getValidFlowerData.ts");
-const { default: Flower } = require("../../../models/flower.ts");
+import create_post from "../create_post";
+import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
+import Flower from "../../../models/flower";
+import emulateCallingController from "../../testingUtils/emulateCallingController";
+import { Document } from "mongoose";
 
 test("Redirects and saves flower with valid data", async () => {
   const { getRedirectInformation } = await emulateCallingController(
     create_post,
     {
       body: await getValidFlowerPostData(),
-    }
+    },
   );
 
   const savedFlower = (await Flower.find({}))[0];
@@ -38,7 +35,7 @@ test("Renders flower form with errors with invalid data", async () => {
   expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
 });
 
-function snapshotWithoutId(document, snapshotName) {
+function snapshotWithoutId(document: Document, snapshotName: string) {
   document = document.toObject();
   delete document._id;
   expect(document).toMatchSnapshot(snapshotName);
