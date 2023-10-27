@@ -1,4 +1,4 @@
-type typeFromStringTuple<Tuple extends string[]> = {
+type typeFromStringTuple<Tuple extends readonly string[]> = {
   [K in Tuple[number]]: string;
 };
 
