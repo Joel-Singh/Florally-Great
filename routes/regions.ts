@@ -1,3 +1,5 @@
+import create_post from "../controllers/region/create_post";
+
 const express = require("express");
 const router = express.Router();
 const path = require("path");
@@ -11,7 +13,7 @@ const requireRegionController = (controllerName) => {
 router.get("/", requireRegionController("list"));
 
 router.get("/create", requireRegionController("create_get"));
-router.post("/create", requireRegionController("create_post"));
+router.post("/create", create_post);
 
 router.get("/delete", requireRegionController("delete_get"));
 router.post("/delete", requireRegionController("delete_post"));

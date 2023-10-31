@@ -1,10 +1,9 @@
-const asyncHandler = require("express-async-handler");
-const path = require("path");
-const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
+import asyncHandler from "express-async-handler";
+import { Request, Response, NextFunction } from "express";
+import { body, validationResult } from "express-validator";
+import Region, { IRegionDocument } from "../../models/region";
 
-const { body, validationResult } = require("express-validator");
-
-module.exports = [
+export default [
   body("name", `Name can't be empty`).trim().isLength({ min: 1 }).escape(),
 
   body("description", `Description can't be empty`)
@@ -12,7 +11,8 @@ module.exports = [
     .isLength({ min: 1 })
     .escape(),
 
-  asyncHandler(async (req, res, next) => {
+  // @ts-ignore
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -29,7 +29,7 @@ module.exports = [
           errors: [{ msg: "Region already exists" }],
         });
       } else {
-        const region = new Region({ name, description });
+        const region: IRegionDocument = new Region({ name, description });
         await region.save();
         res.redirect(region.url);
       }
