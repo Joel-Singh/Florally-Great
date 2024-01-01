@@ -38,29 +38,6 @@ describe("Generate region select", () => {
       ).toMatchSnapshot();
     });
   });
-
-  test("Preselects region", () => {
-    const preselectedRegionName = "I should be selected";
-    const regionSelect = renderRegionSelect({
-      regionList: [
-        getValidRegionData(),
-        getValidRegionData({ name: preselectedRegionName }),
-        getValidRegionData(),
-      ],
-      prepopulatedValues: {
-        regionName: preselectedRegionName,
-      },
-    });
-
-    expect(regionSelect.querySelector("[selected]")).toMatchInlineSnapshot(`
-      <option
-        selected="selected"
-        value="000000000000000000000012"
-      >
-        I should be selected
-      </option>
-    `);
-  });
 });
 
 describe("Prepopulated input values", () => {
@@ -114,6 +91,29 @@ describe("Prepopulated input values", () => {
     );
 
     expect(hiddenIdInput.value).toMatch(idValue);
+  });
+
+  test("Preselects region", () => {
+    const preselectedRegionName = "I should be selected";
+    const regionSelect = renderRegionSelect({
+      regionList: [
+        getValidRegionData(),
+        getValidRegionData({ name: preselectedRegionName }),
+        getValidRegionData(),
+      ],
+      prepopulatedValues: {
+        regionName: preselectedRegionName,
+      },
+    });
+
+    expect(regionSelect.querySelector("[selected]")).toMatchInlineSnapshot(`
+      <option
+        selected="selected"
+        value="000000000000000000000012"
+      >
+        I should be selected
+      </option>
+    `);
   });
 
   function getDefaultInputValueAttributesInFlowerForm(locals) {
