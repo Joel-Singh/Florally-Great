@@ -9,7 +9,7 @@ test("Redirects and saves flower with valid data", async () => {
     create_post,
     {
       body: await getValidFlowerPostData(),
-    },
+    }
   );
 
   const savedFlower = (await Flower.find({}))[0];

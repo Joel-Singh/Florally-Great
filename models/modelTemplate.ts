@@ -30,7 +30,7 @@ export type Properties<Schema extends SchemaStructure> = {
 
 export type Document<
   Schema extends SchemaStructure,
-  virtualProperties,
+  virtualProperties
 > = CustomDocument<Properties<Schema>, virtualProperties>;
 
 export function setURLVirtual(schema: SchemaMongoose, folder: string) {

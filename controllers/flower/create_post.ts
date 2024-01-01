@@ -14,5 +14,5 @@ export default getCreatePostMiddleware(
   validateFlowerRequest,
   renderFlowerForm,
   getFlowerModelDataFromReqBody,
-  saveFlower,
+  saveFlower
 );

@@ -3,7 +3,7 @@ import he from "he";
 import typeFromStringTuple from "../../views/typeFromStringTuple";
 export default function getDecodedFormValues<keys extends readonly string[]>(
   req: Request,
-  keys: readonly string[],
+  keys: readonly string[]
 ) {
   let decodedValues: Record<string, string> = {};
   for (const key of keys) {

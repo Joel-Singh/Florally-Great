@@ -1,5 +1,5 @@
 console.log(
-  'This script populates some test flowers and regions to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"',
+  'This script populates some test flowers and regions to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"'
 );
 
 const userArgs = process.argv.slice(2);
@@ -46,7 +46,7 @@ async function populateDatabase() {
     const flowerData = getFlowerData();
     const flowerDocuments: IFlowerDocument[] = flowerData.map((flower) => {
       const region = regions.find(
-        (region) => region.name === flower.regionName,
+        (region) => region.name === flower.regionName
       );
 
       const flowerModelData: IFlowerProperties = {
