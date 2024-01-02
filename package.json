@@ -7,6 +7,7 @@
     "start:dev": "nodemon --ext js,ts,css,pug,json --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "npm run typecheck && jest",
+    "test:watch": "npm run test -- --watch",
     "typecheck": "tsc --noEmit",
     "debug": "node --inspect-brk -r ts-node/register bin/www",
     "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --run-in-band",
