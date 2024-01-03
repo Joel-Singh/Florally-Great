@@ -7,18 +7,18 @@ import {
 import asyncHandler from "express-async-handler";
 
 export default function getCreatePostMiddleware<
-  Properties,
-  Document extends { url: string }
+  DocumentProperties,
+  Document extends { url: string },
 >(
   validators: ValidationChain[],
   renderForm: (
     res: Response,
-    locals: { errors: ValidationError[] }
+    locals: { errors: ValidationError[] },
   ) => Promise<void>,
-  getModelDataFromReqBody: (res: Request) => Properties,
+  getModelDataFromReqBody: (res: Request) => DocumentProperties,
   saveDocument: (
-    docProperties: Properties
-  ) => Promise<Document> | Promise<Error>
+    docProperties: DocumentProperties,
+  ) => Promise<Document> | Promise<Error>,
 ) {
   return [
     validators,
@@ -26,7 +26,7 @@ export default function getCreatePostMiddleware<
     asyncHandler(async function (
       req: Request,
       res: Response,
-      next: NextFunction
+      next: NextFunction,
     ) {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -37,7 +37,7 @@ export default function getCreatePostMiddleware<
           res.redirect(document.url);
         } else {
           throw new Error(
-            "Stinkers, did the document saved not have a url property or errored out?"
+            "Stinkers, did the document saved not have a url property or errored out?",
           );
         }
       }
