@@ -16,7 +16,7 @@ export default asyncHandler(async function (
       id: string;
     };
   },
-  options: { isUpdate?: boolean } = {}
+  options: { isUpdate?: boolean } = {},
 ) {
   const allRegionNames = await Region.find({}, "name").exec();
 
