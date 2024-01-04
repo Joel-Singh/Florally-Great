@@ -5,7 +5,7 @@ import { RequestHandler, Response } from "express";
 import {
   RequestWithFlowerFormData,
   RequestWithFlowerUpdateFormData,
-} from "../../views/flowers/flowerFormData";
+} from "../../views/flowers/flowerFormInterfaces";
 import { validationResult } from "express-validator";
 import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
 import validateFlowerRequest from "./util/validateFlowerRequest";
@@ -13,7 +13,7 @@ import validateFlowerRequest from "./util/validateFlowerRequest";
 const updateFlowerHandler: RequestHandler = async (
   req: RequestWithFlowerUpdateFormData,
   res,
-  next
+  next,
 ) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -25,7 +25,7 @@ const updateFlowerHandler: RequestHandler = async (
 
 async function updateAndRedirect(
   req: RequestWithFlowerUpdateFormData,
-  res: Response
+  res: Response,
 ) {
   const flowerId: string = req.body.id!;
   const update = getFlowerModelDataFromReqBody(req);

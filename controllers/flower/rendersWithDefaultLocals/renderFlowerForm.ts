@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import Region from "../../../models/region";
 import { Response } from "express";
 import { ValidationError } from "express-validator";
-import { FlowerFormPrepopulatedValues } from "../../../views/flowers/flowerFormData";
+import { FlowerFormPrepopulatedValues } from "../../../views/flowers/flowerFormInterfaces";
 
 export default asyncHandler(async function (
   res: Response,

@@ -1,7 +1,7 @@
 import he from "he";
 import { IFlowerProperties } from "../../../models/flower";
 import mongoose from "mongoose";
-import { flowerFormKeys } from "../../../views/flowers/flowerFormData";
+import { flowerFormKeys } from "../../../views/flowers/flowerFormInterfaces";
 import getDecodedFormValues from "../../template/getDecodedFormValues";
 import { Request } from "express";
 

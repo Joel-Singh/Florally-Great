@@ -7,11 +7,11 @@ import saveDummyRegion from "../../../../utils/dummyData/savingDummyDataToDb/sav
 import saveDummyFlower from "../../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower";
 
 import { getValidFlowerPostData } from "../../../../utils/dummyData/getValidData/getValidFlowerData";
-import { FlowerUpdateFormData } from "../../../../views/flowers/flowerFormData";
+import { FlowerUpdateFormData } from "../../../../views/flowers/flowerFormInterfaces";
 
 async function getValidationErrors(
   bodyOverwrites: Partial<FlowerUpdateFormData> = {},
-  errorMsgMustInclude?: string
+  errorMsgMustInclude?: string,
 ) {
   const { fakeReq } = await emulateCallingController(validateFlowerRequest, {
     body: {
@@ -38,13 +38,13 @@ async function testValidation<Key extends keyof FlowerUpdateFormData>(
     | {
         isValid: false;
         errorFilter: string;
-      }
+      },
 ) {
   if (options.isValid) {
     expect(
       await getValidationErrors({
         [property]: propertyValue,
-      })
+      }),
     ).toEqual([]);
   } else {
     expect(
@@ -52,8 +52,8 @@ async function testValidation<Key extends keyof FlowerUpdateFormData>(
         {
           [property]: propertyValue,
         },
-        options.errorFilter
-      )
+        options.errorFilter,
+      ),
     ).toMatchSnapshot();
   }
 }
@@ -77,7 +77,7 @@ describe("Empty input", () => {
         isValid: false,
         errorFilter: "empty",
       });
-    }
+    },
   );
 });
 
@@ -89,7 +89,7 @@ describe("Just spaces", () => {
         isValid: false,
         errorFilter: "empty",
       });
-    }
+    },
   );
 });
 
@@ -116,7 +116,7 @@ describe(`Price validation`, () => {
         isValid: false,
         errorFilter: "format",
       });
-    }
+    },
   );
 
   test.each(validFlowerPrices)(
@@ -125,7 +125,7 @@ describe(`Price validation`, () => {
       await testValidation("price", flowerPrice, {
         isValid: true,
       });
-    }
+    },
   );
 });
 
@@ -161,8 +161,8 @@ test("No duplicate flower error on name-unchanged update", async () => {
         isUpdate: "true",
         id: flowerBeingUpdated._id.toString(),
       },
-      "name already exists"
-    )
+      "name already exists",
+    ),
   ).toStrictEqual([]);
 });
 
@@ -178,8 +178,8 @@ test("THERE IS duplicate flower error on name-changed update when there is alrea
         isUpdate: "true",
         id: flowerBeingUpdated._id.toString(),
       },
-      "name already exists"
-    )
+      "name already exists",
+    ),
   ).toMatchInlineSnapshot(`
     [
       {

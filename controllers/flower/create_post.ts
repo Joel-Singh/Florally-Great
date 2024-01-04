@@ -6,7 +6,7 @@ import getCreatePostMiddleware from "../template/create_post";
 import {
   FlowerFormPrepopulatedValues,
   RequestWithFlowerFormData,
-} from "../../views/flowers/flowerFormData";
+} from "../../views/flowers/flowerFormInterfaces";
 
 async function saveFlower(flowerProperties: IFlowerProperties) {
   const flower = new Flower(flowerProperties);

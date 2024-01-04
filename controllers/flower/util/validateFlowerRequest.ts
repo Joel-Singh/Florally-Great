@@ -4,7 +4,7 @@ import { body } from "express-validator";
 import {
   RequestWithFlowerFormData,
   RequestWithFlowerUpdateFormData,
-} from "../../../views/flowers/flowerFormData";
+} from "../../../views/flowers/flowerFormInterfaces";
 
 const regionExistsValidation = body("regionID").custom(
   async (regionID: string) => {
@@ -13,12 +13,12 @@ const regionExistsValidation = body("regionID").custom(
 
     if (!regionIDArray.includes(regionID))
       throw new Error("Region does not exist");
-  }
+  },
 );
 
 const checkDuplicateFlower = body("name").custom(async (name: string, meta) => {
   const flowerDuplicateError = new Error(
-    "Flower with that name already exists"
+    "Flower with that name already exists",
   );
   const req = meta.req as
     | RequestWithFlowerFormData
@@ -39,11 +39,11 @@ const checkDuplicateFlower = body("name").custom(async (name: string, meta) => {
 
   async function checkFlowerForUpdate(
     name: string,
-    req: RequestWithFlowerUpdateFormData
+    req: RequestWithFlowerUpdateFormData,
   ) {
     const foundFlowers = await Flower.find({ name });
     const foundFlowersWithoutOriginal = foundFlowers.filter(
-      (flower) => flower.id !== req.body.id
+      (flower) => flower.id !== req.body.id,
     );
 
     if (foundFlowersWithoutOriginal.length > 0) {

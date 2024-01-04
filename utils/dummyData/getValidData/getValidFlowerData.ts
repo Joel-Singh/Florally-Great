@@ -8,7 +8,7 @@ import {
 import {
   FlowerUpdateFormData,
   FlowerFormData,
-} from "../../../views/flowers/flowerFormData";
+} from "../../../views/flowers/flowerFormInterfaces";
 
 async function getValidFlowerPostData(): Promise<FlowerFormData> {
   return {

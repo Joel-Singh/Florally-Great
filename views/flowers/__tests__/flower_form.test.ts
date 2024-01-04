@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import renderPugToDOM from "../../renderPugToDOM.js";
-import { FlowerFormLocals } from "../flowerFormData.js";
+import { FlowerFormLocals } from "../flowerFormInterfaces.js";
 import getValidRegionData from "./../../../utils/dummyData/getValidData/getValidRegionData";
 import { generateSequentialObjectId } from "../../../utils/dummyData/SequentialGenerators";
 
