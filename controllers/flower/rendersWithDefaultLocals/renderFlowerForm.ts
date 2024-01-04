@@ -2,19 +2,13 @@ import asyncHandler from "express-async-handler";
 import Region from "../../../models/region";
 import { Response } from "express";
 import { ValidationError } from "express-validator";
+import { FlowerFormPrepopulatedValues } from "../../../views/flowers/flowerFormData";
 
 export default asyncHandler(async function (
   res: Response,
   viewContext: {
     errors?: ValidationError[];
-    prepopulatedValues?: {
-      name: string;
-      description: string;
-      numberInStock: string;
-      price: string;
-      regionName: string;
-      id: string;
-    };
+    prepopulatedValues?: FlowerFormPrepopulatedValues;
   },
   options: { isUpdate?: boolean } = {},
 ) {

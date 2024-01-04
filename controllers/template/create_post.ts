@@ -13,9 +13,10 @@ export default function getCreatePostMiddleware<
   validators: ValidationChain[],
   renderForm: (
     res: Response,
-    locals: { errors: ValidationError[] },
+    locals: { errors: ValidationError[]; prepopulatedValues: object },
   ) => Promise<void>,
   getModelDataFromReqBody: (res: Request) => DocumentProperties,
+  getPreviousDataFromReqBody: (res: Request) => object,
   saveDocument: (
     docProperties: DocumentProperties,
   ) => Promise<Document> | Promise<Error>,
@@ -30,7 +31,10 @@ export default function getCreatePostMiddleware<
     ) {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
-        await renderForm(res, { errors: errors.array() });
+        await renderForm(res, {
+          errors: errors.array(),
+          prepopulatedValues: getPreviousDataFromReqBody(req),
+        });
       } else {
         const document = await saveDocument(getModelDataFromReqBody(req));
         if ("url" in document) {

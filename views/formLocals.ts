@@ -1,3 +1,3 @@
 export default interface formLocals {
-  errors: { msg: string }[];
+  errors?: { msg: string }[];
 }

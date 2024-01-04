@@ -34,3 +34,27 @@ test("Renders flower form with errors with invalid data", async () => {
   expect(errors.length).toBeGreaterThanOrEqual(1);
   expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
 });
+
+test("When rendering with error, renders previous inputs", async () => {
+  const { getRenderInformation } = await emulateCallingController(create_post, {
+    body: {
+      ...(await getValidFlowerPostData()),
+      numberInStock: "Not a number!",
+    },
+  });
+
+  expect(await Flower.find({})).toStrictEqual([]);
+  const {
+    locals: { prepopulatedValues },
+  } = getRenderInformation();
+
+  expect(prepopulatedValues).toMatchInlineSnapshot(`
+    {
+      "description": "Description",
+      "name": "Name7",
+      "numberInStock": "Not a number!",
+      "price": "$3.89",
+      "region": "000000000000000000000009",
+    }
+  `);
+});

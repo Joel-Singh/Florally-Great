@@ -1,6 +1,8 @@
 import { Request } from "express";
 import typeFromKeys from "../typeFromKeys";
 import formLocals from "../formLocals";
+import { ObjectId } from "mongoose";
+import { IRegionProperties } from "../../models/region";
 
 export const flowerFormKeys = [
   "name",
@@ -11,15 +13,18 @@ export const flowerFormKeys = [
 ] as const;
 
 export type FlowerFormData = typeFromKeys<typeof flowerFormKeys>;
-export type FlowerFormLocals = FlowerFormData & {
-  prepopulatedValues: {
-    name: string;
-    description: string;
-    numberInStock: string;
-    price: string;
-    region: string;
-  };
-} & formLocals;
+export type FlowerFormPrepopulatedValues = {
+  name?: string;
+  description?: string;
+  numberInStock?: string;
+  price?: string;
+  region?: string;
+};
+
+export type FlowerFormLocals = formLocals & {
+  regionList?: IRegionProperties[];
+  prepopulatedValues?: FlowerFormPrepopulatedValues;
+};
 
 export interface FlowerUpdateFormData extends FlowerFormData {
   id: string;

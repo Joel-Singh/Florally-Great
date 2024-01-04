@@ -1,14 +1,17 @@
-const renderPugToDOM = require("../../renderPugToDOM.js");
+import mongoose from "mongoose";
+import renderPugToDOM from "../../renderPugToDOM.js";
+import { FlowerFormLocals } from "../flowerFormData.js";
 import getValidRegionData from "./../../../utils/dummyData/getValidData/getValidRegionData";
+import { generateSequentialObjectId } from "../../../utils/dummyData/SequentialGenerators";
 
-function renderRegionSelect(locals) {
+function renderRegionSelect(locals: FlowerFormLocals) {
   const renderedForm = renderPugToDOM(
     "./views/flowers/flower_form.pug",
-    locals
+    locals,
   );
 
   const regionListElement = renderedForm.querySelector(
-    "[placeholder='select region']"
+    "[placeholder='select region']",
   );
 
   return regionListElement;
@@ -22,7 +25,7 @@ describe("Generate region select", () => {
 
     test("Region select has one region", () => {
       expect(
-        renderRegionSelect({ regionList: [getValidRegionData()] })
+        renderRegionSelect({ regionList: [getValidRegionData()] }),
       ).toMatchSnapshot();
     });
 
@@ -34,7 +37,7 @@ describe("Generate region select", () => {
             getValidRegionData(),
             getValidRegionData(),
           ],
-        })
+        }),
       ).toMatchSnapshot();
     });
   });
@@ -83,33 +86,38 @@ describe("Prepopulated input values", () => {
     };
     const renderedForm = renderPugToDOM(
       "./views/flowers/flower_form_update.pug",
-      locals
+      locals,
     );
 
     const hiddenIdInput = renderedForm.querySelector(
-      'input[type="hidden"][name="id"]'
+      'input[type="hidden"][name="id"]',
     );
 
     expect(hiddenIdInput.value).toMatch(idValue);
   });
 
   test("Preselects region", () => {
-    const preselectedRegionName = "I should be selected";
+    const preselectedRegionId = new mongoose.Types.ObjectId(
+      generateSequentialObjectId(),
+    );
     const regionSelect = renderRegionSelect({
       regionList: [
         getValidRegionData(),
-        getValidRegionData({ name: preselectedRegionName }),
+        getValidRegionData({
+          _id: preselectedRegionId,
+          name: "I should be selected",
+        }),
         getValidRegionData(),
       ],
       prepopulatedValues: {
-        regionName: preselectedRegionName,
+        region: preselectedRegionId.toString(),
       },
     });
 
     expect(regionSelect.querySelector("[selected]")).toMatchInlineSnapshot(`
       <option
         selected="selected"
-        value="000000000000000000000012"
+        value="000000000000000000000009"
       >
         I should be selected
       </option>
@@ -119,7 +127,7 @@ describe("Prepopulated input values", () => {
   function getDefaultInputValueAttributesInFlowerForm(locals) {
     const renderedForm = renderPugToDOM(
       "./views/flowers/flower_form.pug",
-      locals
+      locals,
     );
     let inputs = renderedForm.querySelectorAll("input");
     inputs = Array.from(inputs);
