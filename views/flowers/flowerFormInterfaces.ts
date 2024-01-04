@@ -1,6 +1,6 @@
 import { Request } from "express";
 import typeFromKeys from "../typeFromKeys";
-import formLocals from "../formLocals";
+import formLocals from "../FormLocals";
 import { ObjectId } from "mongoose";
 import { IRegionProperties } from "../../models/region";
 
