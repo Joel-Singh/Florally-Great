@@ -19,7 +19,7 @@ router.get("/delete", requireRegionController("delete_get"));
 router.post("/delete", requireRegionController("delete_post"));
 
 router.get("/:name", requireRegionController("all_flowers_in_region").default);
-router.get("/:name/update", requireRegionController("update_get"));
+router.get("/:name/update", requireRegionController("update_get").default);
 router.post("/:name/update", requireRegionController("update_post"));
 
 module.exports = router;
