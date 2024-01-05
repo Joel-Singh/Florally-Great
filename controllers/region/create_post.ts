@@ -10,14 +10,7 @@ import {
   RegionFormLocals,
   RequestWithRegionFormData,
 } from "../../views/regions/regionFormInterfaces";
-
-const validators = [
-  body("name", `Name can't be empty`).trim().isLength({ min: 1 }).escape(),
-  body("description", `Description can't be empty`)
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
-];
+import validation from "./validation";
 
 function renderForm(res: Response, locals: RegionFormLocals) {
   res.render("regions/region_form", {
@@ -46,7 +39,7 @@ async function saveDocument(properties: IRegionProperties) {
 }
 
 export default getCreatePostMiddleware(
-  validators,
+  validation,
   renderForm,
   getModelDataFromReqBody,
   getPreviousDataFromReqBody,
