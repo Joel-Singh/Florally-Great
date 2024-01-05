@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Redirects and saves region with valid data: Correct Redirect 1`] = `
+{
+  "redirectPage": "/regions/Name1",
+}
+`;
+
+exports[`Redirects and saves region with valid data: Region saved 1`] = `
+{
+  "__v": 0,
+  "description": "Description",
+  "name": "Name1",
+}
+`;
