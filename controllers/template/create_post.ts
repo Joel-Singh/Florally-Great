@@ -13,8 +13,8 @@ export default function getCreatePostMiddleware<
   validators: ValidationChain[],
   renderForm: (
     res: Response,
-    locals: { errors: ValidationError[]; prepopulatedValues: object },
-  ) => Promise<void>,
+    locals: { errors: ValidationError[]; prepopulatedValues: any },
+  ) => Promise<void> | void,
   getModelDataFromReqBody: (res: Request) => DocumentProperties,
   getPreviousDataFromReqBody: (res: Request) => object,
   saveDocument: (
