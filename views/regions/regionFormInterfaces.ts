@@ -11,3 +11,9 @@ export interface RequestWithRegionFormData extends Request {
 export interface RegionFormLocals extends formLocals {
   prepopulatedValues: typeFromKeys<typeof regionFormKeys>;
 }
+
+export interface RegionUpdateFormLocals extends RegionFormLocals {
+  prepopulatedValues: RegionFormLocals["prepopulatedValues"] & {
+    id: string;
+  };
+}
