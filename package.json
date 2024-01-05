@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node ./bin/www",
+    "start": "tsx ./bin/www",
     "start:dev": "nodemon --ext js,ts,css,pug,json --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "npm run typecheck && jest",
     "test:watch": "npm run test -- --watch",
     "typecheck": "tsc --noEmit",
-    "debug": "node --inspect-brk -r ts-node/register bin/www",
-    "test:debug": "node --inspect-brk -r ts-node/register node_modules/.bin/jest --run-in-band",
+    "debug": "node --inspect-brk --import tsx bin/www",
+    "test:debug": "node --inspect-brk --import tsx node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
     "clearAndPopulateDB": "ts-node bin/clearAndPopulateDB.ts mongodb+srv://joel:joel@cluster0.7fk43dg.mongodb.net/?retryWrites=true&w=majority",
@@ -26,7 +26,8 @@
     "jsdom": "^22.1.0",
     "mongoose": "^7.1.0",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "tsx": "^4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -44,7 +45,6 @@
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8",
     "supertest": "^6.3.3",
-    "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
 }
