@@ -17,10 +17,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-git diff --name-only --cached --diff-filter=d | xargs prettier --check
+git diff --name-only --cached --diff-filter=d | xargs npx prettier --check
 if [ $? -ne 0 ]; then
     echo "Formatting files..."
-    git diff --name-only --cached --diff-filter=d | xargs prettier --write
+    git diff --name-only --cached --diff-filter=d | xargs npx prettier --write
     git add .
     echo "Files formatted!"
 fi
