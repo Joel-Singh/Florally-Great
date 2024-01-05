@@ -7,11 +7,11 @@ import { generateSequentialObjectId } from "../../../utils/dummyData/SequentialG
 function renderRegionSelect(locals: FlowerFormLocals) {
   const renderedForm = renderPugToDOM(
     "./views/flowers/flower_form.pug",
-    locals,
+    locals
   );
 
   const regionListElement = renderedForm.querySelector(
-    "[placeholder='select region']",
+    "[placeholder='select region']"
   );
 
   return regionListElement;
@@ -25,7 +25,7 @@ describe("Generate region select", () => {
 
     test("Region select has one region", () => {
       expect(
-        renderRegionSelect({ regionList: [getValidRegionData()] }),
+        renderRegionSelect({ regionList: [getValidRegionData()] })
       ).toMatchSnapshot();
     });
 
@@ -37,7 +37,7 @@ describe("Generate region select", () => {
             getValidRegionData(),
             getValidRegionData(),
           ],
-        }),
+        })
       ).toMatchSnapshot();
     });
   });
@@ -86,11 +86,11 @@ describe("Prepopulated input values", () => {
     };
     const renderedForm = renderPugToDOM(
       "./views/flowers/flower_form_update.pug",
-      locals,
+      locals
     );
 
     const hiddenIdInput = renderedForm.querySelector(
-      'input[type="hidden"][name="id"]',
+      'input[type="hidden"][name="id"]'
     );
 
     expect(hiddenIdInput.value).toMatch(idValue);
@@ -98,7 +98,7 @@ describe("Prepopulated input values", () => {
 
   test("Preselects region", () => {
     const preselectedRegionId = new mongoose.Types.ObjectId(
-      generateSequentialObjectId(),
+      generateSequentialObjectId()
     );
     const regionSelect = renderRegionSelect({
       regionList: [
@@ -127,7 +127,7 @@ describe("Prepopulated input values", () => {
   function getDefaultInputValueAttributesInFlowerForm(locals) {
     const renderedForm = renderPugToDOM(
       "./views/flowers/flower_form.pug",
-      locals,
+      locals
     );
     let inputs = renderedForm.querySelectorAll("input");
     inputs = Array.from(inputs);

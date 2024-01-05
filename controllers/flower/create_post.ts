@@ -15,7 +15,7 @@ async function saveFlower(flowerProperties: IFlowerProperties) {
 }
 
 function getPreviousDataFromReqBody(
-  req: RequestWithFlowerFormData,
+  req: RequestWithFlowerFormData
 ): FlowerFormPrepopulatedValues {
   const { name, description, price, regionID, numberInStock } = req.body;
   return {
@@ -32,5 +32,5 @@ export default getCreatePostMiddleware(
   renderFlowerForm,
   getFlowerModelDataFromReqBody,
   getPreviousDataFromReqBody,
-  saveFlower,
+  saveFlower
 );

@@ -6,7 +6,7 @@ test("Don't display anything when prepopulated values aren't passed in", () => {
 
   const renderedForm = renderPugToDOM(
     "./views/regions/region_form.pug",
-    locals,
+    locals
   );
 
   expect(getInputValues(renderedForm)).toMatchInlineSnapshot(`
@@ -27,7 +27,7 @@ test("Display prepopulated values", () => {
 
   const renderedForm = renderPugToDOM(
     "./views/regions/region_form.pug",
-    locals,
+    locals
   );
 
   expect(getInputValues(renderedForm)).toMatchInlineSnapshot(`

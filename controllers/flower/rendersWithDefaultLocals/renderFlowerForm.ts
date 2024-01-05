@@ -10,7 +10,7 @@ export default asyncHandler(async function (
     errors?: ValidationError[];
     prepopulatedValues?: FlowerFormPrepopulatedValues;
   },
-  options: { isUpdate?: boolean } = {},
+  options: { isUpdate?: boolean } = {}
 ) {
   const allRegionNames = await Region.find({}, "name").exec();
 

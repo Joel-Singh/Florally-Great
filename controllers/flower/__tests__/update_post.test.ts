@@ -34,7 +34,7 @@ test("Updates flower in db", async () => {
   expect(updatedFlower.name).toBe(flowerPostData.name);
   expect(updatedFlower.description).toBe(flowerPostData.description);
   expect(updatedFlower.numberInStock).toBe(
-    Number(flowerPostData.numberInStock),
+    Number(flowerPostData.numberInStock)
   );
   expect(updatedFlower.price).toBe(parseFloat(flowerPostData.price.slice(1)));
 
@@ -55,7 +55,7 @@ test("Redirects to flower on successful update", async () => {
     update_post,
     {
       body,
-    },
+    }
   );
 
   const { redirectPage } = getRedirectInformation();
