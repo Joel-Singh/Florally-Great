@@ -8,8 +8,18 @@ block header
 
 block form elements
   label(for='name') Name:
-  input#name(type='text', placeholder='Enter name here' name='name')
+  input#name(
+    type='text',
+    placeholder='Enter name here'
+    name='name'
+    value=(prepopulatedValues && prepopulatedValues.name ? prepopulatedValues.name : '')
+  )
 
   label(for='description') Description:
-  input#description(type='text', placeholder='Enter description here' name='description')
+  input#description(
+    type='text',
+    placeholder='Enter description here'
+    name='description'
+    value=(prepopulatedValues && prepopulatedValues.description ? prepopulatedValues.description : '')
+  )
   button(type='submit') Submit
