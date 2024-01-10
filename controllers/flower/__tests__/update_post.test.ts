@@ -5,7 +5,10 @@ import saveDummyRegion from "./../../../utils/dummyData/savingDummyDataToDb/save
 
 import Flower, { IFlowerDocument } from "./../../../models/flower";
 import { getValidFlowerPostData } from "../../../utils/dummyData/getValidData/getValidFlowerData";
-import { FlowerUpdateFormData } from "../../../views/flowers/flowerFormInterfaces";
+import {
+  FlowerUpdateFormData,
+  FlowerUpdateFormLocals,
+} from "../../../views/flowers/flowerFormInterfaces";
 
 test("Updates flower in db", async () => {
   const dummyFlower: IFlowerDocument = (await saveDummyFlower()).toObject({
@@ -93,5 +96,35 @@ test("Rerenders form with error on error", async () => {
         "value": "",
       },
     ]
+  `);
+});
+
+test("Rerenders on error with previous data", async () => {
+  const dummyFlower: IFlowerDocument = await saveDummyFlower();
+  const dummyFlowerId: string = dummyFlower._id.toString();
+  const invalidName = "";
+
+  const body: FlowerUpdateFormData = {
+    ...(await getValidFlowerPostData()),
+    name: invalidName,
+    id: dummyFlowerId,
+    isUpdate: "true",
+  };
+
+  const { getRenderInformation } = await emulateCallingController(update_post, {
+    body,
+  });
+
+  const locals: FlowerUpdateFormLocals = getRenderInformation().locals;
+
+  expect(locals.prepopulatedValues).toMatchInlineSnapshot(`
+    {
+      "description": "Description",
+      "id": "000000000000000000000024",
+      "name": "",
+      "numberInStock": "32",
+      "price": "$3.89",
+      "regionID": "000000000000000000000027",
+    }
   `);
 });

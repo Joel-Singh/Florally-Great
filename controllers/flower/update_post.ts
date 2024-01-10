@@ -3,12 +3,15 @@ import Flower from "../../models/flower";
 import getFlowerModelDataFromReqBody from "./util/getFlowerModelDataFromReqBody";
 import { RequestHandler, Response } from "express";
 import {
+  FlowerUpdateFormLocals,
   RequestWithFlowerFormData,
   RequestWithFlowerUpdateFormData,
+  flowerUpdateFormKeys,
 } from "../../views/flowers/flowerFormInterfaces";
 import { validationResult } from "express-validator";
 import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
 import validateFlowerRequest from "./util/validateFlowerRequest";
+import getDecodedFormValues from "../template/getDecodedFormValues";
 
 const updateFlowerHandler: RequestHandler = async (
   req: RequestWithFlowerUpdateFormData,
@@ -17,7 +20,15 @@ const updateFlowerHandler: RequestHandler = async (
 ) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    await renderFlowerForm(res, { errors: errors.array() });
+    const locals: FlowerUpdateFormLocals = {
+      errors: errors.array(),
+      prepopulatedValues: getDecodedFormValues<typeof flowerUpdateFormKeys>(
+        req,
+        flowerUpdateFormKeys
+      ),
+    };
+
+    await renderFlowerForm(res, locals, { isUpdate: true });
   } else {
     await updateAndRedirect(req, res);
   }
@@ -35,7 +46,4 @@ async function updateAndRedirect(
   res.redirect(updatedFlowerUrl);
 }
 
-export default [
-  validateFlowerRequest,
-  updateFlowerHandler,
-];
+export default [validateFlowerRequest, updateFlowerHandler];
