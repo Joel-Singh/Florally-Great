@@ -12,6 +12,15 @@ export const flowerFormKeys = [
   "regionID",
 ] as const;
 
+export const flowerUpdateFormKeys = [
+  "name",
+  "description",
+  "numberInStock",
+  "price",
+  "id",
+  "regionID",
+] as const;
+
 export type FlowerFormData = typeFromKeys<typeof flowerFormKeys>;
 export type FlowerFormPrepopulatedValues = {
   name?: string;
