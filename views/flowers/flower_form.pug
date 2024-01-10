@@ -58,7 +58,7 @@ mixin generateRegionSelect(regionList)
   label(for='region') Region:
   select#region(placeholder='select region' name='regionID')
     for region in regionList
-      if (region._id.toString() === prepopulatedValues.region)
+      if (region._id.toString() === prepopulatedValues.regionID)
         option(value=region._id selected) #{region.name}
       else
         option(value=region._id) #{region.name}

@@ -110,7 +110,7 @@ describe("Prepopulated input values", () => {
         getValidRegionData(),
       ],
       prepopulatedValues: {
-        region: preselectedRegionId.toString(),
+        regionID: preselectedRegionId.toString(),
       },
     });
 

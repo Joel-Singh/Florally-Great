@@ -27,7 +27,7 @@ export type FlowerFormPrepopulatedValues = {
   description?: string;
   numberInStock?: string;
   price?: string;
-  region?: string;
+  regionID?: string;
 };
 
 export type FlowerFormLocals = formLocals & {

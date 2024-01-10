@@ -54,7 +54,7 @@ test("When rendering with error, renders previous inputs", async () => {
       "name": "Name7",
       "numberInStock": "Not a number!",
       "price": "$3.89",
-      "region": "000000000000000000000009",
+      "regionID": "000000000000000000000009",
     }
   `);
 });

@@ -22,7 +22,7 @@ function getPreviousDataFromReqBody(
     name,
     description,
     price,
-    region: regionID.toString(),
+    regionID: regionID.toString(),
     numberInStock,
   };
 }
