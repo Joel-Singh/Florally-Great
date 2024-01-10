@@ -6,7 +6,7 @@ import { FlowerFormPrepopulatedValues } from "../../../views/flowers/flowerFormI
 
 export default asyncHandler(async function (
   res: Response,
-  viewContext: {
+  locals: {
     errors?: ValidationError[];
     prepopulatedValues?: FlowerFormPrepopulatedValues;
   },
@@ -19,7 +19,7 @@ export default asyncHandler(async function (
     : "flowers/flower_form";
 
   res.render(formToRender, {
-    ...viewContext,
+    ...locals,
     regionList: allRegionNames,
   });
 } as any);
