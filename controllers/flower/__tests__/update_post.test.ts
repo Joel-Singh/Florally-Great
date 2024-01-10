@@ -82,7 +82,7 @@ test("Rerenders form with error on error", async () => {
 
   const { view, locals } = getRenderInformation();
 
-  expect(view).toMatchInlineSnapshot(`"flowers/flower_form"`);
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_form_update"`);
   expect(locals.errors).toMatchInlineSnapshot(`
     [
       {
