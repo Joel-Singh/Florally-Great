@@ -26,6 +26,11 @@ export type FlowerFormLocals = formLocals & {
   prepopulatedValues?: FlowerFormPrepopulatedValues;
 };
 
+export type FlowerUpdateFormLocals = formLocals & {
+  regionList?: IRegionProperties[];
+  prepopulatedValues?: FlowerFormPrepopulatedValues & { id: string };
+};
+
 export interface FlowerUpdateFormData extends FlowerFormData {
   id: string;
   isUpdate: "true";
