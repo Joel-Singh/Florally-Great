@@ -37,5 +37,5 @@ async function updateAndRedirect(
 
 export default [
   validateFlowerRequest,
-  asyncHandler(updateFlowerHandler as any),
+  updateFlowerHandler,
 ];
