@@ -1,14 +1,10 @@
-const path = require("path");
+import formatHtml from "../../testingUtils/formatHtml.js";
+import { default as emulateCallingController } from "../../testingUtils/emulateCallingController";
 
-const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
-const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
-const formatHtml = require("../../testingUtils/formatHtml.js");
+import Flower from "../../../models/flower";
+import Region from "../../../models/region";
 
-const {
-  default: emulateCallingController,
-} = require("../../testingUtils/emulateCallingController.ts");
-
-const delete_post = require("../delete_post").default;
+import delete_post from "../delete_post";
 
 test("If no region is selected, error message is returned", async () => {
   const { getRenderInformation } = await emulateCallingController(delete_post, {
