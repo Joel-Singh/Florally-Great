@@ -22,13 +22,9 @@ export const flowerUpdateFormKeys = [
 ] as const;
 
 export type FlowerFormData = typeFromKeys<typeof flowerFormKeys>;
-export type FlowerFormPrepopulatedValues = {
-  name?: string;
-  description?: string;
-  numberInStock?: string;
-  price?: string;
-  regionID?: string;
-};
+export type FlowerFormPrepopulatedValues = Partial<
+  typeFromKeys<typeof flowerFormKeys>
+>;
 
 export type FlowerFormLocals = formLocals & {
   regionList?: IRegionProperties[];
