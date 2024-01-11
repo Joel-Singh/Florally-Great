@@ -8,23 +8,7 @@ const {
   default: emulateCallingController,
 } = require("../../testingUtils/emulateCallingController.ts");
 
-const { default: configureExpressApp } = require(path.join(
-  appRoot,
-  "appMiddlewares",
-  "configureExpressApp"
-));
-
-const delete_post = require("../delete_post");
-
-let app;
-beforeAll(async () => {
-  app = configureExpressApp({
-    viewEngine: true,
-    generalMiddleware: true,
-  });
-
-  app.use("/", delete_post);
-});
+const delete_post = require("../delete_post").default;
 
 test("If no region is selected, error message is returned", async () => {
   const { getRenderInformation } = await emulateCallingController(delete_post, {

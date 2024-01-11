@@ -1,10 +1,11 @@
-const asyncHandler = require("express-async-handler");
-const path = require("path");
-const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
-const { default: Flower } = require(path.join(appRoot, "models", "flower.ts"));
-const renderDeleteRegion = require("./rendersWithDefaultLocals/renderDeleteRegion.js");
+import asyncHandler from "express-async-handler";
+import renderDeleteRegion from "./rendersWithDefaultLocals/renderDeleteRegion.js";
 
-module.exports = asyncHandler(async (req, res, next) => {
+import Flower from "../../models/flower";
+import Region from "../../models/region";
+import { RequestHandler } from "express";
+
+const delete_post: RequestHandler = async (req, res, next) => {
   const { regionId, fromRegionDetailPage } = req.body;
 
   if (typeof regionId === "undefined") {
@@ -24,7 +25,9 @@ module.exports = asyncHandler(async (req, res, next) => {
     await Region.findByIdAndDelete(regionId);
     await regionDeleteSuccessRender(res, fromRegionDetailPage);
   }
-});
+};
+
+export default asyncHandler(delete_post as any);
 
 async function regionDeleteFailureRender(regionId, res, fromRegionDetailPage) {
   if (fromRegionDetailPage === true) {

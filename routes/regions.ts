@@ -1,5 +1,6 @@
 import all_flowers_in_region from "../controllers/region/all_flowers_in_region";
 import create_post from "../controllers/region/create_post";
+import delete_post from "../controllers/region/delete_post";
 import update_get from "../controllers/region/update_get";
 import update_post from "../controllers/region/update_post";
 
@@ -19,7 +20,7 @@ router.get("/create", requireRegionController("create_get"));
 router.post("/create", create_post);
 
 router.get("/delete", requireRegionController("delete_get"));
-router.post("/delete", requireRegionController("delete_post"));
+router.post("/delete", delete_post);
 
 router.get("/:name", all_flowers_in_region);
 router.get("/:name/update", update_get);
