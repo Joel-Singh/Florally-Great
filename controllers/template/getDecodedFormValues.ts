@@ -3,7 +3,7 @@ import he from "he";
 import typeFromKeys from "../../views/typeFromKeys";
 export default function getDecodedFormValues<keys extends readonly string[]>(
   req: Request,
-  keys: readonly string[]
+  keys: keys
 ) {
   let decodedValues: Record<string, string> = {};
   for (const key of keys) {

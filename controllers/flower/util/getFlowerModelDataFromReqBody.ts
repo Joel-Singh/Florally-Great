@@ -7,7 +7,7 @@ import { Request } from "express";
 
 export default function (req: Request) {
   const { name, description, price, numberInStock, regionID } =
-    getDecodedFormValues<typeof flowerFormKeys>(req, flowerFormKeys);
+    getDecodedFormValues(req, flowerFormKeys);
 
   const priceToNumber = parseFloat(price.slice(1));
 
