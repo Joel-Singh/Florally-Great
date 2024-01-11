@@ -4,8 +4,14 @@ import renderDeleteRegion from "./rendersWithDefaultLocals/renderDeleteRegion.js
 import Flower from "../../models/flower";
 import Region from "../../models/region";
 import { RequestHandler } from "express";
+import { RequestWithRegionDeleteFormData } from "../../views/regions/regionDeleteFormInterfaces.js";
 
-const delete_post: RequestHandler = async (req, res, next) => {
+const delete_post: RequestHandler = async (
+  req: RequestWithRegionDeleteFormData,
+  res,
+  next
+) => {
+  // @ts-ignore
   const { regionId, fromRegionDetailPage } = req.body;
 
   if (typeof regionId === "undefined") {
