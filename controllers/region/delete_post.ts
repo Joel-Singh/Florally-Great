@@ -4,14 +4,17 @@ import renderDeleteRegion from "./rendersWithDefaultLocals/renderDeleteRegion.js
 import Flower from "../../models/flower";
 import Region from "../../models/region";
 import { RequestHandler } from "express";
-import { RequestWithRegionDeleteFormData } from "../../views/regions/regionDeleteFormInterfaces.js";
+import {
+  RegionDeleteFormData,
+  RequestWithRegionDeleteFormData,
+} from "../../views/regions/regionDeleteFormInterfaces.js";
+import { Response } from "express-serve-static-core";
 
 const delete_post: RequestHandler = async (
   req: RequestWithRegionDeleteFormData,
   res,
   next
 ) => {
-  // @ts-ignore
   const { regionId, fromRegionDetailPage } = req.body;
 
   if (typeof regionId === "undefined") {
@@ -35,8 +38,12 @@ const delete_post: RequestHandler = async (
 
 export default asyncHandler(delete_post as any);
 
-async function regionDeleteFailureRender(regionId, res, fromRegionDetailPage) {
-  if (fromRegionDetailPage === true) {
+async function regionDeleteFailureRender(
+  regionId: string,
+  res: Response,
+  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"]
+) {
+  if (fromRegionDetailPage) {
     res.render("message", {
       title: "failure!",
       message: "Region not deleted",
