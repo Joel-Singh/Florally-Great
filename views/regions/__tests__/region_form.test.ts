@@ -1,4 +1,4 @@
-import { RegionFormLocals } from "../regionFormInterfaces";
+import { RegionFormLocals } from "../regionUpdateAndCreateFormInterfaces";
 import renderPugToDOM from "../../renderPugToDOM.js";
 
 test("Don't display anything when prepopulated values aren't passed in", () => {

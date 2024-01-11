@@ -4,7 +4,7 @@ import { ValidationError, validationResult } from "express-validator";
 import {
   RegionUpdateFormLocals,
   RequestWithRegionUpdateFormData,
-} from "../../views/regions/regionFormInterfaces";
+} from "../../views/regions/regionUpdateAndCreateFormInterfaces";
 import Region from "../../models/region";
 
 const updateRegionHandler: RequestHandler = async (

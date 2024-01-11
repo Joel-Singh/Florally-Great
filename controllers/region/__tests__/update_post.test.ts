@@ -3,7 +3,7 @@ import saveDummyRegion from "../../../utils/dummyData/savingDummyDataToDb/saveDu
 import {
   RegionUpdateFormData,
   RegionUpdateFormLocals,
-} from "../../../views/regions/regionFormInterfaces";
+} from "../../../views/regions/regionUpdateAndCreateFormInterfaces";
 import emulateCallingController from "../../testingUtils/emulateCallingController";
 import update_post from "../update_post";
 

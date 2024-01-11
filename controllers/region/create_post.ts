@@ -7,7 +7,7 @@ import getCreatePostMiddleware from "../template/create_post";
 import {
   RegionFormLocals,
   RequestWithRegionFormData,
-} from "../../views/regions/regionFormInterfaces";
+} from "../../views/regions/regionUpdateAndCreateFormInterfaces";
 import validation from "./validation";
 
 function renderForm(res: Response, locals: RegionFormLocals) {
