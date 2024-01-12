@@ -57,7 +57,7 @@ async function regionDeleteFailureRender(
 ) {
   if (fromRegionDetailPage) {
     res.render("message", {
-      title: "failure!",
+      title: "Failure!",
       message: `${regionName} not deleted`,
     });
     return;
@@ -74,7 +74,7 @@ async function regionDeleteSuccessRender(
 ) {
   if (fromRegionDetailPage) {
     res.render("message", {
-      title: "success!",
+      title: "Success!",
       message: `${regionName} successfully deleted`,
     });
   } else {
