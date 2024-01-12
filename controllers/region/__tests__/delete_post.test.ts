@@ -162,7 +162,7 @@ describe("From deleting through region detail page", () => {
     expect(view).toMatchInlineSnapshot(`"message"`);
     expect(locals).toMatchInlineSnapshot(`
       {
-        "message": "Region successfully deleted",
+        "message": "Region Name successfully deleted",
         "title": "success!",
       }
     `);
@@ -188,7 +188,7 @@ describe("From deleting through region detail page", () => {
     expect(view).toMatchInlineSnapshot(`"message"`);
     expect(locals).toMatchInlineSnapshot(`
       {
-        "message": "Region not deleted",
+        "message": "Region Name not deleted",
         "title": "failure!",
       }
     `);

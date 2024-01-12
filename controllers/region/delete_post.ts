@@ -28,11 +28,22 @@ const delete_post: RequestHandler = async (
     return;
   }
 
+  const region = await Region.findById(regionId);
+  if (region === null) {
+    throw new Error("Couldn't find region of requested deleted region");
+  }
+  const regionName = region.name;
+
   if (await regionHasFlower(regionId)) {
-    await regionDeleteFailureRender(regionId, res, fromRegionDetailPage);
+    await regionDeleteFailureRender(
+      regionId,
+      res,
+      fromRegionDetailPage,
+      regionName
+    );
   } else {
     await Region.findByIdAndDelete(regionId);
-    await regionDeleteSuccessRender(res, fromRegionDetailPage);
+    await regionDeleteSuccessRender(res, fromRegionDetailPage, regionName);
   }
 };
 
@@ -41,12 +52,13 @@ export default asyncHandler(delete_post as any);
 async function regionDeleteFailureRender(
   regionId: string,
   res: Response,
-  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"]
+  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"],
+  regionName: string
 ) {
   if (fromRegionDetailPage) {
     res.render("message", {
       title: "failure!",
-      message: "Region not deleted",
+      message: `${regionName} not deleted`,
     });
     return;
   } else {
@@ -57,12 +69,13 @@ async function regionDeleteFailureRender(
 
 async function regionDeleteSuccessRender(
   res,
-  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"]
+  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"],
+  regionName: string
 ) {
   if (fromRegionDetailPage) {
     res.render("message", {
       title: "success!",
-      message: "Region successfully deleted",
+      message: `${regionName} successfully deleted`,
     });
   } else {
     res.redirect("/regions/delete");
