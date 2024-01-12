@@ -160,14 +160,12 @@ describe("From deleting through region detail page", () => {
     expect(foundRegion).toBeNull();
 
     expect(view).toMatchInlineSnapshot(`"message"`);
-    expect(locals).toMatchInlineSnapshot(
-      `
+    expect(locals).toMatchInlineSnapshot(`
       {
         "message": "Region successfully deleted",
         "title": "success!",
       }
-    `
-    );
+    `);
   });
 
   test("If region does have flowers, don't delete region and redirect with error", async () => {
@@ -188,14 +186,12 @@ describe("From deleting through region detail page", () => {
     expect(foundRegion).not.toBeNull();
 
     expect(view).toMatchInlineSnapshot(`"message"`);
-    expect(locals).toMatchInlineSnapshot(
-      `
+    expect(locals).toMatchInlineSnapshot(`
       {
         "message": "Region not deleted",
         "title": "failure!",
       }
-    `
-    );
+    `);
   });
 });
 
