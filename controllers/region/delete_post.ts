@@ -55,8 +55,11 @@ async function regionDeleteFailureRender(
   }
 }
 
-async function regionDeleteSuccessRender(res, fromRegionDetailPage) {
-  if (fromRegionDetailPage === true) {
+async function regionDeleteSuccessRender(
+  res,
+  fromRegionDetailPage: RegionDeleteFormData["fromRegionDetailPage"]
+) {
+  if (fromRegionDetailPage) {
     res.render("message", {
       title: "success!",
       message: "Region successfully deleted",

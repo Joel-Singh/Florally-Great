@@ -5,6 +5,10 @@ import Flower from "../../../models/flower";
 import Region from "../../../models/region";
 
 import delete_post from "../delete_post";
+import {
+  RegionDeleteFormData,
+  RequestWithRegionDeleteFormData,
+} from "../../../views/regions/regionDeleteFormInterfaces.js";
 
 test("If no region is selected, error message is returned", async () => {
   const { getRenderInformation } = await emulateCallingController(delete_post, {
@@ -138,13 +142,15 @@ describe("On region with multiple flowers", () => {
 describe("From deleting through region detail page", () => {
   test("If region doesn't have flowers, deletes region and redirects with success message", async () => {
     const id = await saveRegionToBeDeleted();
+    const body: RegionDeleteFormData = {
+      regionId: id.toString(),
+      fromRegionDetailPage: "true",
+    };
+
     const { getRenderInformation } = await emulateCallingController(
       delete_post,
       {
-        body: {
-          regionId: id,
-          fromRegionDetailPage: true,
-        },
+        body,
       }
     );
 
