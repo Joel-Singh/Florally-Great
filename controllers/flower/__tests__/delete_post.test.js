@@ -12,7 +12,11 @@ const delete_post = require("../delete_post.js");
 
 test("Deletes flower", async () => {
   const id = (await saveDummyFlower())._id;
-  await emulateCallingController(delete_post, { body: { flowerId: id } }, {});
+  await emulateCallingController(
+    delete_post,
+    { body: { flowerId: id }, params: { name: "name" } },
+    {}
+  );
 
   expect(await Flower.findById(id)).toBeNull();
 });
@@ -21,7 +25,7 @@ test("Redirects to success message after deleting flower", async () => {
   const id = (await saveDummyFlower())._id;
   const { getRenderInformation } = await emulateCallingController(
     delete_post,
-    { body: { flowerId: id } },
+    { body: { flowerId: id }, params: { name: "name" } },
     {}
   );
 
@@ -30,8 +34,8 @@ test("Redirects to success message after deleting flower", async () => {
   expect(view).toMatchInlineSnapshot(`"message"`);
   expect(locals).toMatchInlineSnapshot(`
     {
-      "message": "Flower deleted successfully",
-      "title": "Flower deleted!",
+      "message": "name deleted successfully",
+      "title": "name deleted!",
     }
   `);
 });
