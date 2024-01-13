@@ -13,7 +13,7 @@
     "test:debug": "node --inspect-brk --import tsx node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
-    "clearAndPopulateDB": "tsx bin/clearAndPopulateDB.ts mongodb+srv://joel:joel@cluster0.7fk43dg.mongodb.net/?retryWrites=true&w=majority",
+    "clearAndPopulateDB": "tsx bin/clearAndPopulateDB.ts",
     "prepare": "git config core.hooksPath ./git-hooks"
   },
   "dependencies": {

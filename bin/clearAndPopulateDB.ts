@@ -1,11 +1,12 @@
+import 'dotenv/config'
+import mongoose from "mongoose";
+
 console.log(
   'This script populates some test flowers and regions to your database. Specified database as argument - e.g.: node populatedb "mongodb+srv://cooluser:coolpassword@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority"'
 );
 
-const userArgs = process.argv.slice(2);
-const mongoDB = userArgs[0];
+const mongoDB = process.env.MONGODB_CONNECTION_URL as string;
 
-const mongoose = require("mongoose");
 import Flower, { IFlowerDocument, IFlowerProperties } from "../models/flower";
 import Region, { IRegionDocument } from "../models/region";
 
