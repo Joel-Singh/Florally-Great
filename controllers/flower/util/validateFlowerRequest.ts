@@ -58,6 +58,7 @@ export default [
     .isLength({ min: 1 })
     .withMessage(`Name can't be empty`)
     .escape(),
+  body("name", `Name can't have the pound symbol`).not().matches(/#/, "g"),
 
   body("description")
     .trim()
