@@ -81,6 +81,9 @@ test("Rerenders form with error on error", async () => {
 
   const { getRenderInformation } = await emulateCallingController(update_post, {
     body,
+    params: {
+      name: dummyFlower.name,
+    },
   });
 
   const { view, locals } = getRenderInformation();
@@ -113,6 +116,9 @@ test("Rerenders on error with previous data", async () => {
 
   const { getRenderInformation } = await emulateCallingController(update_post, {
     body,
+    params: {
+      name: dummyFlower.name,
+    },
   });
 
   const locals: FlowerUpdateFormLocals = getRenderInformation().locals;
@@ -127,4 +133,28 @@ test("Rerenders on error with previous data", async () => {
       "regionID": "000000000000000000000027",
     }
   `);
+});
+
+test("Rerenders on error with flowerName", async () => {
+  const dummyFlower: IFlowerDocument = await saveDummyFlower();
+  const dummyFlowerId: string = dummyFlower._id.toString();
+  const invalidName = "";
+
+  const body: FlowerUpdateFormData = {
+    ...(await getValidFlowerPostData()),
+    name: invalidName,
+    id: dummyFlowerId,
+    isUpdate: "true",
+  };
+
+  const { getRenderInformation } = await emulateCallingController(update_post, {
+    body,
+    params: {
+      name: dummyFlower.name,
+    },
+  });
+
+  const locals: FlowerUpdateFormLocals = getRenderInformation().locals;
+
+  expect(locals.flowerName).toMatchInlineSnapshot(`"Name28"`);
 });

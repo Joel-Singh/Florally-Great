@@ -23,6 +23,7 @@ const updateFlowerHandler: RequestHandler = async (
     const locals: FlowerUpdateFormLocals = {
       errors: errors.array(),
       prepopulatedValues: getDecodedFormValues(req, flowerUpdateFormKeys),
+      flowerName: req.params.name,
     };
 
     await renderFlowerForm(res, locals, { isUpdate: true });
