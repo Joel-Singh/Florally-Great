@@ -1,5 +1,11 @@
 extend ./flower_form.pug
 
+block title
+  title=title || "Editing Flower"
+
+block header
+  h1= title || "Editing Flower"
+
 append form elements
   input(
     type='hidden'
