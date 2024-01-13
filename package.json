@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run clearAndPopulateDB && tsx ./bin/www",
+    "build": "parcel build bin/www.ts --target node",
+    "prestart": "npm run build",
+    "start": "npm run clearAndPopulateDB && node ./dist/www.js",
     "start:dev": "nodemon --ext js,ts,css,pug,json --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "npm run typecheck && jest",
@@ -15,6 +17,11 @@
     "formatAll": "npx prettier --write .",
     "clearAndPopulateDB": "tsx bin/clearAndPopulateDB.ts",
     "prepare": "git config core.hooksPath ./git-hooks"
+  },
+  "targets": {
+    "node": {
+      "context": "node"
+    }
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
