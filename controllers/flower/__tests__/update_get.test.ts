@@ -25,3 +25,18 @@ test("Renders flower form, passing in prepopulated values", async () => {
     }
   `);
 });
+
+test("Renders flower form, passing in flower name", async () => {
+  const flower = await saveDummyFlower();
+  const { getRenderInformation } = await emulateCallingController(update_get, {
+    params: {
+      name: flower.name,
+    },
+  });
+
+  const { view, locals } = getRenderInformation();
+
+  expect(view).toMatchInlineSnapshot(`"flowers/flower_form_update"`);
+
+  expect(locals.flowerName).toMatchInlineSnapshot(`"Name5"`);
+});
