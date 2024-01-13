@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "tsx ./bin/www",
+    "start": "npm run clearAndPopulateDB && tsx ./bin/www",
     "start:dev": "nodemon --ext js,ts,css,pug,json --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "npm run typecheck && jest",
