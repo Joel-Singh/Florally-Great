@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import { join } from "path";
+import delete_get from "../controllers/flower/delete_get";
 
 const requireFlowerController = (controllerName) => {
   const requiredController = require(join(
@@ -20,6 +21,7 @@ const requireFlowerController = (controllerName) => {
 };
 
 router.get("/", requireFlowerController("list"));
+router.get("/delete", delete_get);
 
 router.get("/create", requireFlowerController("create_get"));
 router.post("/create", requireFlowerController("create_post"));
