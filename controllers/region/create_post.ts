@@ -2,6 +2,7 @@ import { Response } from "express";
 import Region, {
   IRegionDocument,
   IRegionProperties,
+  regionKeys,
 } from "../../models/region";
 import getCreatePostMiddleware from "../template/create_post";
 import {
@@ -9,6 +10,7 @@ import {
   RequestWithRegionFormData,
 } from "../../views/regions/regionUpdateAndCreateFormInterfaces";
 import validation from "./validation";
+import getDecodedFormValues from "../template/getDecodedFormValues";
 
 function renderForm(res: Response, locals: RegionFormLocals) {
   res.render("regions/region_form", {
@@ -19,7 +21,7 @@ function renderForm(res: Response, locals: RegionFormLocals) {
 function getModelDataFromReqBody(
   req: RequestWithRegionFormData
 ): IRegionProperties {
-  const { name, description } = req.body;
+  const { name, description } = getDecodedFormValues(req, regionKeys);
   return { name, description };
 }
 

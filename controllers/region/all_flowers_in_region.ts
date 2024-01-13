@@ -4,12 +4,13 @@ import Flower from "../../models/flower";
 import Region from "../../models/region";
 import { NextFunction, Request, Response } from "express";
 import createHttpError from "http-errors";
+import he from "he";
 
 export default asyncHandler(
   // @ts-ignore
   async (req: Request, res: Response, next: NextFunction) => {
     const regionName = req.params.name;
-    let region = await Region.findOne({ name: regionName });
+    let region = await Region.findOne({ name: he.decode(regionName) });
 
     if (region === null) {
       next(createHttpError(404));
