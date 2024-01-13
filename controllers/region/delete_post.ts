@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import renderDeleteRegion from "./rendersWithDefaultLocals/renderDeleteRegion.js";
+import renderDeleteRegion from "./rendersWithDefaultLocals/renderDeleteRegion.ts";
 
 import Flower from "../../models/flower";
 import Region from "../../models/region";
@@ -7,7 +7,7 @@ import { RequestHandler } from "express";
 import {
   RegionDeleteFormData,
   RequestWithRegionDeleteFormData,
-} from "../../views/regions/regionDeleteFormInterfaces.js";
+} from "../../views/regions/regionDeleteFormInterfaces.ts";
 import { Response } from "express-serve-static-core";
 
 const delete_post: RequestHandler = async (

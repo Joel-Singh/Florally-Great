@@ -1,5 +1,4 @@
 import asyncHandler from "express-async-handler";
-import { join } from "path";
 import Flower from "../../models/flower";
 import Region from "../../models/region";
 import { NextFunction, Request, Response } from "express";

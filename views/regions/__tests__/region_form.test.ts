@@ -1,5 +1,5 @@
 import { RegionFormLocals } from "../regionUpdateAndCreateFormInterfaces";
-import renderPugToDOM from "../../renderPugToDOM.js";
+import renderPugToDOM from "../../renderPugToDOM.ts";
 
 test("Don't display anything when prepopulated values aren't passed in", () => {
   const locals = {};

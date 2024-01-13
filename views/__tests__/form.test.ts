@@ -1,9 +1,4 @@
-const path = require("path");
-const renderPugToDOM = require(path.join(
-  appRoot,
-  "views",
-  "renderPugToDOM.js"
-));
+import renderPugToDOM from "../renderPugToDOM";
 
 test.each([
   [

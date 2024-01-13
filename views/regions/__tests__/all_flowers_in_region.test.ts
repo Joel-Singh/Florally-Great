@@ -1,5 +1,4 @@
-const path = require("path");
-const renderPugToDOM = require(path.join(appRoot, "views", "renderPugToDOM"));
+const { default: renderPugToDOM } = require("../../renderPugToDOM");
 
 test("Rendered flower list is empty", () => {
   const locals = {

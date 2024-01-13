@@ -1,5 +1,5 @@
-import formatHtml from "../../testingUtils/formatHtml.js";
-import { default as emulateCallingController } from "../../testingUtils/emulateCallingController";
+import formatHtml from "../../testingUtils/formatHtml.ts";
+import emulateCallingController from "../../testingUtils/emulateCallingController";
 
 import Flower from "../../../models/flower";
 import Region from "../../../models/region";
@@ -8,7 +8,7 @@ import delete_post from "../delete_post";
 import {
   RegionDeleteFormData,
   RequestWithRegionDeleteFormData,
-} from "../../../views/regions/regionDeleteFormInterfaces.js";
+} from "../../../views/regions/regionDeleteFormInterfaces.ts";
 
 test("If no region is selected, error message is returned", async () => {
   const { getRenderInformation } = await emulateCallingController(delete_post, {

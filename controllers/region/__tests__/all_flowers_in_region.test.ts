@@ -1,4 +1,3 @@
-import { join } from "path";
 import Region from "../../../models/region";
 import Flower from "../../../models/flower";
 import emulateCallingController from "../../testingUtils/emulateCallingController";

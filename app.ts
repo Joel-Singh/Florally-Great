@@ -1,18 +1,13 @@
-const path = require("path");
-global.appRoot = path.resolve(__dirname);
-require("dotenv").config();
-
-const mongoose = require("mongoose");
-
-const {
-  default: configureExpressApp,
-} = require("./appMiddlewares/configureExpressApp");
+import mongoose from "mongoose";
+import configureExpressApp from "./appMiddlewares/configureExpressApp";
+import "dotenv/config";
 
 async function connectToMongoDB() {
   mongoose.set("strictQuery", false);
   const mongoDB = process.env.MONGODB_CONNECTION_URL;
 
   try {
+    //@ts-ignore
     await mongoose.connect(mongoDB);
   } catch (error) {
     console.error(error);
@@ -28,4 +23,4 @@ const app = configureExpressApp({
   errorHandling: true,
 });
 
-module.exports = app;
+export default app;

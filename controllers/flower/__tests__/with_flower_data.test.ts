@@ -1,7 +1,5 @@
-const {
-  default: emulateCallingController,
-} = require("./../../testingUtils/emulateCallingController.ts");
-const with_flower_data = require("./../with_flower_data.js");
+import emulateCallingController from "./../../testingUtils/emulateCallingController.ts";
+import with_flower_data from "./../with_flower_data.ts";
 const {
   default: saveDummyFlower,
 } = require("./../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");

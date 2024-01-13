@@ -1,7 +1,6 @@
 import { RequestHandler } from "express";
 import Region from "../../models/region";
 import { RegionUpdateFormLocals } from "../../views/regions/regionUpdateAndCreateFormInterfaces";
-import asyncHandler from "express-async-handler";
 import he from "he";
 
 const update_get: RequestHandler = async (req, res, next) => {

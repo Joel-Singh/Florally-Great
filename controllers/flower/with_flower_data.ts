@@ -1,8 +1,7 @@
-const { default: Flower } = require("./../../models/flower.ts");
-const asyncHandler = require("express-async-handler");
-const he = require("he");
+import Flower from "./../../models/flower.ts";
+import he from "he";
 
-module.exports = function (controller) {
+export default function (controller) {
   return async (req, res, next) => {
     const flowerName = he.decode(req.params.name);
     const flower = await Flower.findOne({ name: flowerName })
@@ -16,4 +15,4 @@ module.exports = function (controller) {
 
     await controller(req, res, next, flower);
   };
-};
+}

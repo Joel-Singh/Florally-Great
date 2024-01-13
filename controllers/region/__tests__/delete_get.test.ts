@@ -1,22 +1,12 @@
-const path = require("path");
-const express = require("express");
-const request = require("supertest");
+import express from "express";
+import request from "supertest";
 
-const formatHtml = require("../../testingUtils/formatHtml.js");
+import formatHtml from "../../testingUtils/formatHtml.ts";
 
-const { default: addGeneralMiddleware } = require(path.join(
-  appRoot,
-  "appMiddlewares",
-  "addGeneralMiddleware.ts"
-));
-const { default: viewEngineSetup } = require(path.join(
-  appRoot,
-  "appMiddlewares",
-  "viewEngineSetup.ts"
-));
-const { default: Region } = require(path.join(appRoot, "models", "region.ts"));
-
-const delete_get = require("../delete_get.js");
+import delete_get from "../delete_get.ts";
+import addGeneralMiddleware from "../../../appMiddlewares/addGeneralMiddleware.ts";
+import viewEngineSetup from "../../../appMiddlewares/viewEngineSetup.ts";
+import Region from "../../../models/region.ts";
 
 test("delete_get controller renders with regions", async () => {
   const app = configureExpressApp();

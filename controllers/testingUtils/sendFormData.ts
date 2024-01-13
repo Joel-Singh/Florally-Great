@@ -1,11 +1,11 @@
-const request = require("supertest");
+import request from "supertest";
 
-module.exports = async function (app, endpoint, data) {
+export default async function (app, endpoint, data) {
   return await request(app)
     .post(endpoint)
     .send(createFormDataString(data))
     .set("Content-Type", "application/x-www-form-urlencoded");
-};
+}
 
 function createFormDataString(data) {
   let formString = "";

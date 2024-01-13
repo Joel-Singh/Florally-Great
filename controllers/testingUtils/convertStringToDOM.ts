@@ -1,8 +1,8 @@
-const { JSDOM } = require("jsdom");
+import { JSDOM } from "jsdom";
 
-module.exports = function (string) {
+export default function (string) {
   const dom = new JSDOM(string);
   const document = dom.window.document;
 
   return document;
-};
+}

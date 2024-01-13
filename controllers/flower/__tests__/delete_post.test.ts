@@ -1,14 +1,10 @@
-const {
-  default: emulateCallingController,
-} = require("../../testingUtils/emulateCallingController.ts");
+import emulateCallingController from "../../testingUtils/emulateCallingController.ts";
 
-const {
-  default: saveDummyFlower,
-} = require("../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts");
+import saveDummyFlower from "../../../utils/dummyData/savingDummyDataToDb/saveDummyFlower.ts";
 
-const { default: Flower } = require("../../../models/flower.ts");
+import Flower from "../../../models/flower.ts";
 
-const delete_post = require("../delete_post.js");
+import delete_post from "../delete_post.ts";
 
 test("Deletes flower", async () => {
   const id = (await saveDummyFlower())._id;

@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require("../app");
-var debug = require("debug")("florally-great:server");
-var http = require("http");
+import app from "../app.ts";
+import debug from "debug";
+debug("florally-great:server");
+import http from "http";
 
 /**
  * Get port from environment and store in Express.
@@ -82,6 +83,6 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr!.port;
   debug("Listening on " + bind);
 }

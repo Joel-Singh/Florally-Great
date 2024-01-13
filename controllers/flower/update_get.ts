@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler";
 import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
-import with_flower_data from "./with_flower_data.js";
+import with_flower_data from "./with_flower_data.ts";
 
 export default asyncHandler(
   with_flower_data(async (req, res, next, flower) => {

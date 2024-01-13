@@ -1,34 +1,24 @@
 import { Router } from "express";
 const router = Router();
-import { join } from "path";
 import delete_get from "../controllers/flower/delete_get";
+import list from "../controllers/flower/list";
+import create_get from "../controllers/flower/create_get";
+import create_post from "../controllers/flower/create_post";
+import detail from "../controllers/flower/detail";
+import update_get from "../controllers/flower/update_get";
+import update_post from "../controllers/flower/update_post";
+import delete_post from "../controllers/flower/delete_post";
 
-const requireFlowerController = (controllerName) => {
-  const requiredController = require(join(
-    appRoot as string,
-    "controllers",
-    "flower",
-    controllerName
-  ));
-  if (
-    typeof requiredController === "function" ||
-    Array.isArray(requiredController)
-  ) {
-    return requiredController;
-  } else {
-    return requiredController.default;
-  }
-};
-
-router.get("/", requireFlowerController("list"));
+router.get("/", list);
 router.get("/delete", delete_get);
 
-router.get("/create", requireFlowerController("create_get"));
-router.post("/create", requireFlowerController("create_post"));
+router.get("/create", create_get);
+router.post("/create", create_post);
 
-router.get("/:name", requireFlowerController("detail"));
-router.get("/:name/update", requireFlowerController("update_get"));
-router.post("/:name/update", requireFlowerController("update_post"));
-router.post("/:name", requireFlowerController("delete_post"));
+router.get("/:name", detail);
+router.get("/:name/update", update_get);
+//@ts-ignore
+router.post("/:name/update", update_post);
+router.post("/:name", delete_post);
 
 export default router;

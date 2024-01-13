@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import renderPugToDOM from "../../renderPugToDOM.js";
-import { FlowerFormLocals } from "../flowerFormInterfaces.js";
+import renderPugToDOM from "../../renderPugToDOM.ts";
+import { FlowerFormLocals } from "../flowerFormInterfaces.ts";
 import getValidRegionData from "./../../../utils/dummyData/getValidData/getValidRegionData";
 import { generateSequentialObjectId } from "../../../utils/dummyData/SequentialGenerators";
 
@@ -93,6 +93,7 @@ describe("Prepopulated input values", () => {
       'input[type="hidden"][name="id"]'
     );
 
+    //@ts-ignore
     expect(hiddenIdInput.value).toMatch(idValue);
   });
 
@@ -114,6 +115,7 @@ describe("Prepopulated input values", () => {
       },
     });
 
+    //@ts-ignore
     expect(regionSelect.querySelector("[selected]")).toMatchInlineSnapshot(`
       <option
         selected="selected"
@@ -130,8 +132,10 @@ describe("Prepopulated input values", () => {
       locals
     );
     let inputs = renderedForm.querySelectorAll("input");
+    //@ts-ignore
     inputs = Array.from(inputs);
 
+    //@ts-ignore
     const inputValues = inputs.map((element) => {
       return element.getAttribute("value");
     });
