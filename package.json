@@ -26,7 +26,8 @@
     "http-errors": "~1.6.3",
     "mongoose": "^7.1.0",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "tsx": "^4.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -47,7 +48,6 @@
     "parcel": "^2.11.0",
     "prettier": "^2.8.8",
     "supertest": "^6.3.3",
-    "tsx": "^4.7.0",
     "typescript": "^5.1.6"
   }
 }
