@@ -1,10 +1,10 @@
 extend ./flower_form.pug
 
 block title
-  title=title || "Editing Flower"
+  title=title || `Editing ${flowerName || 'Flower'}`
 
 block header
-  h1= title || "Editing Flower"
+  h1= title || `Editing ${flowerName || 'Flower'}`
 
 append form elements
   input(
