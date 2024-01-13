@@ -12,6 +12,7 @@ import { validationResult } from "express-validator";
 import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
 import validateFlowerRequest from "./util/validateFlowerRequest";
 import getDecodedFormValues from "../template/getDecodedFormValues";
+import he from "he";
 
 const updateFlowerHandler: RequestHandler = async (
   req: RequestWithFlowerUpdateFormData,
@@ -23,7 +24,7 @@ const updateFlowerHandler: RequestHandler = async (
     const locals: FlowerUpdateFormLocals = {
       errors: errors.array(),
       prepopulatedValues: getDecodedFormValues(req, flowerUpdateFormKeys),
-      flowerName: req.params.name,
+      flowerName: he.decode(req.params.name),
     };
 
     await renderFlowerForm(res, locals, { isUpdate: true });

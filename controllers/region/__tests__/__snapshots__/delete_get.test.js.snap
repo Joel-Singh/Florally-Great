@@ -19,6 +19,7 @@ exports[`delete_get controller renders with regions 1`] = `
       <ul class="sidebar__flowers">
         <li><a href="/flowers">All flowers</a></li>
         <li><a href="/flowers/create">Create flower</a></li>
+        <li><a href="/flowers/delete">Delete flower</a></li>
       </ul>
       <ul class="sidebar__regions">
         <li><a href="/regions">All regions</a></li>

@@ -9,7 +9,7 @@ import he from "he";
 export default asyncHandler(
   // @ts-ignore
   async (req: Request, res: Response, next: NextFunction) => {
-    const regionName = req.params.name;
+    const regionName = he.decode(req.params.name);
     let region = await Region.findOne({ name: he.decode(regionName) });
 
     if (region === null) {
