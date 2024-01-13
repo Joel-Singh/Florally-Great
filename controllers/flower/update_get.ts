@@ -1,16 +1,14 @@
-const asyncHandler = require("express-async-handler");
-const {
-  default: renderFlowerForm,
-} = require("./rendersWithDefaultLocals/renderFlowerForm.ts");
-const { default: Flower } = require("./../../models/flower.ts");
-const with_flower_data = require("./with_flower_data.js");
+import asyncHandler from "express-async-handler";
+import renderFlowerForm from "./rendersWithDefaultLocals/renderFlowerForm";
+import with_flower_data from "./with_flower_data.js";
 
-module.exports = asyncHandler(
+export default asyncHandler(
   with_flower_data(async (req, res, next, flower) => {
     const { name, description, numberInStock, price, _id } = flower;
     await renderFlowerForm(
       res,
       {
+        flowerName: name,
         prepopulatedValues: {
           name,
           description,
