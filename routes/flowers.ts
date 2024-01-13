@@ -1,10 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const path = require("path");
+import { Router } from "express";
+const router = Router();
+import { join } from "path";
 
 const requireFlowerController = (controllerName) => {
-  const requiredController = require(path.join(
-    appRoot,
+  const requiredController = require(join(
+    appRoot as string,
     "controllers",
     "flower",
     controllerName
@@ -29,4 +29,4 @@ router.get("/:name/update", requireFlowerController("update_get"));
 router.post("/:name/update", requireFlowerController("update_post"));
 router.post("/:name", requireFlowerController("delete_post"));
 
-module.exports = router;
+export default router;
