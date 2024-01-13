@@ -19,20 +19,24 @@ test("Passes in all flowers", async () => {
     {
       "flower_list": [
         {
-          "_id": "000000000000000000000004",
+          "id": "000000000000000000000004",
           "name": "Name1",
+          "url": "/flowers/Name1",
         },
         {
-          "_id": "000000000000000000000016",
+          "id": "000000000000000000000016",
           "name": "Name13",
+          "url": "/flowers/Name13",
         },
         {
-          "_id": "000000000000000000000008",
+          "id": "000000000000000000000008",
           "name": "Name5",
+          "url": "/flowers/Name5",
         },
         {
-          "_id": "000000000000000000000012",
+          "id": "000000000000000000000012",
           "name": "Name9",
+          "url": "/flowers/Name9",
         },
       ],
       "title": "Pick a flower to delete",
