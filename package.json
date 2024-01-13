@@ -15,8 +15,7 @@
     "test:debug": "node --inspect-brk --import tsx node_modules/.bin/jest --run-in-band",
     "inspect": "node inspect localhost:9229",
     "formatAll": "npx prettier --write .",
-    "clearAndPopulateDB": "tsx bin/clearAndPopulateDB.ts",
-    "prepare": "git config core.hooksPath ./git-hooks"
+    "clearAndPopulateDB": "tsx bin/clearAndPopulateDB.ts"
   },
   "targets": {
     "node": {
