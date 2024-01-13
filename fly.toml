@@ -1,0 +1,4 @@
+# fly.toml file generated for florally-great on 2024-01-13T02:48:32-05:00
+
+app = "florally-great"
+primary_region = "mia"
