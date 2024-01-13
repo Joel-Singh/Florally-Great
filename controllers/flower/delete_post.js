@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const { default: Flower } = require("../../models/flower.ts");
-const he = require('he');
+const he = require("he");
 module.exports = asyncHandler(async (req, res, next) => {
   const { flowerId } = req.body;
   await Flower.findByIdAndDelete(flowerId);
