@@ -1,5 +1,6 @@
 const path = require("path");
 global.appRoot = path.resolve(__dirname);
+require("dotenv").config();
 
 const mongoose = require("mongoose");
 
@@ -9,8 +10,7 @@ const {
 
 async function connectToMongoDB() {
   mongoose.set("strictQuery", false);
-  const mongoDB =
-    "mongodb+srv://joel:joel@cluster0.7fk43dg.mongodb.net/?retryWrites=true&w=majority";
+  const mongoDB = process.env.MONGODB_CONNECTION_URL;
 
   try {
     await mongoose.connect(mongoDB);
