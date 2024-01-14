@@ -39,6 +39,7 @@ async function populateDatabase() {
   async function populateRegionData(): Promise<IRegionDocument[]> {
     const regionData = getRegionData();
     const regions = await Region.insertMany(regionData);
+    console.log("added regions");
     return regions;
   }
 
@@ -60,6 +61,7 @@ async function populateDatabase() {
     });
 
     const flowers = await Flower.insertMany(flowerDocuments);
+    console.log("added flowers");
   }
 }
 
