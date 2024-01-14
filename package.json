@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "parcel build bin/www.ts --target node",
-    "prestart": "npm run build",
-    "start": "npm run clearAndPopulateDB && node ./dist/www.js",
+    "prestart": "npm run build && npm run clearAndPopulateDB",
+    "start": "node ./dist/www.js",
     "start:dev": "nodemon --ext js,ts,css,pug,json --ignore dist/ --exec npm start",
     "serverstart": "DEBUG=express-locallibrary-tutorial:* npm run devstart",
     "test": "npm run typecheck && jest",
