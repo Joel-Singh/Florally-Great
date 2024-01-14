@@ -27,6 +27,7 @@ const updateFlowerHandler: RequestHandler = async (
       flowerName: he.decode(req.params.name),
     };
 
+    //@ts-ignore
     await renderFlowerForm(res, locals, { isUpdate: true });
   } else {
     await updateAndRedirect(req, res);

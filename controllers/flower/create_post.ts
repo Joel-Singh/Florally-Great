@@ -29,6 +29,7 @@ function getPreviousDataFromReqBody(
 
 export default getCreatePostMiddleware(
   validateFlowerRequest,
+  // @ts-ignore
   renderFlowerForm,
   getFlowerModelDataFromReqBody,
   getPreviousDataFromReqBody,

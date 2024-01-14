@@ -13,6 +13,7 @@ router.get("/", list);
 router.get("/delete", delete_get);
 
 router.get("/create", create_get);
+// @ts-ignore
 router.post("/create", create_post);
 
 router.get("/:name", detail);
